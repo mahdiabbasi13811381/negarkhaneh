@@ -1,0 +1,18 @@
+<!-- بخش گالری در صفحه اصلی -->
+<section class="gallery-preview">
+    <h2>آخرین آثار</h2>
+    <div class="artworks-grid">
+        {{ range first 6 (where .Site.RegularPages "Type" "gallery") }}
+        <div class="artwork-item">
+            <a href="{{ .Permalink }}">
+                <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                <div class="artwork-info">
+                    <h3>{{ .Title }}</h3>
+                    <p>{{ .Params.artist }}</p>
+                    <span>{{ .Params.medium }}</span>
+                </div>
+            </a>
+        </div>
+        {{ end }}
+    </div>
+</section>
