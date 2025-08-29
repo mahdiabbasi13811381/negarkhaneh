@@ -1,19 +1,18 @@
 backend:
   name: github
-  repo: mahdiabbasi13811381/negarkhaneh 
-  base_url: https://mahdiabbasi13811381.github.io
-  site_url: https://mahdiabbasi13811381.github.io/negarkhaneh
+  repo: mahdiabbasi13811381/negarkhaneh
+  branch: main
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
   - name: "blog"
-    label: "Blog Posts"
+    label: "پست‌های وبلاگ"
     folder: "_posts/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "date", label: "Date", widget: "datetime" }
-      - { name: "body", label: "Body", widget: "markdown" }
+      - { name: "title", label: "عنوان", widget: "string" }
+      - { name: "date", label: "تاریخ", widget: "datetime" }
+      - { name: "body", label: "محتوا", widget: "markdown" }
