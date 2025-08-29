@@ -2,9 +2,18 @@ backend:
   name: github
   repo: mahdiabbasi13811381/negarkhaneh
   branch: main
+  base_url: https://mahdiabbasi13811381.github.io
+  auth_endpoint: https://mahdiabbasi13811381.github.io/negarkhaneh/admin/index.html
 
+# تنظیمات انتشار
+publish_mode: editorial_workflow
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
+
+# تنظیمات سایت
+site_url: https://mahdiabbasi13811381.github.io/negarkhaneh
+display_url: https://mahdiabbasi13811381.github.io/negarkhaneh
+logo_url: https://mahdiabbasi13811381.github.io/negarkhaneh/images/logo.png
 
 collections:
   - name: "blog"
@@ -13,6 +22,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { name: "title", label: "عنوان", widget: "string" }
-      - { name: "date", label: "تاریخ", widget: "datetime" }
-      - { name: "body", label: "محتوا", widget: "markdown" }
+      - { name: "title", label: "عنوان", widget: "string", required: true }
+      - { name: "date", label: "تاریخ", widget: "datetime", required: true }
+      - { name: "featured_image", label: "تصویر شاخص", widget: "image", required: false }
+      - { name: "body", label: "محتوا", widget: "markdown", required: true }
