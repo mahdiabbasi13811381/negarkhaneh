@@ -1,0 +1,29 @@
+baseURL = "https://mahdiabbasi13811381.github.io/negarkhaneh/"
+title = "عکاس حرفه‌ای | نمونه کارها"
+languageCode = "fa-ir"
+defaultContentLanguage = "fa"
+
+[params]
+description = "عکاس حرفه‌ای با تخصص در عکاسی طبیعت و معماری"
+subtitle = "برترین جوایز بین‌المللی عکاسی - متولد آریزونا"
+
+[menu]
+[[menu.main]]
+name = "صفحه اصلی"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "نمونه کارها"
+url = "/negar/"
+weight = 2
+
+[[menu.main]]
+name = "درباره من"
+url = "/about/"
+weight = 3
+
+[[menu.main]]
+name = "تماس"
+url = "/contact/"
+weight = 4
