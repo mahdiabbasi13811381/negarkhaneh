@@ -27,17 +27,11 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.125.7'  # نسخه پایدار
+          hugo-version: '0.125.7'
           extended: true
 
-      - name: Build with debug
-        run: |
-          echo "📁 Directory structure:"
-          ls -la
-          echo "📁 Layouts:"
-          ls -la layouts/ || echo "No layouts"
-          echo "🏗️ Building site..."
-          hugo --minify --verbose
+      - name: Build
+        run: hugo --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -51,6 +45,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
