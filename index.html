@@ -3,40 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وب‌سایت مقالات</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>عکاس حرفه‌ای | نمونه کارها</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Vazir', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 30px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 50px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-link {
+            color: #222;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #666;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 120px 0 40px; /* فاصله بالایی افزایش یافت تا زیر ناوبری قرار گیرد */
+            text-align: center;
+        }
+
+        .site-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .site-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            margin: 30px 0;
+            padding: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .profile-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .profile-bio {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Gallery Styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 30px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Project Section */
+        .project-section {
+            background: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .project-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .project-text {
+            flex: 1;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .view-project {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .view-project:hover {
+            border-color: #222;
+        }
+
+        .project-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .project-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border-radius: 3px;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-image:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 0 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .footer-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #222;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .project-content {
+                flex-direction: column;
+            }
+            
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 15px 30px;
+            }
+            
+            .nav-links {
+                gap: 30px;
+            }
+            
+            .project-text {
+                order: 2;
+            }
+            
+            .project-images {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .nav-links {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-container {
+                padding: 15px 20px;
+            }
+            
+            header {
+                padding: 100px 0 40px;
+            }
+            
+            .site-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#" class="nav-link">صفحه اصلی</a>
+                <a href="#" class="nav-link">نمونه کارها</a>
+                <a href="#" class="nav-link">درباره من</a>
+                <a href="#" class="nav-link">تماس</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
     <header>
-        <h1>وب‌سایت مقالات</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">خانه</a></li>
-                <li><a href="about.html">درباره ما</a></li>
-                <li><a href="contact.html">تماس با ما</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1 class="site-title">عکاس حرفه‌ای، کارگردان و مدیر فیلمبرداری</h1>
+            <p class="site-subtitle">برترین جوایز بین‌المللی عکاسی - متولد آریزونا</p>
+        </div>
     </header>
 
-    <main>
-        <section class="articles">
-            <article>
-                <h2><a href="article1.html">عنوان مقاله اول</a></h2>
-                <p>این یک خلاصه از مقاله اول است. این مقاله درباره موضوع جالبی است که شما را به خواندن آن ترغیب می‌کند.</p>
-            </article>
-            <article>
-                <h2><a href="article2.html">عنوان مقاله دوم</a></h2>
-                <p>این یک خلاصه از مقاله دوم است. این مقاله درباره موضوع دیگری است که می‌تواند برای شما مفید باشد.</p>
-            </article>
-            <article>
-                <h2><a href="article3.html">عنوان مقاله سوم</a></h2>
-                <p>این یک خلاصه از مقاله سوم است. این مقاله شامل نکات مهمی است که باید بدانید.</p>
-            </article>
+    <!-- Profile Section -->
+    <div class="container">
+        <section class="profile-section">
+            <div class="profile-info">
+                <h2 class="profile-name">نام عکاس</h2>
+                <p class="profile-bio">
+                    عکاس حرفه‌ای با تخصص در عکاسی طبیعت و معماری. هدف من ثبت زیبایی‌های پنهان دنیا از زاویه‌های منحصر به فرد است.
+                </p>
+            </div>
         </section>
-    </main>
+    </div>
 
+    <!-- Gallery -->
+    <div class="container">
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102925992-V2DZ4JHVMH7G8RV3PM5A/EmptyName-1.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926021-PZ5Q1W0ZO6L00ZXZ2SWO/EmptyName-56.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102925983-J1GH7LFIRVACQHHYNRXQ/EmptyName-6.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926007-2WUFL8UAJHOOXFVT2PV4/EmptyName-67.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926073-3AMALD7984DLYFK155YR/MHeiderich-Southbound04.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926062-X4FDKLBUG94SH9ZVPHST/MHeiderich-NIP01.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926084-YIFRRVYN9J86HWU5QYU3/MHeiderich-Southbound01.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926051-V9ZDE71GAH0RAQ4X9JBS/MatthiasHeiderich-082.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926114-SJ9ZPECK8RA74SSDIZKB/Aro%2BHa_0387.jpg?format=2500w" alt="نمونه کار عکاسی">
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Section 1 -->
+    <div class="container">
+        <section class="project-section">
+            <div class="project-content">
+                <div class="project-text">
+                    <h2 class="project-title">بیابان منبع الهام دائمی من است</h2>
+                    <p class="project-description">
+                        طی سه سال گذشته، تقریباً هر روز بیابان را عکاسی کرده‌ام و تغییرات ظریف فصول را ردیابی کرده‌ام. 
+                        این پروژه به من کمک کرده تا ارتباط عمیق‌تری با طبیعت پیدا کنم و زیبایی‌های پنهان محیط طبیعی را کشف کنم.
+                        نور، سایه، و بافت‌های مختلف در طول روز و فصول مختلف، همیشه من را به وجد می‌آورند.
+                    </p>
+                    <a href="#" class="view-project">مشاهده پروژه →</a>
+                </div>
+                <div class="project-images">
+                    <div class="project-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926073-3AMALD7984DLYFK155YR/MHeiderich-Southbound04.jpg?format=2500w" alt="نمونه کار عکاسی">
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926062-X4FDKLBUG94SH9ZVPHST/MHeiderich-NIP01.jpg?format=2500w" alt="نمونه کار عکاسی">
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926084-YIFRRVYN9J86HWU5QYU3/MHeiderich-Southbound01.jpg?format=2500w" alt="نمونه کار عکاسی">
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926051-V9ZDE71GAH0RAQ4X9JBS/MatthiasHeiderich-082.jpg?format=2500w" alt="نمونه کار عکاسی">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Project Section 2 -->
+    <div class="container">
+        <section class="project-section">
+            <div class="project-content">
+                <div class="project-images">
+                    <div class="project-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926114-SJ9ZPECK8RA74SSDIZKB/Aro%2BHa_0387.jpg?format=2500w" alt="نمونه کار عکاسی">
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926125-D0F6T0W0X7B73A9BOKNV/Aro%2BHa_0357.jpg?format=2500w" alt="نمونه کار عکاسی">
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926146-TS50UO8EWF2VVH63LSFT/Aro%2BHa_0376.jpg?format=2500w" alt="نمونه کار عکاسی">
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926135-RZHRHV6H7M36VWEEECQ5/Aro%2BHa_0393.jpg?format=2500w" alt="نمونه کار عکاسی">
+                    </div>
+                </div>
+                <div class="project-text">
+                    <h2 class="project-title">فرزند دو معمار</h2>
+                    <p class="project-description">
+                        به عنوان فرزند دو معمار، علاقه به ساختمان‌ها همیشه در من نهفته بوده است. 
+                        این مجموعه‌ای از آثار سفارشی برای استودیوهای مختلف، سازندگان، مشتریان خصوصی و گاهی اوقات مجلات است.
+                        تمرکز من بر روی نسبت‌ها، نور، و انسجام بصری در فضاهای معماری است.
+                    </p>
+                    <a href="#" class="view-project">مشاهده پروژه →</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2023 وب‌سایت مقالات. تمام حقوق محفوظ است.</p>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">اینستاگرام</a>
+                <a href="#" class="footer-link">تلگرام</a>
+                <a href="#" class="footer-link">ایمیل</a>
+                <a href="#" class="footer-link">تماس</a>
+            </div>
+            <p>© 2024 نام عکاس. تمامی حقوق محفوظ است.</p>
+        </div>
     </footer>
 </body>
 </html>
