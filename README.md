@@ -23,3 +23,4 @@ your-hugo-site/
 │   │   └── styles.css  # فایل CSS شما
 │   └── images/         # تصاویر آپلود شده
 └── config.toml         # تنظیمات
+
