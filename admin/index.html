@@ -1,56 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>پنل مدیریت نگارخانه</title>
-  <style>
-    .loading {
-      padding: 50px;
-      text-align: center;
-      font-family: Tahoma, sans-serif;
-    }
-    .error {
-      color: red;
-      padding: 20px;
-      background: #ffeeee;
-      border: 1px solid red;
-      margin: 20px;
-    }
-  </style>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل مدیریت نگارخانه</title>
+    
+    <!-- استفاده از CDN قابل اعتماد -->
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.js"></script>
+    
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border: 1px solid #ef5350;
+            border-radius: 5px;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="loading" id="loading">
-    در حال بارگذاری پنل مدیریت...
-  </div>
-  
-  <div class="error" id="error" style="display: none;">
-    خطا در بارگذاری پنل مدیریت
-  </div>
+    <div id="loading" class="loading">
+        <h2>در حال بارگذاری پنل مدیریت...</h2>
+        <p>لطفاً چند لحظه صبر کنید</p>
+    </div>
 
-  <script>
-    try {
-      console.log("Starting CMS initialization...");
-      
-      // بررسی اینکه Decap CMS لود شده
-      if (typeof CMS === 'undefined') {
-        throw new Error('Decap CMS library not loaded');
-      }
-      
-      // مقداردهی CMS
-      CMS.init();
-      
-      console.log("CMS initialized successfully");
-      document.getElementById('loading').style.display = 'none';
-      
-    } catch (error) {
-      console.error("CMS Error:", error);
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('error').style.display = 'block';
-      document.getElementById('error').innerHTML = 
-        'خطا: ' + error.message + '<br>لطفا کنسول مرورگر را بررسی کنید';
-    }
-  </script>
+    <div id="error" class="error" style="display: none;">
+        <h3>خطا در بارگذاری</h3>
+        <p id="error-message"></p>
+    </div>
+
+    <script>
+        // اضافه کردن timeout برای کنترل خطا
+        const loadingTimeout = setTimeout(() => {
+            showError('بارگذاری طول کشید. لطفاً صفحه را رفرش کنید.');
+        }, 10000);
+
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('error-message').textContent = message;
+            console.error('CMS Error:', message);
+        }
+
+        function initCMS() {
+            try {
+                console.log('Initializing Decap CMS...');
+                
+                if (typeof CMS === 'undefined') {
+                    throw new Error('کتابخانه Decap CMS بارگذاری نشد');
+                }
+
+                // مقداردهی CMS
+                CMS.init();
+                
+                console.log('Decap CMS initialized successfully');
+                clearTimeout(loadingTimeout);
+                document.getElementById('loading').style.display = 'none';
+                
+            } catch (error) {
+                showError('خطا: ' + error.message);
+            }
+        }
+
+        // صبر کنید تا DOM کاملاً لود شود
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCMS);
+        } else {
+            initCMS();
+        }
+    </script>
 </body>
 </html>
