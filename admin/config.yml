@@ -1,0 +1,17 @@
+backend:
+  name: github
+  repo: mahdiabbasi13811381/web # نام کاربری/مخزن شما
+
+media_folder: "images/uploads" # پوشه ذخیره تصاویر
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "_posts/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "date", label: "Date", widget: "datetime" }
+      - { name: "body", label: "Body", widget: "markdown" }
