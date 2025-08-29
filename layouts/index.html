@@ -28,30 +28,47 @@
                 <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
             </a>
         </div>
+        {{ else }}
+        <p>هنوز محتوایی اضافه نشده است.</p>
         {{ end }}
     </div>
 </div>
 
 <!-- Project Sections -->
 {{ $projects := where .Site.RegularPages "Type" "negar" }}
-{{ range $projects }}
-<div class="container">
-    <section class="project-section">
-        <div class="project-content">
-            <div class="project-images">
-                {{ range first 4 .Params.images }}
-                <div class="project-image">
-                    <img src="{{ . }}" alt="{{ $.Title }}">
+{{ if $projects }}
+    {{ range $projects }}
+    <div class="container">
+        <section class="project-section">
+            <div class="project-content">
+                <div class="project-images">
+                    {{ if .Params.images }}
+                        {{ range first 4 .Params.images }}
+                        <div class="project-image">
+                            <img src="{{ . }}" alt="{{ $.Title }}">
+                        </div>
+                        {{ end }}
+                    {{ else }}
+                        <!-- اگر تصویری وجود ندارد، از image اصلی استفاده کن -->
+                        <div class="project-image">
+                            <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                        </div>
+                    {{ end }}
                 </div>
-                {{ end }}
+                <div class="project-text">
+                    <h2 class="project-title">{{ .Title }}</h2>
+                    <div class="project-description">
+                        {{ .Content }}
+                    </div>
+                    <a href="{{ .Permalink }}" class="view-project">مشاهده پروژه →</a>
+                </div>
             </div>
-            <div class="project-text">
-                <h2 class="project-title">{{ .Title }}</h2>
-                <p class="project-description">{{ .Content }}</p>
-                <a href="{{ .Permalink }}" class="view-project">مشاهده پروژه →</a>
-            </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
+    {{ end }}
+{{ else }}
+    <div class="container">
+        <p>هنوز پروژه‌ای اضافه نشده است.</p>
+    </div>
 {{ end }}
 {{ end }}
