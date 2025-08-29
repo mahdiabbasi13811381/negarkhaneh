@@ -3,75 +3,24 @@ name: Deploy Hugo site to Pages
 on:
   push:
     branches: ["main"]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.125.7'  # نسخه ثابت برای پایدار بودن
-          extended: true
+          hugo-version: 'latest'
 
-      - name: Debug - Show directory structure
-        run: |
-          echo "📁 Current directory structure:"
-          ls -la
-          echo "📁 Layouts directory:"
-          ls -la layouts/ || echo "No layouts directory"
-          echo "📁 Content directory:"
-          ls -la content/ || echo "No content directory"
-          echo "📁 Static directory:"
-          ls -la static/ || echo "No static directory"
-          echo "📁 Config files:"
-          ls -la *.toml *.yaml *.yml 2>/dev/null || echo "No config files found"
+      - name: Build
+        run: hugo --minify
 
-      - name: Build with Hugo
-        env:
-          HUGO_ENV: production
-        run: |
-          echo "🏗️ Building Hugo site..."
-          hugo --minify --verbose --logLevel debug
-
-      - name: Check build result
-        run: |
-          if [ -d "public" ] && [ -n "$(ls -A public)" ]; then
-            echo "✅ Build successful! Public directory contents:"
-            ls -la public/
-          else
-            echo "❌ Build failed! No public directory or it's empty"
-            exit 1
-          fi
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: ./public
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
