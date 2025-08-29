@@ -2,17 +2,17 @@ backend:
   name: github
   repo: mahdiabbasi13811381/negarkhaneh
   branch: main
+  auth_type: implicit # نوع احراز هویت برای ادغام با Decap CMS
 
-media_folder: "images/uploads"
+media_folder: "static/images/uploads" # مسیر ذخیره تصاویر
 public_folder: "/images/uploads"
-
 collections:
   - name: "blog"
-    label: "پست‌های وبلاگ"
-    folder: "_posts/blog"
+    label: "Blog"
+    folder: "content/posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { name: "title", label: "عنوان", widget: "string" }
-      - { name: "date", label: "تاریخ", widget: "datetime" }
-      - { name: "body", label: "محتوا", widget: "markdown" }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}
