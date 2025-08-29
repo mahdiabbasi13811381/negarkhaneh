@@ -1,6 +1,13 @@
 backend:
   name: github
   repo: mahdiabbasi13811381/negarkhaneh
+  branch: main
+  base_url: https://mahdiabbasi13811381.github.io
+  auth_endpoint: negarkhaneh/admin/index.html
+
+# تنظیمات ضروری
+site_url: https://mahdiabbasi13811381.github.io/negarkhaneh
+display_url: https://mahdiabbasi13811381.github.io/negarkhaneh
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
