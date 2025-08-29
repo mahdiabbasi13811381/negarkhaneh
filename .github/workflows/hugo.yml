@@ -17,6 +17,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./  # اضافه کردن این خط
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,11 +34,23 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Build
-        run: hugo --minify
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git
+
+      - name: Build with Hugo
+        env:
+          HUGO_ENV: production
+        run: |
+          hugo --minify --verbose
+
+      - name: Show build directory contents
+        run: |
+          ls -la public/
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3  # تغییر به v3
         with:
           path: ./public
 
@@ -47,4 +63,5 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v3  # تغییر به v3
+      
