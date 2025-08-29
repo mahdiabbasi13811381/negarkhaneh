@@ -1,18 +1,57 @@
-<!-- بخش گالری در صفحه اصلی -->
-<section class="gallery-preview">
-    <h2>آخرین آثار</h2>
-    <div class="artworks-grid">
-        {{ range first 6 (where .Site.RegularPages "Type" "gallery") }}
-        <div class="artwork-item">
+{{ define "main" }}
+<!-- Header -->
+<header>
+    <div class="container">
+        <h1 class="site-title">{{ .Site.Title }}</h1>
+        <p class="site-subtitle">{{ .Site.Params.subtitle }}</p>
+    </div>
+</header>
+
+<!-- Profile Section -->
+<div class="container">
+    <section class="profile-section">
+        <div class="profile-info">
+            <h2 class="profile-name">نام عکاس</h2>
+            <p class="profile-bio">
+                عکاس حرفه‌ای با تخصص در عکاسی طبیعت و معماری. هدف من ثبت زیبایی‌های پنهان دنیا از زاویه‌های منحصر به فرد است.
+            </p>
+        </div>
+    </section>
+</div>
+
+<!-- Gallery -->
+<div class="container">
+    <div class="gallery">
+        {{ range first 9 (where .Site.RegularPages "Type" "negar") }}
+        <div class="gallery-item">
             <a href="{{ .Permalink }}">
-                <img src="{{ .Params.image }}" alt="{{ .Title }}">
-                <div class="artwork-info">
-                    <h3>{{ .Title }}</h3>
-                    <p>{{ .Params.artist }}</p>
-                    <span>{{ .Params.medium }}</span>
-                </div>
+                <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
             </a>
         </div>
         {{ end }}
     </div>
-</section>
+</div>
+
+<!-- Project Sections -->
+{{ $projects := where .Site.RegularPages "Type" "negar" }}
+{{ range $projects }}
+<div class="container">
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-images">
+                {{ range first 4 .Params.images }}
+                <div class="project-image">
+                    <img src="{{ . }}" alt="{{ $.Title }}">
+                </div>
+                {{ end }}
+            </div>
+            <div class="project-text">
+                <h2 class="project-title">{{ .Title }}</h2>
+                <p class="project-description">{{ .Content }}</p>
+                <a href="{{ .Permalink }}" class="view-project">مشاهده پروژه →</a>
+            </div>
+        </div>
+    </section>
+</div>
+{{ end }}
+{{ end }}
