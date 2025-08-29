@@ -3,14 +3,54 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
-  <!-- آدرس Decap CMS -->
+  <title>پنل مدیریت نگارخانه</title>
+  <style>
+    .loading {
+      padding: 50px;
+      text-align: center;
+      font-family: Tahoma, sans-serif;
+    }
+    .error {
+      color: red;
+      padding: 20px;
+      background: #ffeeee;
+      border: 1px solid red;
+      margin: 20px;
+    }
+  </style>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  <!-- اسکریپت CMS -->
+  <div class="loading" id="loading">
+    در حال بارگذاری پنل مدیریت...
+  </div>
+  
+  <div class="error" id="error" style="display: none;">
+    خطا در بارگذاری پنل مدیریت
+  </div>
+
   <script>
-    CMS.init();
+    try {
+      console.log("Starting CMS initialization...");
+      
+      // بررسی اینکه Decap CMS لود شده
+      if (typeof CMS === 'undefined') {
+        throw new Error('Decap CMS library not loaded');
+      }
+      
+      // مقداردهی CMS
+      CMS.init();
+      
+      console.log("CMS initialized successfully");
+      document.getElementById('loading').style.display = 'none';
+      
+    } catch (error) {
+      console.error("CMS Error:", error);
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('error').innerHTML = 
+        'خطا: ' + error.message + '<br>لطفا کنسول مرورگر را بررسی کنید';
+    }
   </script>
 </body>
 </html>
