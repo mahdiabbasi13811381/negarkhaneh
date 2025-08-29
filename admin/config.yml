@@ -1,6 +1,8 @@
 backend:
   name: github
-  repo: mahdiabbasi13811381/web # نام کاربری/مخزن شما
+  repo: mahdiabbasi13811381/negarkhaneh # نام کاربری/مخزن شما
+  base_url: https://mahdiabbasi13811381.github.io
+  auth_endpoint: https://mahdiabbasi13811381.github.io/negarkhaneh/admin/index.html
 
 media_folder: "images/uploads" # پوشه ذخیره تصاویر
 public_folder: "/images/uploads"
