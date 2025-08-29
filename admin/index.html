@@ -5,81 +5,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پنل مدیریت نگارخانه</title>
     
-    <!-- استفاده از CDN قابل اعتماد -->
-    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.0.0/dist/decap-cms.js"></script>
+    <!-- استفاده از Netlify CMS که پایدارتر است -->
+    <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
     
     <style>
+        /* استایل‌های پایه برای صفحه */
         body {
             font-family: Tahoma, sans-serif;
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .loading {
+        
+        .loading-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             text-align: center;
-            padding: 50px;
-            color: #666;
+            max-width: 400px;
+            width: 90%;
         }
+        
+        .loading {
+            color: #333;
+        }
+        
+        .loading h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
         .error {
             background: #ffebee;
             color: #c62828;
             padding: 20px;
-            border: 1px solid #ef5350;
             border-radius: 5px;
-            margin: 20px;
+            margin: 20px 0;
+            text-align: right;
+            display: none;
+        }
+        
+        .retry-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-family: Tahoma;
+        }
+        
+        .retry-button:hover {
+            background: #5a6fd8;
         }
     </style>
 </head>
 <body>
-    <div id="loading" class="loading">
-        <h2>در حال بارگذاری پنل مدیریت...</h2>
-        <p>لطفاً چند لحظه صبر کنید</p>
-    </div>
+    <div class="loading-container">
+        <div class="loading">
+            <h2>🎨 در حال راه‌اندازی پنل مدیریت</h2>
+            <div class="spinner"></div>
+            <p>لطفاً چند لحظه صبر کنید...</p>
+        </div>
 
-    <div id="error" class="error" style="display: none;">
-        <h3>خطا در بارگذاری</h3>
-        <p id="error-message"></p>
+        <div id="error" class="error">
+            <h3>⚠️ خطا در بارگذاری</h3>
+            <p id="error-message">پنل مدیریت بارگذاری نشد.</p>
+            <button class="retry-button" onclick="window.location.reload()">
+                🔄 تلاش مجدد
+            </button>
+        </div>
     </div>
 
     <script>
-        // اضافه کردن timeout برای کنترل خطا
-        const loadingTimeout = setTimeout(() => {
-            showError('بارگذاری طول کشید. لطفاً صفحه را رفرش کنید.');
-        }, 10000);
-
+        console.log('🔍 Starting Netlify CMS initialization...');
+        
+        let cmsLoaded = false;
+        const maxWaitTime = 10000; // 10 ثانیه
+        
         function showError(message) {
-            document.getElementById('loading').style.display = 'none';
+            console.error('❌ CMS Error:', message);
+            document.querySelector('.loading').style.display = 'none';
             document.getElementById('error').style.display = 'block';
             document.getElementById('error-message').textContent = message;
-            console.error('CMS Error:', message);
         }
-
-        function initCMS() {
-            try {
-                console.log('Initializing Decap CMS...');
-                
-                if (typeof CMS === 'undefined') {
-                    throw new Error('کتابخانه Decap CMS بارگذاری نشد');
+        
+        function showSuccess() {
+            console.log('✅ Netlify CMS loaded successfully');
+            document.querySelector('.loading-container').style.display = 'none';
+        }
+        
+        // بررسی اینکه Netlify CMS بارگذاری شده
+        function checkCMSLoaded() {
+            if (typeof CMS !== 'undefined') {
+                cmsLoaded = true;
+                try {
+                    CMS.init();
+                    showSuccess();
+                    return true;
+                } catch (error) {
+                    showError('خطا در مقداردهی CMS: ' + error.message);
+                    return false;
                 }
-
-                // مقداردهی CMS
-                CMS.init();
-                
-                console.log('Decap CMS initialized successfully');
-                clearTimeout(loadingTimeout);
-                document.getElementById('loading').style.display = 'none';
-                
-            } catch (error) {
-                showError('خطا: ' + error.message);
             }
+            return false;
         }
-
-        // صبر کنید تا DOM کاملاً لود شود
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initCMS);
-        } else {
-            initCMS();
-        }
+        
+        // شروع بررسی
+        const checkInterval = setInterval(() => {
+            if (checkCMSLoaded()) {
+                clearInterval(checkInterval);
+                clearTimeout(fallbackTimeout);
+            }
+        }, 100);
+        
+        // Fallback بعد از 10 ثانیه
+        const fallbackTimeout = setTimeout(() => {
+            if (!cmsLoaded) {
+                clearInterval(checkInterval);
+                showError('بارگذاری طول کشید. لطفاً اینترنت خود را بررسی کنید.');
+            }
+        }, maxWaitTime);
+        
+        // بررسی خطا در بارگذاری script
+        const cmsScript = document.querySelector('script[src*="netlify-cms"]');
+        cmsScript.onerror = function() {
+            showError('بارگذاری کتابخانه ناموفق بود. لطفاً از VPN استفاده کنید.');
+        };
+        
+        // همچنین یک fallback برای CDNهای مختلف
+        setTimeout(() => {
+            if (!cmsLoaded) {
+                console.log('🔄 Trying alternative CDN...');
+                const alternativeScript = document.createElement('script');
+                alternativeScript.src = 'https://cdn.jsdelivr.net/npm/netlify-cms@2.10.0/dist/netlify-cms.js';
+                alternativeScript.onload = function() {
+                    console.log('✅ CMS loaded from alternative CDN');
+                    CMS.init();
+                    showSuccess();
+                };
+                alternativeScript.onerror = function() {
+                    showError('همه CDNها ناموفق بودند. لطفاً بعداً تلاش کنید.');
+                };
+                document.head.appendChild(alternativeScript);
+            }
+        }, 5000);
     </script>
 </body>
 </html>
