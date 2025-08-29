@@ -1,20 +1,10 @@
 backend:
   name: github
   repo: mahdiabbasi13811381/negarkhaneh
-  branch: main
-  site_domain: mahdiabbasi13811381.github.io
-  base_url: https://mahdiabbasi13811381.github.io
-  auth_endpoint: auth
 
-# تنظیمات سایت
-site_url: https://mahdiabbasi13811381.github.io/negarkhaneh
-display_url: https://mahdiabbasi13811381.github.io/negarkhaneh
-
-# تنظیمات رسانه
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# تنظیمات collections
 collections:
   - name: "blog"
     label: "پست‌های وبلاگ"
