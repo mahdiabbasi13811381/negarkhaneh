@@ -146,10 +146,12 @@ nav {
 }
 
 .nav-link:hover {
-    color: #666;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+   
+
 
 .nav-link:hover::after {
     opacity: 1;
