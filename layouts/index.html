@@ -19,53 +19,49 @@
     </section>
 </div>
 
-<!-- بخش اصلی مطالب -->
-<main class="main-content">
-    <div class="container">
-        <!-- بخش نگارها (پیش‌نمایش) -->
-        <section class="negars-section">
-            <h2>آخرین نگارها</h2>
-            <div class="negar-grid">
-                {{ range first 6 (where .Site.RegularPages "Type" "negar") }}
-                <article class="negar-item">
-                    <a href="{{ .Permalink }}" class="negar-link">
-                        <div class="negar-image">
-                            {{ if .Params.image }}
-                            <img src="{{ .Params.image }}" alt="{{ .Title }}">
-                            {{ else }}
-                            <div style="background-color: #eee; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#999;">بدون تصویر</div>
-                            {{ end }}
-                        </div>
-                        <div class="negar-info">
-                            <h3 class="negar-title">{{ .Title }}</h3>
-                            {{ if .Params.artist }}
-                            <p class="negar-excerpt">{{ .Params.artist }}</p>
-                            {{ end }}
-                            <!-- <span class="negar-link-text">مشاهده نگار →</span> -->
-                        </div>
-                    </a>
-                </article>
-                {{ end }}
-            </div>
-        </section>
+<!-- Gallery (9 آخرین نگار) -->
+<div class="container">
+    <div class="gallery">
+        {{ range first 9 (where .Site.RegularPages.ByDate.Reverse "Type" "negar") }}
+        <a href="{{ .Permalink }}" class="gallery-item">
+            {{ if .Params.image }}
+            <img src="{{ .Params.image }}" alt="{{ .Title }}">
+            {{ else }}
+            <div style="background-color: #eee; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#999; font-size:0.8rem;">بدون تصویر</div>
+            {{ end }}
+        </a>
+        {{ end }}
+    </div>
+</div>
 
-        <!-- بخش فرسته‌ها (پیش‌نمایش) -->
-        <section class="ferestehs-section">
-            <h2>آخرین فرستاده‌ها</h2>
-            <div class="feresteh-list">
-                {{ range first 3 (where .Site.RegularPages "Type" "feresteh") }}
-                <article class="feresteh-item">
-                    <a href="{{ .Permalink }}" class="feresteh-link">
+<!-- بخش فرسته‌ها -->
+{{ $ferestehs := first 4 (where .Site.RegularPages.ByDate.Reverse "Type" "feresteh") }}
+{{ if $ferestehs }}
+<div class="container">
+    <section class="ferestehs-section">
+        <h2>آخرین فرستاده‌ها</h2>
+        <div class="feresteh-list">
+            {{ range $ferestehs }}
+            <article class="feresteh-item">
+                <a href="{{ .Permalink }}" class="feresteh-link">
+                    <div class="feresteh-image">
+                        {{ if .Params.image }}
+                        <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                        {{ else }}
+                        <div style="background-color: #eee; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#999; font-size:0.8rem;">بدون تصویر</div>
+                        {{ end }}
+                    </div>
+                    <div class="feresteh-content">
                         <h3 class="feresteh-title">{{ .Title }}</h3>
-                        <!-- اگر تاریخ دارید، می‌توانید اضافه کنید -->
-                        <!-- <div class="feresteh-meta">تاریخ: {{ .Date.Format "2006/01/02" }}</div> -->
                         <p class="feresteh-excerpt">{{ .Summary }}</p>
                         <span class="feresteh-readmore">ادامه مطلب →</span>
-                    </a>
-                </article>
-                {{ end }}
-            </div>
-        </section>
-    </div>
-</main>
+                    </div>
+                </a>
+            </article>
+            {{ end }}
+        </div>
+    </section>
+</div>
+{{ end }}
+
 {{ end }}
