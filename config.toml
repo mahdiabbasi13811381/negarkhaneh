@@ -1,11 +1,11 @@
 baseURL = 'https://mahdiabbasi13811381.github.io/negarkhaneh/'
-title = 'نگارخانه | نگار و فرستاده'
+title = 'نگارخانه | نمونه کارهای عکاسی'
 languageCode = 'fa-ir'
 defaultContentLanguage = 'fa'
 
 [params]
 description = 'نگارخانه ای از آثار هنری و نوشته‌های ادبی'
-subtitle = 'نگار برای تصویر، فرستاده برای نوشته'
+subtitle = 'نگار برای تصاویر، فرسته برای نوشته‌ها'
 
 [menu]
 [[menu.main]]
@@ -19,7 +19,7 @@ url = '/negar/'
 weight = 2
 
 [[menu.main]]
-name = 'مطالب'
+name = 'نوشته‌ها'
 url = '/feresteh/'
 weight = 3
 
