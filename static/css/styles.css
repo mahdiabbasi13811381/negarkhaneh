@@ -1,4 +1,4 @@
-/* styles.css */
+/* styles.css - کامل و به‌روزرسانی شده */
 * {
     margin: 0;
     padding: 0;
@@ -240,6 +240,267 @@ footer {
     color: #222;
 }
 
+/* استایل‌های جدید برای بخش‌های نگار و فرستاده */
+.negar-preview, .feresteh-preview {
+    padding: 3rem 0;
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    margin: 30px 0;
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.negar-preview h2, .feresteh-preview h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #222;
+    text-align: center;
+}
+
+.negar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.negar-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.negar-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.negar-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.negar-info {
+    padding: 1.5rem;
+    text-align: right;
+}
+
+.negar-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.negar-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.feresteh-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.feresteh-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    border-left: 4px solid #667eea;
+}
+
+.feresteh-item:hover {
+    transform: translateY(-2px);
+}
+
+.feresteh-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+.feresteh-item .excerpt {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.feresteh-item .read-more {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feresteh-item .read-more:hover {
+    color: #5a67d8;
+}
+
+/* استایل‌های صفحه تک‌پست نگار */
+.negar-post {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    margin: 30px 0;
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.post-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.main-image {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.main-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 2rem 0;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+}
+
+.post-description {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: #555;
+    margin: 2rem 0;
+}
+
+.post-technical {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.post-technical p {
+    margin: 0.5rem 0;
+    color: #444;
+}
+
+/* استایل‌های صفحه تک‌پست فرستاده */
+.feresteh-post {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    margin: 30px 0;
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.feresteh-content {
+    line-height: 1.8;
+}
+
+.featured-image {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.featured-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.article-content {
+    font-size: 1.1rem;
+    color: #444;
+    margin: 2rem 0;
+}
+
+.article-content h2, .article-content h3 {
+    font-family: 'Playfair Display', serif;
+    margin: 2rem 0 1rem 0;
+    color: #222;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.article-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background: #e9ecef;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.reading-time {
+    background: #667eea;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-left: 1rem;
+}
+
 /* Responsive Design */
 @media (max-width: 900px) {
     .project-content {
@@ -248,6 +509,10 @@ footer {
     
     .project-images {
         grid-template-columns: 1fr;
+    }
+    
+    .negar-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -267,6 +532,23 @@ footer {
     .project-images {
         order: 1;
     }
+    
+    .site-title {
+        font-size: 2.2rem;
+    }
+    
+    .negar-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .post-title {
+        font-size: 2rem;
+    }
+    
+    .post-meta {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }
 
 @media (max-width: 500px) {
@@ -283,70 +565,42 @@ footer {
         padding: 100px 0 40px;
     }
     
-    .site-title {
-        font-size: 2.2rem;
-    }
-    
-    /* تنظیمات موبایل برای گالری */
     .container {
-        padding: 0 5px; /* کاهش بیشتر پدینگ چپ و راست */
+        padding: 0 10px;
     }
     
     .gallery {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3px; /* کاهش بیشتر فاصله بین تصاویر */
-        margin: 15px 0; /* کاهش حاشیه */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
     }
     
-    .gallery-item {
-        aspect-ratio: 1;
+    .profile-section, .project-section, .negar-post, .feresteh-post {
+        padding: 20px;
+        margin: 20px 0;
     }
     
-    .profile-section {
-        padding: 15px; /* کاهش بیشتر پدینگ بخش پروفایل */
-        margin: 15px 0; /* کاهش حاشیه بخش پروفایل */
+    .negar-preview, .feresteh-preview {
+        padding: 30px 20px;
     }
 }
 
-/* تنظیمات خاص برای موبایل - تغییر چیدمان پروژه‌ها */
-@media (max-width: 600px) {
-    .project-section {
-        padding: 25px 20px; /* کاهش پدینگ بخش پروژه */
-    }
-    
-    .project-content {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .project-images {
-        order: 1;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px; /* فاصله کمتر بین تصاویر در موبایل */
-        margin-bottom: 15px;
-    }
-    
-    .project-text {
-        order: 2;
-        margin-top: 0;
-    }
-    
-    .project-title {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
-    }
-    
-    .project-description {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
-    
-    .view-project {
-        font-size: 0.9rem;
-    }
-    
-    /* اطمینان از نمایش صحیح تصاویر در دو ستون */
-    .project-image {
-        border-radius: 2px;
-    }
+/* تنظیمات خاص برای راست‌چین */
+[dir="rtl"] {
+    text-align: right;
+}
+
+[dir="rtl"] .nav-links,
+[dir="rtl"] .footer-links,
+[dir="rtl"] .post-meta,
+[dir="rtl"] .tags {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .feresteh-item {
+    border-left: none;
+    border-right: 4px solid #667eea;
+}
+
+[dir="rtl"] .read-more {
+    flex-direction: row-reverse;
 }
