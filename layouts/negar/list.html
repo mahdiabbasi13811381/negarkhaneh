@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="container">
+  <h2 class="section-title">{{ .Title }}</h2>
+  <div class="negar-grid">
+    {{ range .Pages }}
+    <article class="negar-item">
+      <a href="{{ .Permalink }}">
+        {{ if .Params.image }}
+        <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+        {{ else }}
+        <div class="placeholder-image">بدون تصویر</div>
+        {{ end }}
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Summary }}</p>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
