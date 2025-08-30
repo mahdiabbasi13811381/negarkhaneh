@@ -10,7 +10,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f8f8f8;
-    padding-top: 80px;
+    padding-top: 80px; /* فاصله برای ناوبری ثابت */
 }
 
 /* Container */
@@ -398,6 +398,7 @@ footer {
 .negar-slider {
     flex: 1;
     max-width: 600px;
+    position: relative;
 }
 
 .negar-slider .slider-wrapper {
@@ -409,13 +410,23 @@ footer {
     aspect-ratio: 1 / 1.2;
 }
 
+/* انیمیشن نرم برای تغییر تصاویر */
 .negar-slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
 }
 
-/* افکت فیلم */
+.negar-slider .slide.active {
+    opacity: 1;
+}
+
+/* افکت فیلم (حاشیه شیشه‌ای) */
 .negar-slider::before {
     content: '';
     position: absolute;
@@ -429,15 +440,53 @@ footer {
     z-index: 2;
 }
 
+/* فلش‌های کنترل */
+.slider-prev,
+.slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.slider-prev {
+    left: 20px;
+}
+
+.slider-next {
+    right: 20px;
+}
+
 /* نقطه‌های اسلایدر */
-.negar-slider .slider-dots {
+.slider-dots {
     display: flex;
     justify-content: center;
     gap: 8px;
     margin-top: 15px;
 }
 
-.negar-slider .slider-dot {
+.slider-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -446,7 +495,7 @@ footer {
     transition: background 0.3s ease;
 }
 
-.negar-slider .slider-dot.active {
+.slider-dot.active {
     background: #333;
 }
 
@@ -472,7 +521,7 @@ footer {
     text-align: justify;
 }
 
-/* لیست ویژگی‌ها (در صورت وجود) */
+/* لیست ویژگی‌ها */
 .negar-features {
     margin: 20px 0;
     font-size: 0.95rem;
@@ -520,6 +569,12 @@ footer {
 
     .negar-content p {
         font-size: 1rem;
+    }
+
+    /* مخفی کردن فلش‌ها در موبایل */
+    .slider-prev,
+    .slider-next {
+        display: none;
     }
 }
 
