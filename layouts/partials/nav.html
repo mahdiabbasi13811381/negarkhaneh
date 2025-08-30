@@ -5,41 +5,53 @@
             <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
             {{ end }}
 
-            <!-- دکمه دارک مود -->
-            <button id="darkModeToggle" aria-label="تغییر حالت نور">
-                <span class="light-mode">☀️</span>
-                <span class="dark-mode" style="display: none;">🌙</span>
+            <!-- دکمه دارک مود با SVG -->
+            <button id="darkModeToggle" aria-label="تغییر حالت نور" class="dark-mode-button">
+                <svg class="icon light-mode" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon dark-mode" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
             </button>
         </div>
     </div>
 
-    <!-- اسکریپت دارک مود (در صورت ترجیح، می‌توان به footer منتقل کرد) -->
+    <!-- اسکریپت دارک مود -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const darkModeToggle = document.getElementById("darkModeToggle");
+            const lightIcon = darkModeToggle.querySelector(".light-mode");
+            const darkIcon = darkModeToggle.querySelector(".dark-mode");
             const savedTheme = localStorage.getItem("theme");
             const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
             // تنظیم تم اولیه
             if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
                 document.documentElement.setAttribute("data-theme", "dark");
-            }
-
-            // به‌روزرسانی آیکون در ابتدا
-            if (document.documentElement.getAttribute("data-theme") === "dark") {
-                document.querySelector(".dark-mode")?.style.display = "inline";
+                lightIcon.style.display = "none";
+                darkIcon.style.display = "block";
             }
 
             // تغییر تم با کلیک
             darkModeToggle?.addEventListener("click", () => {
                 const isDark = document.documentElement.getAttribute("data-theme") === "dark";
                 const newTheme = isDark ? "light" : "dark";
+
                 document.documentElement.setAttribute("data-theme", newTheme);
                 localStorage.setItem("theme", newTheme);
 
-                // به‌روزرسانی آیکون
-                document.querySelector(".light-mode").style.display = isDark ? "inline" : "none";
-                document.querySelector(".dark-mode").style.display = isDark ? "none" : "inline";
+                // تغییر آیکون
+                lightIcon.style.display = isDark ? "block" : "none";
+                darkIcon.style.display = isDark ? "none" : "block";
             });
         });
     </script>
