@@ -1,28 +1,39 @@
-<!-- layouts/gallery/single.html -->
 {{ define "main" }}
-<article class="artwork-detail">
-    <header>
-        <h1>{{ .Title }}</h1>
-        <div class="artwork-meta">
-            <span>هنرمند: {{ .Params.artist }}</span>
-            <span>تکنیک: {{ .Params.medium }}</span>
-            <span>ابعاد: {{ .Params.dimensions }}</span>
-            <span>سال: {{ .Params.year }}</span>
+<article class="negar-post" dir="rtl">
+    <div class="container">
+        <header class="post-header">
+            <h1 class="post-title">{{ .Title }}</h1>
+            <div class="post-meta">
+                <span class="post-date">{{ .Date | time.Format ":date_long" }}</span>
+                {{ with .Params.artist }}<span class="post-artist">هنرمند: {{ . }}</span>{{ end }}
+            </div>
+        </header>
+
+        <div class="negar-content">
+            <div class="main-image">
+                <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+            </div>
+            
+            {{ with .Params.images }}
+            <div class="gallery-grid">
+                {{ range . }}
+                <div class="gallery-item">
+                    <img src="{{ . }}" alt="{{ $.Title }}">
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+
+            <div class="post-description">
+                {{ .Content }}
+            </div>
+
+            <div class="post-technical">
+                {{ with .Params.medium }}<p><strong>تکنیک:</strong> {{ . }}</p>{{ end }}
+                {{ with .Params.dimensions }}<p><strong>ابعاد:</strong> {{ . }}</p>{{ end }}
+                {{ with .Params.year }}<p><strong>سال:</strong> {{ . }}</p>{{ end }}
+            </div>
         </div>
-    </header>
-    
-    <div class="artwork-image">
-        <img src="{{ .Params.image }}" alt="{{ .Title }}">
-    </div>
-    
-    <div class="artwork-content">
-        {{ .Content }}
-    </div>
-    
-    <div class="artwork-categories">
-        {{ range .Params.categories }}
-        <span class="category-tag">{{ . }}</span>
-        {{ end }}
     </div>
 </article>
 {{ end }}
