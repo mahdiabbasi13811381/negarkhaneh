@@ -14,7 +14,7 @@ url = '/'
 weight = 1
 
 [[menu.main]]
-name = 'نگار'
+name = 'نگاره‌ها'
 url = '/negar/'
 weight = 2
 
