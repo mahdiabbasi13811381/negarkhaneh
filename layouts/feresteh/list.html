@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="container">
+  <h2 class="section-title">{{ .Title }}</h2>
+  <div class="gallery">
+    {{ range .Pages.ByDate.Reverse }} <!-- جدیدترین در ابتدا -->
+    <a href="{{ .Permalink }}" class="gallery-item">
+      {{ if .Params.image }}
+      <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+      {{ else }}
+      <div style="background-color: #eee; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#999; font-size:0.8rem;">بدون تصویر</div>
+      {{ end }}
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
