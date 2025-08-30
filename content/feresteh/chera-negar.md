@@ -1,7 +1,7 @@
 ---
 title: "چرا نگار؟ در جست‌وجوی زیبایی‌های پنهان"
 date: 2024-01-15
-image: "/images/thoughts.jpg"
+image: "https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926007-2WUFL8UAJHOOXFVT2PV4/EmptyName-67.jpg?format=2500w"
 categories: ["اندیشه", "هنر"]
 tags: ["زیبایی‌شناسی", "فلسفه هنر", "نگاه هنرمند"]
 author: "مهدی عباسی"
