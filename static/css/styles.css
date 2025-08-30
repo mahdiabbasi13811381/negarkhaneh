@@ -149,6 +149,8 @@ nav {
     background-color: rgba(0, 0, 0, 0.1);
     transform: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.2);
+
 }
    
 
@@ -334,7 +336,7 @@ header {
 .feresteh-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
+    gap: 20px;
 }
 
 /* فقط 4 مطلب در صفحه اول نمایش داده شود */
@@ -886,7 +888,7 @@ footer {
 
     .feresteh-list {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 18px;
     }
 }
 
