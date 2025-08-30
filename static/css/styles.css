@@ -1,4 +1,4 @@
-/* styles.css - Updated for new feresteh layout */
+/* styles.css - Updated for feresteh layout */
 * {
     margin: 0;
     padding: 0;
@@ -124,7 +124,7 @@ header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin: 30px 0;
+    margin: 30px 0; /* حاشیه پایین گالری */
 }
 
 .gallery-item {
@@ -152,7 +152,7 @@ header {
 
 /* === بخش جدید: فرسته‌ها (Ferestehs) === */
 .ferestehs-section {
-    margin: 50px 0;
+    margin: 80px 0 50px 0; /* افزایش فاصله بالا برای جدا کردن از گالری */
 }
 
 .ferestehs-section h2 {
@@ -166,23 +166,23 @@ header {
 .feresteh-list {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px; /* فاصله بین آیتم‌ها */
 }
 
 .feresteh-item {
     background: white;
     border: 1px solid #dbdbdb;
     border-radius: 3px;
-    padding: 20px;
+    padding: 25px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 25px; /* فاصله بین تصویر و متن */
 }
 
 .feresteh-image {
     flex: 0 0 200px; /* عرض ثابت 200px */
-    height: 200px;
+    height: 200px; /* ارتفاع ثابت 200px */
     overflow: hidden;
     border-radius: 3px;
 }
@@ -200,17 +200,20 @@ header {
 
 .feresteh-content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* وسط‌چین کردن عمودی محتوا */
 }
 
 .feresteh-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
     color: #222;
 }
 
 .feresteh-excerpt {
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.7;
     color: #555;
     margin-bottom: 15px;
@@ -222,6 +225,7 @@ header {
     border-bottom: 1px solid transparent;
     transition: border-color 0.3s ease;
     font-size: 0.95rem;
+    align-self: flex-start; /* چسباندن لینک به سمت چپ */
 }
 
 .feresteh-readmore:hover {
@@ -348,6 +352,15 @@ footer {
         width: 100%;
         height: 250px; /* ارتفاع بیشتر در موبایل */
     }
+    
+    .feresteh-content {
+        align-items: center; /* وسط‌چین کردن متن در موبایل */
+        text-align: center; /* وسط‌چین کردن متن در موبایل */
+    }
+    
+    .feresteh-readmore {
+        align-self: center; /* وسط‌چین کردن لینک در موبایل */
+    }
 }
 
 @media (max-width: 768px) {
@@ -374,6 +387,10 @@ footer {
     .ferestehs-section h2,
     .project-title {
         font-size: 1.8rem;
+    }
+    
+    .ferestehs-section {
+        margin: 60px 0 40px 0; /* کاهش فاصله در تبلت */
     }
 }
 
@@ -452,7 +469,8 @@ footer {
     
     /* واکنش‌گرایی فرسته‌ها */
     .feresteh-item {
-        padding: 15px;
+        padding: 20px 15px;
+        gap: 20px;
     }
     
     .feresteh-image {
@@ -461,9 +479,18 @@ footer {
     
     .feresteh-title {
         font-size: 1.3rem;
+        margin-bottom: 10px;
     }
     
     .feresteh-excerpt {
-        font-size: 0.95rem;
+        font-size: 1rem;
+    }
+    
+    .ferestehs-section {
+        margin: 50px 0 30px 0; /* کاهش فاصله در موبایل */
+    }
+    
+    .feresteh-list {
+        gap: 25px;
     }
 }
