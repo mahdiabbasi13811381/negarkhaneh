@@ -1,4 +1,4 @@
-// slider.js - اسلایدر تعاملی با حالت تمام‌صفحه
+// slider.js - اسلایدر تعاملی با پیش‌نمایش در حالت تمام‌صفحه
 document.addEventListener('DOMContentLoaded', function () {
     const sliderWrapper = document.querySelector('.slider-wrapper');
     const slides = Array.from(document.querySelectorAll('.slide'));
@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const prevBtn = document.querySelector('.slider-prev');
     const nextBtn = document.querySelector('.slider-next');
 
-    // Full-screen elements
+    // ساخت لایه تمام‌صفحه
     const fullscreenOverlay = document.createElement('div');
     fullscreenOverlay.classList.add('fullscreen-overlay');
     fullscreenOverlay.innerHTML = `
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <img class="fullscreen-image" alt="">
         <button class="fullscreen-next" aria-label="تصویر بعدی">❯</button>
         <button class="fullscreen-prev" aria-label="تصویر قبلی">❮</button>
+        <div class="fullscreen-thumbnails"></div>
     `;
     document.body.appendChild(fullscreenOverlay);
 
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const fullscreenClose = fullscreenOverlay.querySelector('.fullscreen-close');
     const fullscreenNext = fullscreenOverlay.querySelector('.fullscreen-next');
     const fullscreenPrev = fullscreenOverlay.querySelector('.fullscreen-prev');
+    const thumbnailsContainer = fullscreenOverlay.querySelector('.fullscreen-thumbnails');
 
     if (!sliderWrapper || slides.length === 0 || dots.length === 0) {
         console.warn('اسلایدر: المان‌ها یافت نشدند');
@@ -28,6 +30,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let currentIndex = 0;
+
+    // ساخت پیش‌نمایش‌ها
+    slides.forEach((slide, index) => {
+        const thumb = document.createElement('img');
+        thumb.src = slide.src;
+        thumb.alt = `پیش‌نمایش ${index + 1}`;
+        thumb.classList.add('fullscreen-thumbnail');
+        if (index === 0) thumb.classList.add('active');
+        thumb.dataset.index = index;
+
+        thumb.addEventListener('click', () => {
+            showSlide(parseInt(thumb.dataset.index));
+            updateFullscreenImage();
+            updateThumbnails();
+        });
+
+        thumbnailsContainer.appendChild(thumb);
+    });
+
+    const thumbnails = document.querySelectorAll('.fullscreen-thumbnail');
 
     // تابع نمایش اسلاید
     function showSlide(index) {
@@ -49,38 +71,57 @@ document.addEventListener('DOMContentLoaded', function () {
         currentIndex = index;
     }
 
+    // به‌روزرسانی تصویر تمام‌صفحه
+    function updateFullscreenImage() {
+        fullscreenImage.src = slides[currentIndex].src;
+        fullscreenImage.alt = slides[currentIndex].alt;
+    }
+
+    // به‌روزرسانی پیش‌نمایش‌ها
+    function updateThumbnails() {
+        thumbnails.forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === currentIndex);
+        });
+    }
+
     // کلیک روی نقطه‌ها
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             showSlide(index);
+            updateFullscreenImage();
+            updateThumbnails();
         });
     });
 
-    // کلیک روی فلش‌های اسلایدر (چپ و راست)
+    // فلش‌های اسلایدر
     prevBtn?.addEventListener('click', () => {
         const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
         showSlide(prevIndex);
+        updateFullscreenImage();
+        updateThumbnails();
     });
 
     nextBtn?.addEventListener('click', () => {
         const nextIndex = (currentIndex + 1) % slides.length;
         showSlide(nextIndex);
+        updateFullscreenImage();
+        updateThumbnails();
     });
 
-    // باز کردن حالت تمام‌صفحه با کلیک روی تصویر
+    // باز کردن حالت تمام‌صفحه
     slides.forEach(slide => {
         slide.addEventListener('click', () => {
-            fullscreenImage.src = slide.src;
-            fullscreenImage.alt = slide.alt;
+            updateFullscreenImage();
+            updateThumbnails();
             fullscreenOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // جلوگیری از اسکرول
+            document.body.style.overflow = 'hidden';
         });
     });
 
     // بستن حالت تمام‌صفحه
     function closeFullscreen() {
         fullscreenOverlay.classList.remove('active');
-        document.body.style.overflow = ''; // بازگرداندن اسکرول
+        document.body.style.overflow = '';
     }
 
     fullscreenClose.addEventListener('click', closeFullscreen);
@@ -93,19 +134,19 @@ document.addEventListener('DOMContentLoaded', function () {
         e.stopPropagation();
         const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
         showSlide(prevIndex);
-        fullscreenImage.src = slides[prevIndex].src;
-        fullscreenImage.alt = slides[prevIndex].alt;
+        updateFullscreenImage();
+        updateThumbnails();
     });
 
     fullscreenNext.addEventListener('click', (e) => {
         e.stopPropagation();
         const nextIndex = (currentIndex + 1) % slides.length;
         showSlide(nextIndex);
-        fullscreenImage.src = slides[nextIndex].src;
-        fullscreenImage.alt = slides[nextIndex].alt;
+        updateFullscreenImage();
+        updateThumbnails();
     });
 
-    // کلیدهای چپ/راست صفحه‌کلید
+    // کلیدهای صفحه‌کلید
     document.addEventListener('keydown', (e) => {
         if (!fullscreenOverlay.classList.contains('active')) return;
 
