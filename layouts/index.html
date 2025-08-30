@@ -19,20 +19,39 @@
     </section>
 </div>
 
-<!-- Gallery -->
-<div class="container">
-    <div class="gallery">
-        {{ range first 9 (where .Site.RegularPages "Type" "negar") }}
-        <div class="gallery-item">
+<!-- بخش نگار -->
+<section class="negar-preview" dir="rtl">
+    <h2>آخرین نگارها</h2>
+    <div class="negar-grid">
+        {{ range first 6 (where .Site.RegularPages "Type" "negar") }}
+        <article class="negar-item">
             <a href="{{ .Permalink }}">
-                <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+                <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                <div class="negar-info">
+                    <h3>{{ .Title }}</h3>
+                    <p>{{ .Params.artist }}</p>
+                </div>
             </a>
-        </div>
-        {{ else }}
-        <p>هنوز محتوایی اضافه نشده است.</p>
+        </article>
         {{ end }}
     </div>
-</div>
+</section>
+
+<!-- بخش فرستاده -->
+<section class="feresteh-preview" dir="rtl">
+    <h2>آخرین فرستاده‌ها</h2>
+    <div class="feresteh-list">
+        {{ range first 3 (where .Site.RegularPages "Type" "feresteh") }}
+        <article class="feresteh-item">
+            <a href="{{ .Permalink }}">
+                <h3>{{ .Title }}</h3>
+                <p class="excerpt">{{ .Summary }}</p>
+                <span class="read-more">ادامه مطلب →</span>
+            </a>
+        </article>
+        {{ end }}
+    </div>
+</section>
 
 <!-- Project Sections -->
 {{ $projects := where .Site.RegularPages "Type" "negar" }}
