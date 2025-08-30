@@ -150,87 +150,126 @@ header {
     transform: scale(1.1);
 }
 
-/* === بخش جدید: فرسته‌ها (Ferestehs) === */
+/* بخش آخرین فرستاده‌ها */
 .ferestehs-section {
-    margin: 80px 0 50px 0; /* افزایش فاصله بالا برای جدا کردن از گالری */
+    padding: 60px 20px;
+    text-align: right;
+    direction: rtl;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .ferestehs-section h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 30px;
+    font-size: 1.8rem;
     color: #222;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 2px solid #000;
+    display: inline-block;
+    padding-bottom: 8px;
 }
 
 .feresteh-list {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* فاصله بین آیتم‌ها */
+    gap: 25px;
 }
 
 .feresteh-item {
-    background: white;
-    border: 1px solid #dbdbdb;
-    border-radius: 3px;
-    padding: 25px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: row-reverse; /* تغییر: جهت از راست به چپ */
-    align-items: flex-start;
-    gap: 25px; /* فاصله بین تصویر و متن */
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.feresteh-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feresteh-link {
+    display: flex;
+    flex-direction: row-reverse; /* تصویر راست، متن چپ */
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    align-items: center;
+    padding: 15px;
+    gap: 20px;
+}
+
+/* تصویر فرستاده */
 .feresteh-image {
-    flex: 0 0 200px; /* عرض ثابت 200px */
-    height: 200px; /* ارتفاع ثابت 200px */
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
     overflow: hidden;
-    border-radius: 3px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
 }
 
 .feresteh-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
-.feresteh-item:hover .feresteh-image img {
+.feresteh-link:hover .feresteh-image img {
     transform: scale(1.05);
 }
 
+/* محتوای متنی */
 .feresteh-content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* وسط‌چین کردن عمودی محتوا */
+    text-align: right;
+    padding: 0 10px;
 }
 
-.feresteh-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-    color: #222;
+.feresteh-content .feresteh-title {
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    margin: 0 0 10px;
+    font-weight: 600;
 }
 
-.feresteh-excerpt {
-    font-size: 1.05rem;
-    line-height: 1.7;
+.feresteh-content .feresteh-excerpt {
+    font-size: 1rem;
     color: #555;
-    margin-bottom: 15px;
+    line-height: 1.7;
+    margin: 0 0 12px;
+    text-align: justify;
 }
 
-.feresteh-readmore {
-    font-weight: 500;
-    color: #222;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
+.feresteh-content .feresteh-readmore {
+    display: inline-block;
     font-size: 0.95rem;
-    align-self: flex-start; /* چسباندن لینک به سمت چپ */
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
 }
 
-.feresteh-readmore:hover {
-    border-color: #222;
+.feresteh-content .feresteh-readmore:hover {
+    text-decoration: underline;
+}
+
+/* ریسپانسیو: در صفحه‌های کوچک، فهرست را به صورت عمودی کنید */
+@media (max-width: 768px) {
+    .feresteh-link {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .feresteh-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .feresteh-content {
+        padding: 0;
+    }
 }
 
 /* Project Section */
