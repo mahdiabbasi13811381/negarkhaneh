@@ -1,3 +1,4 @@
+/* styles.css - نگارخانه | نگار و فرستاده */
 * {
     margin: 0;
     padding: 0;
@@ -406,7 +407,7 @@ footer {
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    aspect-ratio: 1; /* تصاویر مربعی بدون فضای اضافی */
+    aspect-ratio: 1;
 }
 
 /* انیمیشن نرم برای تغییر تصاویر */
@@ -444,7 +445,7 @@ footer {
 .slider-next {
     position: absolute;
     top: 50%;
-    left: 20px; /* سمت چپ */
+    left: 20px;
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
@@ -472,7 +473,7 @@ footer {
 .slider-prev {
     position: absolute;
     top: 50%;
-    right: 20px; /* سمت راست */
+    right: 20px;
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
@@ -591,49 +592,52 @@ footer {
     transition: opacity 0.3s ease;
 }
 
+/* تصویر تمام‌صفحه بدون هیچ افکتی */
+.fullscreen-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: none;
+    cursor: pointer; /* برای کلیک */
+}
 
-/* فلش‌های تمام‌صفحه */
-.fullscreen-prev,
-.fullscreen-next {
+/* کانتینر عناصر حالت تمام‌صفحه */
+.fullscreen-elements {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* اجازه کلیک روی زیرلایه */
     display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.8;
-    transition: all 0.3s ease;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.fullscreen-prev:hover,
-.fullscreen-next:hover {
+.fullscreen-elements.visible .fullscreen-controls,
+.fullscreen-elements.visible .fullscreen-thumbnails {
     opacity: 1;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-50%) scale(1.1);
 }
 
-.fullscreen-prev {
-    right: 20px;
+.fullscreen-elements.hidden .fullscreen-controls,
+.fullscreen-elements.hidden .fullscreen-thumbnails {
+    opacity: 0;
 }
 
-.fullscreen-next {
-    left: 20px;
+/* کنترل‌های بالا و پایین */
+.fullscreen-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
 }
 
-/* دکمه بستن */
 .fullscreen-close {
-    position: absolute;
-    top: 20px;
-    left: 20px;
     width: 50px;
     height: 50px;
     background: rgba(0, 0, 0, 0.7);
@@ -642,11 +646,11 @@ footer {
     border-radius: 50%;
     font-size: 1.5rem;
     cursor: pointer;
-    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 .fullscreen-close:hover {
@@ -654,40 +658,43 @@ footer {
     background: rgba(0, 0, 0, 0.9);
 }
 
-
-/* ----------------------------------------
-   حالت تمام‌صفحه - به‌روزرسانی
-   ---------------------------------------- */
-
-/* حذف افکت هاور روی تصویر تمام‌صفحه */
-.fullscreen-image {
-    max-width: 90vw;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    transition: none; /* ❌ حذف انیمیشن هاور */
+.fullscreen-nav {
+    display: flex;
+    gap: 10px;
 }
 
-/* ردیف پیش‌نمایش تصاویر در حالت تمام‌صفحه */
+.fullscreen-nav button {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.fullscreen-nav button:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* نوار پیش‌نمایش */
 .fullscreen-thumbnails {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 10001;
     background: rgba(0, 0, 0, 0.6);
     padding: 10px 15px;
     border-radius: 12px;
     max-width: 90vw;
-    overflow-x: auto;
-    scrollbar-width: none; /* مخفی کردن اسکرول (فایرفاکس) */
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+    pointer-events: auto;
 }
 
 .fullscreen-thumbnails::-webkit-scrollbar {
-    display: none; /* مخفی کردن اسکرول (کروم) */
+    display: none;
 }
 
 .fullscreen-thumbnail {
@@ -703,24 +710,17 @@ footer {
 }
 
 .fullscreen-thumbnail:hover {
-    transform: scale(1.1); /* بزرگ‌تر شدن با ماوس */
+    transform: scale(1.1);
 }
 
 .fullscreen-thumbnail.active {
     border-color: #fff;
     opacity: 1;
-    margin-left: 4px;
-    margin-right: 4px;
-}
-
-/* اختیاری: افکت فاصله بیشتر برای تصویر انتخاب‌شده */
-.fullscreen-thumbnail.active {
     margin-left: 12px;
     margin-right: 12px;
 }
 
-
-/* ریسپانسیو: موبایل */
+/* ریسپانسیو */
 @media (max-width: 900px) {
     .negar-container {
         flex-direction: column;
@@ -750,7 +750,6 @@ footer {
     }
 }
 
-/* واکنش‌گرایی عمومی */
 @media (max-width: 768px) {
     .nav-container {
         padding: 15px 30px;
