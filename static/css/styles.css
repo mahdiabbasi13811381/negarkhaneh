@@ -667,6 +667,72 @@ footer {
     background: rgba(0, 0, 0, 0.9);
 }
 
+
+/* ----------------------------------------
+   حالت تمام‌صفحه - به‌روزرسانی
+   ---------------------------------------- */
+
+/* حذف افکت هاور روی تصویر تمام‌صفحه */
+.fullscreen-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: none; /* ❌ حذف انیمیشن هاور */
+}
+
+/* ردیف پیش‌نمایش تصاویر در حالت تمام‌صفحه */
+.fullscreen-thumbnails {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10001;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 15px;
+    border-radius: 12px;
+    max-width: 90vw;
+    overflow-x: auto;
+    scrollbar-width: none; /* مخفی کردن اسکرول (فایرفاکس) */
+}
+
+.fullscreen-thumbnails::-webkit-scrollbar {
+    display: none; /* مخفی کردن اسکرول (کروم) */
+}
+
+.fullscreen-thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.fullscreen-thumbnail:hover {
+    transform: scale(1.1); /* بزرگ‌تر شدن با ماوس */
+}
+
+.fullscreen-thumbnail.active {
+    border-color: #fff;
+    opacity: 1;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+/* اختیاری: افکت فاصله بیشتر برای تصویر انتخاب‌شده */
+.fullscreen-thumbnail.active {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+
 /* ریسپانسیو: موبایل */
 @media (max-width: 900px) {
     .negar-container {
