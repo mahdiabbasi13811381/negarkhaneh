@@ -19,75 +19,53 @@
     </section>
 </div>
 
-<!-- بخش نگار -->
-<section class="negar-preview" dir="rtl">
-    <h2>آخرین نگارها</h2>
-    <div class="negar-grid">
-        {{ range first 6 (where .Site.RegularPages "Type" "negar") }}
-        <article class="negar-item">
-            <a href="{{ .Permalink }}">
-                <img src="{{ .Params.image }}" alt="{{ .Title }}">
-                <div class="negar-info">
-                    <h3>{{ .Title }}</h3>
-                    <p>{{ .Params.artist }}</p>
-                </div>
-            </a>
-        </article>
-        {{ end }}
-    </div>
-</section>
-
-<!-- بخش فرستاده -->
-<section class="feresteh-preview" dir="rtl">
-    <h2>آخرین فرستاده‌ها</h2>
-    <div class="feresteh-list">
-        {{ range first 3 (where .Site.RegularPages "Type" "feresteh") }}
-        <article class="feresteh-item">
-            <a href="{{ .Permalink }}">
-                <h3>{{ .Title }}</h3>
-                <p class="excerpt">{{ .Summary }}</p>
-                <span class="read-more">ادامه مطلب →</span>
-            </a>
-        </article>
-        {{ end }}
-    </div>
-</section>
-
-<!-- Project Sections -->
-{{ $projects := where .Site.RegularPages "Type" "negar" }}
-{{ if $projects }}
-    {{ range $projects }}
+<!-- بخش اصلی مطالب -->
+<main class="main-content">
     <div class="container">
-        <section class="project-section">
-            <div class="project-content">
-                <div class="project-images">
-                    {{ if .Params.images }}
-                        {{ range first 4 .Params.images }}
-                        <div class="project-image">
-                            <img src="{{ . }}" alt="{{ $.Title }}">
-                        </div>
-                        {{ end }}
-                    {{ else }}
-                        <!-- اگر تصویری وجود ندارد، از image اصلی استفاده کن -->
-                        <div class="project-image">
+        <!-- بخش نگارها (پیش‌نمایش) -->
+        <section class="negars-section">
+            <h2>آخرین نگارها</h2>
+            <div class="negar-grid">
+                {{ range first 6 (where .Site.RegularPages "Type" "negar") }}
+                <article class="negar-item">
+                    <a href="{{ .Permalink }}" class="negar-link">
+                        <div class="negar-image">
+                            {{ if .Params.image }}
                             <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                            {{ else }}
+                            <div style="background-color: #eee; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#999;">بدون تصویر</div>
+                            {{ end }}
                         </div>
-                    {{ end }}
-                </div>
-                <div class="project-text">
-                    <h2 class="project-title">{{ .Title }}</h2>
-                    <div class="project-description">
-                        {{ .Content }}
-                    </div>
-                    <a href="{{ .Permalink }}" class="view-project">مشاهده پروژه →</a>
-                </div>
+                        <div class="negar-info">
+                            <h3 class="negar-title">{{ .Title }}</h3>
+                            {{ if .Params.artist }}
+                            <p class="negar-excerpt">{{ .Params.artist }}</p>
+                            {{ end }}
+                            <!-- <span class="negar-link-text">مشاهده نگار →</span> -->
+                        </div>
+                    </a>
+                </article>
+                {{ end }}
+            </div>
+        </section>
+
+        <!-- بخش فرسته‌ها (پیش‌نمایش) -->
+        <section class="ferestehs-section">
+            <h2>آخرین فرستاده‌ها</h2>
+            <div class="feresteh-list">
+                {{ range first 3 (where .Site.RegularPages "Type" "feresteh") }}
+                <article class="feresteh-item">
+                    <a href="{{ .Permalink }}" class="feresteh-link">
+                        <h3 class="feresteh-title">{{ .Title }}</h3>
+                        <!-- اگر تاریخ دارید، می‌توانید اضافه کنید -->
+                        <!-- <div class="feresteh-meta">تاریخ: {{ .Date.Format "2006/01/02" }}</div> -->
+                        <p class="feresteh-excerpt">{{ .Summary }}</p>
+                        <span class="feresteh-readmore">ادامه مطلب →</span>
+                    </a>
+                </article>
+                {{ end }}
             </div>
         </section>
     </div>
-    {{ end }}
-{{ else }}
-    <div class="container">
-        <p>هنوز پروژه‌ای اضافه نشده است.</p>
-    </div>
-{{ end }}
+</main>
 {{ end }}
