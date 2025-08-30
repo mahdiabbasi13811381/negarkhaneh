@@ -1,42 +1,62 @@
 {{ define "main" }}
-<article class="negar-post" dir="rtl">
-    <div class="container">
-        <header class="post-header">
-            <h1 class="post-title">{{ .Title }}</h1>
-            <div class="post-meta">
-                <span class="post-date">{{ .Date | time.Format ":date_long" }}</span>
-                {{ with .Params.artist }}<span class="post-artist">هنرمند: {{ . }}</span>{{ end }}
-            </div>
-        </header>
+<article class="negar-page" dir="rtl">
+  <div class="negar-container">
+    <!-- اسلایدر تصاویر -->
+    <div class="negar-slider">
+      <div class="slider-wrapper">
+        <!-- اولین تصویر (ضروری) -->
+        {{ if .Params.image }}
+          <img src="{{ .Params.image }}" alt="{{ .Title }}" class="slide" style="display: block;">
+        {{ end }}
 
-        <div class="negar-content">
-            <div class="main-image">
-                <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
-            </div>
-            
-            {{ with .Params.images }}
-            <div class="gallery-grid">
-                {{ range . }}
-                <div class="gallery-item">
-                    <img src="{{ . }}" alt="{{ $.Title }}">
-                </div>
-                {{ end }}
-            </div>
-            {{ end }}
+        <!-- سایر تصاویر (اختیاری) -->
+        {{ with .Params.images }}
+          {{ range . }}
+            <img src="{{ . }}" alt="{{ $.Title }}" class="slide" style="display: none;">
+          {{ end }}
+        {{ end }}
 
-            <div class="post-description">
-                {{ .Content }}
-            </div>
+        <!-- پیام در صورت عدم وجود تصویر -->
+        {{ if not (or .Params.image .Params.images) }}
+          <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0; color: #999;">
+            بدون تصویر
+          </div>
+        {{ end }}
+      </div>
 
-            <div class="post-technical">
-                {{ with .Params.medium }}<p><strong>تکنیک:</strong> {{ . }}</p>{{ end }}
-                {{ with .Params.dimensions }}<p><strong>ابعاد:</strong> {{ . }}</p>{{ end }}
-                {{ with .Params.year }}<p><strong>سال:</strong> {{ . }}</p>{{ end }}
-            </div>
-        </div>
+      <!-- نقطه‌های کنترل اسلایدر -->
+      <div class="slider-dots">
+        {{ $total := add 1 (len (.Params.images | default slice)) }}
+        {{ range seq $total }}
+          <div class="slider-dot{{ if eq . 1 }} active{{ end }}"></div>
+        {{ end }}
+      </div>
     </div>
+
+    <!-- بخش توضیحات -->
+    <div class="negar-content">
+      <h1 class="post-title">{{ .Title }}</h1>
+
+      <div class="post-meta">
+        <span class="post-date">{{ .Date | time.Format ":date_long" }}</span>
+        {{ with .Params.artist }}<span class="post-artist"> • هنرمند: {{ . }}</span>{{ end }}
+      </div>
+
+      <!-- توضیحات متنی -->
+      <div class="post-description">
+        {{ .Content }}
+      </div>
+
+      <!-- مشخصات فنی -->
+      <div class="post-technical">
+        {{ with .Params.medium }}<p><strong>تکنیک:</strong> {{ . }}</p>{{ end }}
+        {{ with .Params.dimensions }}<p><strong>ابعاد:</strong> {{ . }}</p>{{ end }}
+        {{ with .Params.year }}<p><strong>سال:</strong> {{ . }}</p>{{ end }}
+      </div>
+    </div>
+  </div>
 </article>
 
+<!-- لود اسلایدر JS -->
 <script src="/js/slider.js" defer></script>
-
 {{ end }}
