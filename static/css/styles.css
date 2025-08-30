@@ -176,6 +176,7 @@ header {
     padding: 25px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     display: flex;
+    flex-direction: row-reverse; /* تغییر: جهت از راست به چپ */
     align-items: flex-start;
     gap: 25px; /* فاصله بین تصویر و متن */
 }
