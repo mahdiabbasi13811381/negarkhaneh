@@ -3,6 +3,7 @@
         <div class="nav-links">
             {{ range .Site.Menus.main }}
             <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
+            <button id="darkModeToggle" aria-label="تغییر به حالت تیره">☀️/🌙</button>
             {{ end }}
         </div>
     </div>
