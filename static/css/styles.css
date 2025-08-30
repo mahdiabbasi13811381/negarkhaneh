@@ -99,7 +99,7 @@ a {
     transition: color 0.3s ease;
 }
 
-a:hover {
+a:not(.nav-link):hover {
     color: #666;
 }
 
@@ -152,7 +152,6 @@ nav {
     transition: transform 0.3s ease
 }
    
-
 
 .nav-link:hover::after {
     opacity: 1;
