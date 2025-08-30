@@ -52,8 +52,8 @@
 }
 
 .dark-mode-button svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     color: var(--link-color);
     transition: transform 0.3s ease;
 }
@@ -129,7 +129,7 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 35px;
 }
 
 .nav-link {
@@ -147,9 +147,8 @@ nav {
 
 .nav-link:hover {
     background-color: rgba(0, 0, 0, 0.1);
-    transform: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: transform 0.3s ease
 }
    
