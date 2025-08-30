@@ -44,17 +44,18 @@
             {{ range $ferestehs }}
             <article class="feresteh-item">
                 <a href="{{ .Permalink }}" class="feresteh-link">
+                    <!-- ابتدا محتوا و سپس تصویر برای row-reverse -->
+                    <div class="feresteh-content">
+                        <h3 class="feresteh-title">{{ .Title }}</h3>
+                        <p class="feresteh-excerpt">{{ .Summary }}</p>
+                        <span class="feresteh-readmore">ادامه مطلب →</span>
+                    </div>
                     <div class="feresteh-image">
                         {{ if .Params.image }}
                         <img src="{{ .Params.image }}" alt="{{ .Title }}">
                         {{ else }}
                         <div style="background-color: #eee; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#999; font-size:0.8rem;">بدون تصویر</div>
                         {{ end }}
-                    </div>
-                    <div class="feresteh-content">
-                        <h3 class="feresteh-title">{{ .Title }}</h3>
-                        <p class="feresteh-excerpt">{{ .Summary }}</p>
-                        <span class="feresteh-readmore">ادامه مطلب →</span>
                     </div>
                 </a>
             </article>
