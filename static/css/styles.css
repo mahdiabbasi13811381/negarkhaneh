@@ -52,15 +52,15 @@
 }
 
 .dark-mode-button svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     color: var(--link-color);
     transition: transform 0.3s ease;
 }
 
 .dark-mode-button:hover {
     background-color: rgba(0, 0, 0, 0.1);
-    transform: none;
+    transform: scale(1.2);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
