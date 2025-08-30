@@ -16,7 +16,7 @@ body {
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px; /* هماهنگ با فاصله بخش آخرین فرستاده‌ها */
 }
 
 a {
@@ -124,7 +124,7 @@ header {
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
+    gap: 15px; /* 🔽 کاهش فاصله بین تصاویر از 25px به 15px */
     margin: 60px 0 30px;
     padding: 0;
 }
@@ -132,7 +132,7 @@ header {
 .gallery-item {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 1; /* مربع کامل */
+    aspect-ratio: 1;
     border-radius: 0;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -406,10 +406,9 @@ footer {
     overflow: hidden;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    aspect-ratio: 1; /* تصاویر مربعی بدون فضای اضافی */
+    aspect-ratio: 1;
 }
 
-/* انیمیشن نرم برای تغییر تصاویر */
 .negar-slider .slide {
     position: absolute;
     top: 0;
@@ -426,7 +425,6 @@ footer {
     opacity: 1;
 }
 
-/* افکت فیلم (حاشیه شیشه‌ای) */
 .negar-slider::before {
     content: '';
     position: absolute;
@@ -440,11 +438,10 @@ footer {
     z-index: 2;
 }
 
-/* فلش‌های کنترل - جای چپ و راست عوض شده */
 .slider-next {
     position: absolute;
     top: 50%;
-    left: 20px; /* سمت چپ */
+    left: 20px;
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
@@ -472,7 +469,7 @@ footer {
 .slider-prev {
     position: absolute;
     top: 50%;
-    right: 20px; /* سمت راست */
+    right: 20px;
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
@@ -497,7 +494,6 @@ footer {
     transform: translateY(-50%) scale(1.05);
 }
 
-/* نقطه‌های اسلایدر */
 .slider-dots {
     display: flex;
     justify-content: center;
@@ -518,7 +514,6 @@ footer {
     background: #333;
 }
 
-/* بخش توضیحات */
 .negar-content {
     flex: 1;
     max-width: 500px;
@@ -540,7 +535,6 @@ footer {
     text-align: justify;
 }
 
-/* لیست ویژگی‌ها */
 .negar-features {
     margin: 20px 0;
     font-size: 0.95rem;
@@ -591,8 +585,6 @@ footer {
     transition: opacity 0.3s ease;
 }
 
-
-/* فلش‌های تمام‌صفحه */
 .fullscreen-prev,
 .fullscreen-next {
     position: absolute;
@@ -629,7 +621,6 @@ footer {
     left: 20px;
 }
 
-/* دکمه بستن */
 .fullscreen-close {
     position: absolute;
     top: 20px;
@@ -654,22 +645,16 @@ footer {
     background: rgba(0, 0, 0, 0.9);
 }
 
-
-/* ----------------------------------------
-   حالت تمام‌صفحه - به‌روزرسانی
-   ---------------------------------------- */
-
-/* حذف افکت هاور روی تصویر تمام‌صفحه */
+/* حالت تمام‌صفحه - به‌روزرسانی */
 .fullscreen-image {
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    transition: none; /* ❌ حذف انیمیشن هاور */
+    transition: none;
 }
 
-/* ردیف پیش‌نمایش تصاویر در حالت تمام‌صفحه */
 .fullscreen-thumbnails {
     position: absolute;
     bottom: 20px;
@@ -683,11 +668,11 @@ footer {
     border-radius: 12px;
     max-width: 90vw;
     overflow-x: auto;
-    scrollbar-width: none; /* مخفی کردن اسکرول (فایرفاکس) */
+    scrollbar-width: none;
 }
 
 .fullscreen-thumbnails::-webkit-scrollbar {
-    display: none; /* مخفی کردن اسکرول (کروم) */
+    display: none;
 }
 
 .fullscreen-thumbnail {
@@ -703,7 +688,7 @@ footer {
 }
 
 .fullscreen-thumbnail:hover {
-    transform: scale(1.1); /* بزرگ‌تر شدن با ماوس */
+    transform: scale(1.1);
 }
 
 .fullscreen-thumbnail.active {
@@ -713,12 +698,10 @@ footer {
     margin-right: 4px;
 }
 
-/* اختیاری: افکت فاصله بیشتر برای تصویر انتخاب‌شده */
 .fullscreen-thumbnail.active {
     margin-left: 12px;
     margin-right: 12px;
 }
-
 
 /* ریسپانسیو: موبایل */
 @media (max-width: 900px) {
@@ -772,7 +755,7 @@ footer {
     
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
+        gap: 15px; /* هماهنگ با دسکتاپ */
         margin: 50px 0;
     }
     
@@ -840,7 +823,7 @@ footer {
     
     .gallery {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
         margin: 40px 0;
     }
     
