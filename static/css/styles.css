@@ -1,3 +1,43 @@
+/* ------------------------------
+   متغیرهای رنگ - تم روشن و تیره
+   ------------------------------ */
+:root {
+    /* روشن (Light Mode) */
+    --bg-color: #f8f8f8;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --border-color: #dbdbdb;
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-heavy: rgba(0, 0, 0, 0.15);
+    --title-color: #1a1a1a;
+    --link-color: #222;
+    --footer-color: #666;
+    --section-bg: #ffffff;
+    --input-bg: #fff;
+    --placeholder-color: #999;
+}
+
+[data-theme="dark"] {
+    /* تیره (Dark Mode) */
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --border-color: #444;
+    --nav-bg: rgba(30, 30, 30, 0.95);
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-heavy: rgba(0, 0, 0, 0.5);
+    --title-color: #f0f0f0;
+    --link-color: #ddd;
+    --footer-color: #aaa;
+    --section-bg: #1a1a1a;
+    --input-bg: #2a2a2a;
+    --placeholder-color: #777;
+}
+
+/* ------------------------------
+   تنظیمات کلی
+   ------------------------------ */
 * {
     margin: 0;
     padding: 0;
@@ -7,9 +47,10 @@
 body {
     font-family: 'Poppins', 'Vazir', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f8f8f8;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     padding-top: 80px;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Container */
@@ -20,7 +61,7 @@ body {
 }
 
 a {
-    color: #222;
+    color: var(--link-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -29,7 +70,37 @@ a:hover {
     color: #666;
 }
 
-/* Navigation */
+/* ------------------------------
+   دکمه دارک مود (در صورت افزودن در HTML)
+   ------------------------------ */
+#darkModeToggle {
+    position: fixed;
+    top: 40px;
+    left: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#darkModeToggle:hover {
+    transform: rotate(20deg);
+    box-shadow: 0 6px 15px var(--shadow);
+}
+
+/* ------------------------------
+   ناوبری
+   ------------------------------ */
 nav {
     position: fixed;
     top: 30px;
@@ -42,12 +113,13 @@ nav {
 }
 
 .nav-container {
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     padding: 15px 50px;
     border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow);
     display: inline-block;
+    transition: background 0.3s ease;
 }
 
 .nav-links {
@@ -56,7 +128,7 @@ nav {
 }
 
 .nav-link {
-    color: #222;
+    color: var(--link-color);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 500;
@@ -69,10 +141,13 @@ nav {
     color: #666;
 }
 
-/* Header Styles */
+/* ------------------------------
+   هدر
+   ------------------------------ */
 header {
     padding: 120px 0 40px;
     text-align: center;
+    color: var(--text-color);
 }
 
 .site-title {
@@ -80,26 +155,29 @@ header {
     font-size: 2.8rem;
     font-weight: 700;
     margin-bottom: 10px;
-    color: #222;
+    color: var(--title-color);
 }
 
 .site-subtitle {
     font-size: 1.2rem;
     font-weight: 300;
-    color: #666;
+    color: var(--text-color);
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.8;
 }
 
-/* Profile Section */
+/* ------------------------------
+   بخش پروفایل
+   ------------------------------ */
 .profile-section {
-    background: white;
-    border: 1px solid #dbdbdb;
+    background: var(--section-bg);
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     margin: 30px 0;
     padding: 30px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px var(--shadow);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .profile-info {
@@ -112,19 +190,21 @@ header {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 10px;
-    color: #222;
+    color: var(--title-color);
 }
 
 .profile-bio {
-    color: #555;
+    color: var(--text-color);
     line-height: 1.8;
 }
 
-/* Gallery Styles (صفحه اصلی و /negar/) */
+/* ------------------------------
+   گالری تصاویر
+   ------------------------------ */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 15px; /* 🔽 کاهش فاصله بین تصاویر از 25px به 15px */
+    gap: 15px; /* 🔽 کاهش فاصله بین تصاویر */
     margin: 60px 0 30px;
     padding: 0;
 }
@@ -136,12 +216,12 @@ header {
     border-radius: 0;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px var(--shadow);
 }
 
 .gallery-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px var(--shadow-heavy);
 }
 
 .gallery-item img {
@@ -155,14 +235,17 @@ header {
     transform: scale(1.05);
 }
 
-/* Section Title (برای صفحه /negar/ و بخش‌های دیگر) */
+/* ------------------------------
+   عنوان بخش
+   ------------------------------ */
 .section-title {
     font-size: 2rem;
-    color: #1a1a1a;
+    color: var(--title-color);
     text-align: center;
     margin: 80px 0 40px;
     font-weight: 600;
     position: relative;
+    transition: color 0.3s ease;
 }
 
 .section-title::after {
@@ -174,17 +257,23 @@ header {
     margin: 15px auto 0;
 }
 
-/* بخش آخرین فرستاده‌ها */
+/* ------------------------------
+   بخش آخرین فرستاده‌ها
+   ------------------------------ */
 .ferestehs-section {
     padding: 60px 20px;
     text-align: right;
     direction: rtl;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--section-bg);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .ferestehs-section h2 {
     font-size: 1.8rem;
-    color: #222;
+    color: var(--title-color);
     margin-bottom: 30px;
     text-align: center;
     border-bottom: 2px solid #000;
@@ -202,14 +291,14 @@ header {
     border: 1px solid #eee;
     border-radius: 12px;
     overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 10px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feresteh-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px var(--shadow-heavy);
 }
 
 .feresteh-link {
@@ -229,7 +318,8 @@ header {
     flex-shrink: 0;
     overflow: hidden;
     border-radius: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
 }
 
 .feresteh-image img {
@@ -251,14 +341,14 @@ header {
 
 .feresteh-content .feresteh-title {
     font-size: 1.4rem;
-    color: #1a1a1a;
+    color: var(--title-color);
     margin: 0 0 10px;
     font-weight: 600;
 }
 
 .feresteh-content .feresteh-excerpt {
     font-size: 1rem;
-    color: #555;
+    color: var(--text-color);
     line-height: 1.7;
     margin: 0 0 12px;
     text-align: justify;
@@ -267,7 +357,7 @@ header {
 .feresteh-content .feresteh-readmore {
     display: inline-block;
     font-size: 0.95rem;
-    color: #000;
+    color: var(--link-color);
     text-decoration: none;
     font-weight: 500;
 }
@@ -276,14 +366,17 @@ header {
     text-decoration: underline;
 }
 
-/* Project Section */
+/* ------------------------------
+   بخش پروژه
+   ------------------------------ */
 .project-section {
-    background: white;
-    border: 1px solid #dbdbdb;
+    background: var(--section-bg);
+    border: 1px solid var(--border-color);
     border-radius: 3px;
     padding: 40px;
     margin: 50px 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px var(--shadow);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .project-content {
@@ -301,13 +394,13 @@ header {
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 20px;
-    color: #222;
+    color: var(--title-color);
 }
 
 .project-description {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #555;
+    color: var(--text-color);
     margin-bottom: 30px;
 }
 
@@ -315,7 +408,7 @@ header {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: #222;
+    color: var(--link-color);
     text-decoration: none;
     font-weight: 500;
     border-bottom: 1px solid transparent;
@@ -323,7 +416,7 @@ header {
 }
 
 .view-project:hover {
-    border-color: #222;
+    border-color: var(--link-color);
 }
 
 .project-images {
@@ -351,12 +444,15 @@ header {
     transform: scale(1.1);
 }
 
-/* Footer */
+/* ------------------------------
+   فوتر
+   ------------------------------ */
 footer {
     text-align: center;
     padding: 60px 0 40px;
-    color: #666;
+    color: var(--footer-color);
     font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
 .footer-links {
@@ -367,18 +463,18 @@ footer {
 }
 
 .footer-link {
-    color: #666;
+    color: var(--footer-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-    color: #222;
+    color: var(--link-color);
 }
 
-/* ----------------------------------------
-   صفحهٔ نگار - اسلایدشوی اینستاگرامی
-   ---------------------------------------- */
+/* ------------------------------
+   صفحهٔ نگار - اسلایدر
+   ------------------------------ */
 .negar-page {
     display: flex;
     justify-content: center;
@@ -405,8 +501,9 @@ footer {
     width: 100%;
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px var(--shadow-heavy);
     aspect-ratio: 1;
+    transition: box-shadow 0.4s ease;
 }
 
 .negar-slider .slide {
@@ -438,38 +535,10 @@ footer {
     z-index: 2;
 }
 
-.slider-next {
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.7;
-    transition: all 0.3s ease;
-    user-select: none;
-}
-
-.slider-next:hover {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.8);
-    transform: translateY(-50%) scale(1.05);
-}
-
+.slider-next,
 .slider-prev {
     position: absolute;
     top: 50%;
-    right: 20px;
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
@@ -488,10 +557,19 @@ footer {
     user-select: none;
 }
 
+.slider-next:hover,
 .slider-prev:hover {
     opacity: 1;
     background: rgba(0, 0, 0, 0.8);
     transform: translateY(-50%) scale(1.05);
+}
+
+.slider-next {
+    left: 20px;
+}
+
+.slider-prev {
+    right: 20px;
 }
 
 .slider-dots {
@@ -523,18 +601,19 @@ footer {
 .negar-content h1 {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--title-color);
     margin-bottom: 15px;
 }
 
 .negar-content p {
     font-size: 1.05rem;
-    color: #555;
+    color: var(--text-color);
     line-height: 1.8;
     margin-bottom: 20px;
     text-align: justify;
 }
 
+/* ویژگی‌ها */
 .negar-features {
     margin: 20px 0;
     font-size: 0.95rem;
@@ -543,7 +622,7 @@ footer {
 .negar-features h3 {
     font-size: 1.1rem;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--title-color);
 }
 
 .negar-features ul {
@@ -553,16 +632,16 @@ footer {
 
 .negar-features li {
     margin-bottom: 8px;
-    color: #555;
+    color: var(--text-color);
 }
 
 .negar-features li strong {
-    color: #222;
+    color: var(--link-color);
 }
 
-/* ----------------------------------------
-   حالت تمام‌صفحه (Full-screen)
-   ---------------------------------------- */
+/* ------------------------------
+   حالت تمام‌صفحه
+   ------------------------------ */
 .fullscreen-overlay {
     position: fixed;
     top: 0;
@@ -645,7 +724,6 @@ footer {
     background: rgba(0, 0, 0, 0.9);
 }
 
-/* حالت تمام‌صفحه - به‌روزرسانی */
 .fullscreen-image {
     max-width: 90vw;
     max-height: 90vh;
@@ -694,16 +772,13 @@ footer {
 .fullscreen-thumbnail.active {
     border-color: #fff;
     opacity: 1;
-    margin-left: 4px;
-    margin-right: 4px;
-}
-
-.fullscreen-thumbnail.active {
     margin-left: 12px;
     margin-right: 12px;
 }
 
-/* ریسپانسیو: موبایل */
+/* ------------------------------
+   واکنش‌گرایی
+   ------------------------------ */
 @media (max-width: 900px) {
     .negar-container {
         flex-direction: column;
@@ -733,7 +808,6 @@ footer {
     }
 }
 
-/* واکنش‌گرایی عمومی */
 @media (max-width: 768px) {
     .nav-container {
         padding: 15px 30px;
@@ -755,7 +829,7 @@ footer {
     
     .gallery {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 15px; /* هماهنگ با دسکتاپ */
+        gap: 15px;
         margin: 50px 0;
     }
     
