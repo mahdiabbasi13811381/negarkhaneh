@@ -244,7 +244,6 @@ header {
 }
 
 .gallery-item:hover {
-    transform: translateY(-6px);
     box-shadow: 0 12px 30px var(--shadow-heavy);
     border-radius: 12px;
 }
@@ -257,7 +256,7 @@ header {
 }
 
 .gallery-item:hover img {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
 /* ------------------------------
@@ -836,6 +835,7 @@ footer {
 }
 
 .fullscreen-thumbnail.active {
+    transform: scale(1.1);
     border-color: #fff;
     opacity: 1;
     margin-left: 12px;
