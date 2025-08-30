@@ -1,29 +1,39 @@
-baseURL = "https://mahdiabbasi13811381.github.io/negarkhaneh/"
-title = "عکاس حرفه‌ای | نمونه کارها"
-languageCode = "fa-ir"
-defaultContentLanguage = "fa"
+baseURL = 'https://mahdiabbasi13811381.github.io/negarkhaneh/'
+title = 'نگارخانه | نگار و فرستاده'
+languageCode = 'fa-ir'
+defaultContentLanguage = 'fa'
 
 [params]
-description = "عکاس حرفه‌ای با تخصص در عکاسی طبیعت و معماری"
-subtitle = "برترین جوایز بین‌المللی عکاسی - متولد آریزونا"
+description = 'نگارخانه ای از آثار هنری و نوشته‌های ادبی'
+subtitle = 'نگار برای تصویر، فرستاده برای نوشته'
 
 [menu]
 [[menu.main]]
-name = "صفحه اصلی"
-url = "/"
+name = 'صفحه اصلی'
+url = '/'
 weight = 1
 
 [[menu.main]]
-name = "نمونه کارها"
-url = "/negar/"
+name = 'نگار'
+url = '/negar/'
 weight = 2
 
 [[menu.main]]
-name = "درباره من"
-url = "/about/"
+name = 'مطالب'
+url = '/feresteh/'
 weight = 3
 
 [[menu.main]]
-name = "تماس"
-url = "/contact/"
+name = 'درباره من'
+url = '/about/'
 weight = 4
+
+[[menu.main]]
+name = 'تماس'
+url = '/contact/'
+weight = 5
+
+# تنظیمات نمایش برای هر بخش
+[outputs]
+home = ['HTML', 'RSS', 'JSON']
+section = ['HTML', 'RSS']
