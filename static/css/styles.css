@@ -376,19 +376,153 @@ footer {
     color: #222;
 }
 
-/* Responsive Design */
+/* ----------------------------------------
+   صفحهٔ نگار - اسلایدشوی اینستاگرامی
+   ---------------------------------------- */
+.negar-page {
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    direction: rtl;
+}
 
-/* --- واکنش‌گرایی عمومی --- */
+.negar-container {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+}
+
+.negar-slider {
+    flex: 1;
+    max-width: 600px;
+}
+
+.negar-slider .slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    aspect-ratio: 1 / 1.2;
+}
+
+.negar-slider .slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* افکت فیلم */
+.negar-slider::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+/* نقطه‌های اسلایدر */
+.negar-slider .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.negar-slider .slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.negar-slider .slider-dot.active {
+    background: #333;
+}
+
+/* بخش توضیحات */
+.negar-content {
+    flex: 1;
+    max-width: 500px;
+    padding: 10px 0;
+}
+
+.negar-content h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.negar-content p {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* لیست ویژگی‌ها (در صورت وجود) */
+.negar-features {
+    margin: 20px 0;
+    font-size: 0.95rem;
+}
+
+.negar-features h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.negar-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.negar-features li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.negar-features li strong {
+    color: #222;
+}
+
+/* ریسپانسیو: موبایل */
 @media (max-width: 900px) {
-    .project-content {
+    .negar-container {
         flex-direction: column;
+        align-items: center;
     }
-    
-    .project-images {
-        grid-template-columns: 1fr;
+
+    .negar-slider {
+        max-width: 100%;
+    }
+
+    .negar-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .negar-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .negar-content p {
+        font-size: 1rem;
     }
 }
 
+/* واکنش‌گرایی عمومی */
 @media (max-width: 768px) {
     .nav-container {
         padding: 15px 30px;
@@ -480,10 +614,6 @@ footer {
         grid-template-columns: 1fr;
         gap: 20px;
         margin: 40px 0;
-    }
-    
-    .gallery-item {
-        aspect-ratio: 1;
     }
     
     .section-title {
