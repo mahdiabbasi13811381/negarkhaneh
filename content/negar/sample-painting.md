@@ -10,6 +10,7 @@ dimensions: "50x70 سانتی‌متر"
 year: 2023
 price: "۱,۲۰۰,۰۰۰ تومان"
 draft: false
+image: "https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926073-3AMALD7984DLYFK155YR/MHeiderich-Southbound04.jpg?format=2500w"
 ---
 
 ## توضیح اثر
