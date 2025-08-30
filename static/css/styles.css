@@ -35,7 +35,7 @@
     --placeholder-color: #777;
 }
 
-/* استایل دکمه دارک مود - داخل کادر ناوبری */
+/* استایل دکمه دارک مود - بدون چرخش، فقط سایه */
 .dark-mode-button {
     display: flex;
     align-items: center;
@@ -60,11 +60,13 @@
 
 .dark-mode-button:hover {
     background-color: rgba(0, 0, 0, 0.1);
-    transform: rotate(15deg);
+    /* ❌ بدون چرخش — فقط سایه */
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dark-mode-button:hover svg {
-    transform: scale(1.2) rotate(-15deg);
+    transform: scale(1.2);
 }
 
 /* ------------------------------
@@ -89,7 +91,7 @@ body {
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 80px; /* 🔺 تغییر از 20px به 80px برای هماهنگی کل صفحه */
+    padding: 0 80px; /* هماهنگ با بخش‌های دیگر */
 }
 
 a {
@@ -138,18 +140,25 @@ nav {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 12px;
+    border-radius: 6px;
 }
 
+/* افکت چرخش و سایه برای تمام آیتم‌های منو */
 .nav-link:hover {
     color: #666;
+    transform: rotate(3deg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 /* ------------------------------
    هدر - مدرن، جمع‌وجور و زیبا
    ------------------------------ */
 header {
-    padding: 60px 0 30px; /* 🔽 کاهش ارتفاع */
+    padding: 60px 0 30px;
     text-align: center;
     color: var(--text-color);
     background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(240,240,240,0.6) 100%);
@@ -258,6 +267,8 @@ header {
     font-weight: 600;
     position: relative;
     transition: color 0.3s ease;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.5px;
 }
 
 .section-title::after {
@@ -284,16 +295,38 @@ header {
 }
 
 .ferestehs-section h2 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     color: var(--title-color);
     margin-bottom: 30px;
     text-align: center;
-    border-bottom: 2px solid #000;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    position: relative;
     display: inline-block;
-    padding-bottom: 8px;
+    padding: 0 15px;
+    background: var(--section-bg);
+    z-index: 1;
 }
 
-/* تغییر به دو ستونی در دسکتاپ */
+.ferestehs-section h2::before,
+.ferestehs-section h2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 100vw;
+    height: 1px;
+    background: var(--border-color);
+    z-index: -1;
+}
+
+.ferestehs-section h2::before {
+    right: 100%;
+}
+
+.ferestehs-section h2::after {
+    left: 100%;
+}
+
 .feresteh-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -369,9 +402,31 @@ header {
 .feresteh-content .feresteh-excerpt {
     font-size: 0.98rem;
     color: var(--text-color);
-    line-height: 1.7;
+    line-height: 1.6;
     margin: 0 0 10px;
     text-align: justify;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    position: relative;
+}
+
+/* افکت کمرنگ شدن برای کاراکترهای بعد از 200 کاراکتر */
+.feresteh-content .feresteh-excerpt::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.9), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+[data-theme="dark"] .feresteh-content .feresteh-excerpt::after {
+    background: linear-gradient(to left, rgba(18, 18, 18, 0.9), transparent);
 }
 
 .feresteh-content .feresteh-readmore {
