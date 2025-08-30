@@ -24,6 +24,12 @@
         {{ end }}
       </div>
 
+      <!-- فلش چپ (قبلی) -->
+      <button class="slider-prev" aria-label="تصویر قبلی">❮</button>
+
+      <!-- فلش راست (بعدی) -->
+      <button class="slider-next" aria-label="تصویر بعدی">❯</button>
+      
       <!-- نقطه‌های کنترل اسلایدر -->
       <div class="slider-dots">
         {{ $total := add 1 (len (.Params.images | default slice)) }}
