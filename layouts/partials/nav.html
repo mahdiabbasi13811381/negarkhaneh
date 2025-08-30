@@ -4,6 +4,43 @@
             {{ range .Site.Menus.main }}
             <a href="{{ .URL }}" class="nav-link">{{ .Name }}</a>
             {{ end }}
+
+            <!-- دکمه دارک مود -->
+            <button id="darkModeToggle" aria-label="تغییر حالت نور">
+                <span class="light-mode">☀️</span>
+                <span class="dark-mode" style="display: none;">🌙</span>
+            </button>
         </div>
     </div>
+
+    <!-- اسکریپت دارک مود (در صورت ترجیح، می‌توان به footer منتقل کرد) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const darkModeToggle = document.getElementById("darkModeToggle");
+            const savedTheme = localStorage.getItem("theme");
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+            // تنظیم تم اولیه
+            if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+
+            // به‌روزرسانی آیکون در ابتدا
+            if (document.documentElement.getAttribute("data-theme") === "dark") {
+                document.querySelector(".dark-mode")?.style.display = "inline";
+            }
+
+            // تغییر تم با کلیک
+            darkModeToggle?.addEventListener("click", () => {
+                const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+                const newTheme = isDark ? "light" : "dark";
+                document.documentElement.setAttribute("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+
+                // به‌روزرسانی آیکون
+                document.querySelector(".light-mode").style.display = isDark ? "inline" : "none";
+                document.querySelector(".dark-mode").style.display = isDark ? "none" : "inline";
+            });
+        });
+    </script>
 </nav>
