@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let currentIndex = 0;
+    let uiVisible = true; // مدیریت نمایش عناصر رابط
 
     // ساخت پیش‌نمایش‌ها
     slides.forEach((slide, index) => {
@@ -90,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             showSlide(index);
             updateFullscreenImage();
             updateThumbnails();
+            showUI(); // نمایش UI در صورت کلیک روی نقطه
         });
     });
 
@@ -99,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(prevIndex);
         updateFullscreenImage();
         updateThumbnails();
+        showUI(); // نمایش UI
     });
 
     nextBtn?.addEventListener('click', () => {
@@ -106,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(nextIndex);
         updateFullscreenImage();
         updateThumbnails();
+        showUI(); // نمایش UI
     });
 
     // باز کردن حالت تمام‌صفحه
@@ -115,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
             updateThumbnails();
             fullscreenOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
+            showUI(); // اطمینان از نمایش اولیه UI
         });
     });
 
@@ -136,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(prevIndex);
         updateFullscreenImage();
         updateThumbnails();
+        showUI(); // نمایش UI
     });
 
     fullscreenNext.addEventListener('click', (e) => {
@@ -144,6 +150,29 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(nextIndex);
         updateFullscreenImage();
         updateThumbnails();
+        showUI(); // نمایش UI
+    });
+
+    // تابع نمایش UI
+    function showUI() {
+        fullscreenOverlay.classList.remove('ui-hidden');
+        uiVisible = true;
+    }
+
+    // تابع مخفی کردن UI
+    function toggleUI() {
+        if (uiVisible) {
+            fullscreenOverlay.classList.add('ui-hidden');
+        } else {
+            fullscreenOverlay.classList.remove('ui-hidden');
+        }
+        uiVisible = !uiVisible;
+    }
+
+    // کلیک روی تصویر در حالت تمام‌صفحه برای مخفی/نمایش UI
+    fullscreenImage.addEventListener('click', function (e) {
+        e.stopPropagation(); // جلوگیری از بسته شدن
+        toggleUI();
     });
 
     // کلیدهای صفحه‌کلید
@@ -156,6 +185,10 @@ document.addEventListener('DOMContentLoaded', function () {
             fullscreenPrev.click();
         } else if (e.key === 'ArrowRight') {
             fullscreenNext.click();
+        } else if (e.key === ' ') || e.key === 'Enter') {
+            // فضای خالی یا Enter برای مخفی کردن/نمایش UI
+            e.preventDefault();
+            toggleUI();
         }
     });
 
