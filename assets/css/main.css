@@ -116,19 +116,7 @@ nav {
     background-color: rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: scale(1.1);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 4px;
-    left: 12px;
-    right: 12px;
-    height: 2px;
-    background: var(--link-color);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 1px;
+    transition: transform 0.3s ease
 }
 
 .nav-link:hover::after {
