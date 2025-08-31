@@ -297,6 +297,7 @@
 
 .fullscreen-thumbnail:hover {
     transform: scale(1.1);
+    transition: all 0.2s ease;
 }
 
 .fullscreen-thumbnail.active {
@@ -305,6 +306,7 @@
     opacity: 1;
     margin-left: 12px;
     margin-right: 12px;
+    transition: all 0.2s ease;
 }
 
 /* مخفی کردن عناصر UI در حالت تمام‌صفحه */
