@@ -11,13 +11,21 @@
     <link rel="stylesheet" href="{{ $main.Permalink }}" integrity="{{ $main.Data.Integrity }}" crossorigin="anonymous">
 
     <!-- لود استایل اختصاصی صفحه (در صورت وجود) -->
-    {{ $pageCSSPath := printf "css/pages/%s.css" .Section }}
-    {{ if fileExists (printf "assets/%s" $pageCSSPath) }}
-        {{ $pageCSS := resources.Get $pageCSSPath | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ $pageCSS.Permalink }}" integrity="{{ $pageCSS.Data.Integrity }}" crossorigin="anonymous">
+    {{ $pageCSSPath := "" }}
+    {{ if .IsHome }}
+        {{ $pageCSSPath = "css/pages/home.css" }}
+    {{ else if .Section }}
+        {{ $pageCSSPath = printf "css/pages/%s.css" .Section }}
     {{ end }}
 
-    <!-- فونت‌ها (در صورت استفاده آنلاین) -->
+    {{ if $pageCSSPath }}
+        {{ if fileExists (printf "assets/%s" $pageCSSPath) }}
+            {{ $pageCSS := resources.Get $pageCSSPath | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
+            <link rel="stylesheet" href="{{ $pageCSS.Permalink }}" integrity="{{ $pageCSS.Data.Integrity }}" crossorigin="anonymous">
+        {{ end }}
+    {{ end }}
+
+    <!-- فونت‌ها -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Vazir&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -25,7 +33,7 @@
     <!-- آیکون سایت -->
     <link rel="icon" type="image/png" href="/favicon.png">
 
-    <!-- اسکریپت دارک مود (در صورت استفاده) -->
+    <!-- اسکریپت دارک مود -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -34,7 +42,7 @@
         });
     </script>
 
-    <!-- Open Graph / اشتراک‌گذاری -->
+    <!-- Open Graph -->
     <meta property="og:title" content="{{ .Title }}">
     <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
     <meta property="og:type" content="website">
