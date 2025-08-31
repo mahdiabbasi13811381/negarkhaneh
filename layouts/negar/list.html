@@ -1,37 +1,38 @@
 {{ define "main" }}
-<div class="negar-page">
-    <div class="negar-container">
-        <!-- اسلایدر تصاویر -->
-        <div class="negar-slider">
-            <div class="slider-wrapper">
-                {{ $images := .Resources.ByType "image" }}
-                {{ range $index, $img := $images }}
-                    <img class="slide{{ if $index }}{{ else }} active{{ end }}" src="{{ $img.RelPermalink }}" alt="{{ $img.Title }}">
-                {{ end }}
-            </div>
-            <button class="slider-prev">❮</button>
-            <button class="slider-next">❯</button>
-            <div class="slider-dots">
-                {{ range $images }}
-                    <span class="slider-dot{{ if loop.First }} active{{ end }}"></span>
-                {{ end }}
-            </div>
-        </div>
 
-        <!-- محتوای متنی -->
-        <div class="negar-content">
-            <h1>نگار خانه</h1>
-            <p>مجموعه‌ای از بهترین آثار عکاسی من، با موضوع طبیعت، معماری و زندگی شهری.</p>
-            
-            <div class="negar-features">
-                <h3>پروژه‌های اخیر</h3>
-                <ul>
-                    {{ range first 3 .Pages }}
-                        <li><strong>{{ .Title }}</strong>: <a href="{{ .RelPermalink }}">مشاهده</a></li>
+<div class="container">
+    <h2 class="section-title">{{ .Title }}</h2>
+    <div class="feresteh-list">
+        {{ range .Pages.ByDate.Reverse }}
+            <div class="feresteh-item">
+                <a href="{{ .Permalink }}" class="feresteh-link">
+                    {{ if .Params.thumbnail }}
+                        <div class="feresteh-image">
+                            <img src="{{ .Params.thumbnail }}" alt="{{ .Title }}" loading="lazy">
+                        </div>
+                    {{ else if .Params.image }}
+                        <div class="feresteh-image">
+                            <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+                        </div>
+                    {{ else }}
+                        <div class="feresteh-image">
+                            <img src="/images/default-negar.jpg" alt="تصویر پیش‌فرض" loading="lazy">
+                        </div>
                     {{ end }}
-                </ul>
+
+                    <div class="feresteh-content">
+                        <h3 class="feresteh-title">{{ .Title }}</h3>
+                        {{ if .Description }}
+                            <p class="feresteh-excerpt">{{ .Description }}</p>
+                        {{ else }}
+                            <p class="feresteh-excerpt">{{ .Summary | plainify | truncate 120 }}</p>
+                        {{ end }}
+                        <span class="feresteh-readmore">ادامه مطلب →</span>
+                    </div>
+                </a>
             </div>
-        </div>
+        {{ end }}
     </div>
 </div>
+
 {{ end }}
