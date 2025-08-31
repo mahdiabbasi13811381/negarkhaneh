@@ -2,35 +2,27 @@
 
 <div class="container">
     <h2 class="section-title">{{ .Title }}</h2>
-    <div class="feresteh-list">
-        {{ range .Pages.ByDate.Reverse }}
-            <div class="feresteh-item">
-                <a href="{{ .Permalink }}" class="feresteh-link">
-                    {{ if .Params.thumbnail }}
-                        <div class="feresteh-image">
-                            <img src="{{ .Params.thumbnail }}" alt="{{ .Title }}" loading="lazy">
-                        </div>
-                    {{ else if .Params.image }}
-                        <div class="feresteh-image">
-                            <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
-                        </div>
-                    {{ else }}
-                        <div class="feresteh-image">
-                            <img src="/images/default-negar.jpg" alt="تصویر پیش‌فرض" loading="lazy">
-                        </div>
-                    {{ end }}
 
-                    <div class="feresteh-content">
-                        <h3 class="feresteh-title">{{ .Title }}</h3>
-                        {{ if .Description }}
-                            <p class="feresteh-excerpt">{{ .Description }}</p>
-                        {{ else }}
-                            <p class="feresteh-excerpt">{{ .Summary | plainify | truncate 120 }}</p>
-                        {{ end }}
-                        <span class="feresteh-readmore">ادامه مطلب →</span>
+    <!-- گالری تصاویر: 3 در هر ردیف -->
+    <div class="gallery">
+        {{ range .Pages.ByDate.Reverse }}
+            {{ $thumbnail := .Params.thumbnail }}
+            {{ if not $thumbnail }}
+                {{ $thumbnail = .Params.image }} <!-- فیلتر پشتیبان -->
+            {{ end }}
+            {{ if not $thumbnail }}
+                {{ $thumbnail = .Site.Params.defaultImage }} <!-- تصویر پیش‌فرض -->
+            {{ end }}
+
+            <a href="{{ .Permalink }}" class="gallery-item" title="{{ .Title }}">
+                {{ if $thumbnail }}
+                    <img src="{{ $thumbnail }}" alt="{{ .Title }}" loading="lazy">
+                {{ else }}
+                    <div style="background:#f0f0f0; display:flex; align-items:center; justify-content:center; color:#999; font-size:0.9rem;">
+                        بدون تصویر
                     </div>
-                </a>
-            </div>
+                {{ end }}
+            </a>
         {{ end }}
     </div>
 </div>
