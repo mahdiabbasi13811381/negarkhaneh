@@ -303,6 +303,16 @@
     margin-right: 12px;
 }
 
+/* مخفی کردن عناصر UI در حالت تمام‌صفحه */
+.fullscreen-overlay.ui-hidden .fullscreen-prev,
+.fullscreen-overlay.ui-hidden .fullscreen-next,
+.fullscreen-overlay.ui-hidden .fullscreen-close,
+.fullscreen-overlay.ui-hidden .fullscreen-thumbnails {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
 /* واکنش‌گرایی صفحه نگار */
 @media (max-width: 900px) {
     .negar-container {
