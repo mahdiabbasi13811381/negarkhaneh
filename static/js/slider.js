@@ -175,22 +175,21 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleUI();
     });
 
-    // کلیدهای صفحه‌کلید
-    document.addEventListener('keydown', (e) => {
-        if (!fullscreenOverlay.classList.contains('active')) return;
+// کلیدهای صفحه‌کلید
+document.addEventListener('keydown', (e) => {
+    if (!fullscreenOverlay.classList.contains('active')) return;
 
-        if (e.key === 'Escape') {
-            closeFullscreen();
-        } else if (e.key === 'ArrowLeft') {
-            fullscreenPrev.click();
-        } else if (e.key === 'ArrowRight') {
-            fullscreenNext.click();
-        } else if (e.key === ' ') || e.key === 'Enter') {
-            // فضای خالی یا Enter برای مخفی کردن/نمایش UI
-            e.preventDefault();
-            toggleUI();
-        }
-    });
+    if (e.key === 'Escape') {
+        closeFullscreen();
+    } else if (e.key === 'ArrowLeft') {
+        fullscreenPrev.click();
+    } else if (e.key === 'ArrowRight') {
+        fullscreenNext.click();
+    } else if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        toggleUI();
+    }
+});
 
     // نمایش اسلاید اول
     showSlide(0);
