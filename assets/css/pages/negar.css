@@ -259,7 +259,10 @@
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    transition: none;
+
+    /* اضافه کردن انتقال نرم */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    will-change: transform;
 }
 
 .fullscreen-thumbnails {
@@ -318,6 +321,16 @@
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
+
+@keyframes slideOutLeft { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-50px); opacity: 0; } }
+@keyframes slideOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(50px); opacity: 0; } }
+@keyframes slideInLeft { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes slideInRight { from { transform: translateX(50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+.fullscreen-image.slide-out-left { animation: slideOutLeft 0.4s ease forwards; }
+.fullscreen-image.slide-out-right { animation: slideOutRight 0.4s ease forwards; }
+.fullscreen-image.slide-in-left { animation: slideInLeft 0.4s ease forwards; }
+.fullscreen-image.slide-in-right { animation: slideInRight 0.4s ease forwards; }
 
 /* واکنش‌گرایی صفحه نگار */
 @media (max-width: 900px) {
