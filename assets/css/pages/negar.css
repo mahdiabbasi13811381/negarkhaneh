@@ -273,6 +273,7 @@
     max-width: 90vw;
     overflow-x: auto;
     scrollbar-width: none;
+    transition: all 0.3s ease;
 }
 
 .fullscreen-thumbnails::-webkit-scrollbar {
