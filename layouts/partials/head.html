@@ -1,29 +1,81 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ .Description | default .Site.Params.description }}">
 
+    <!-- === اطلاعات دیباگ اولیه === -->
+    <!-- Debug: Page Kind: '{{ .Kind }}' -->
+    <!-- Debug: Page Type: '{{ .Type }}' -->
+    <!-- Debug: Page Section: '{{ .Section }}' -->
+    <!-- Debug: Page URL: '{{ .Permalink }}' -->
+    <!-- Debug: Is Home: {{ .IsHome }} -->
+    <!-- === پایان اطلاعات دیباگ اولیه === -->
+
     <!-- عنوان صفحه -->
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
 
     <!-- لود استایل اصلی: main.css -->
-    {{ $main := resources.Get "css/main.css" | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $main.Permalink }}" integrity="{{ $main.Data.Integrity }}" crossorigin="anonymous">
+    {{ $main := resources.Get "css/main.css" }}
+    {{ if $main }}
+        {{ $main = $main | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ $main.Permalink }}" integrity="{{ $main.Data.Integrity }}" crossorigin="anonymous">
+        <!-- Debug: Successfully loaded main.css -->
+    {{ else }}
+        <!-- Warning: main.css not found in assets/css/main.css -->
+    {{ end }}
 
-    <!-- لود استایل اختصاصی صفحه (در صورت وجود) -->
+    <!-- === بخش به‌روزشده برای لود CSS بخش/صفحه === -->
+    <!-- هدف: لود css/pages/{SECTION}.css برای هر صفحه‌ای که .Section دارد -->
     {{ $pageCSSPath := "" }}
+    
     {{ if .IsHome }}
+        <!-- صفحه اصلی: بارگذاری css/pages/home.css -->
         {{ $pageCSSPath = "css/pages/home.css" }}
+        <!-- Debug: Home page detected, trying to load {{ $pageCSSPath }} -->
     {{ else if .Section }}
+        <!-- صفحه با بخش: '{{ .Section }}'. بارگذاری css/pages/{SECTION}.css -->
         {{ $pageCSSPath = printf "css/pages/%s.css" .Section }}
+        <!-- Debug: Section '{{ .Section }}' detected, trying to load {{ $pageCSSPath }} -->
+    {{ else }}
+        <!-- Debug: This page is not Home and has no .Section. No specific page CSS will be loaded. -->
     {{ end }}
 
     {{ if $pageCSSPath }}
+        <!-- مسیر محاسبه‌شده برای CSS بخش: {{ $pageCSSPath }} -->
+        <!-- بررسی وجود فیزیکی فایل در پوشه assets -->
         {{ if fileExists (printf "assets/%s" $pageCSSPath) }}
-            {{ $pageCSS := resources.Get $pageCSSPath | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
-            <link rel="stylesheet" href="{{ $pageCSS.Permalink }}" integrity="{{ $pageCSS.Data.Integrity }}" crossorigin="anonymous">
+            <!-- فایل در assets یافت شد. تلاش برای بارگذاری با resources.Get -->
+            {{ $pageCSS := resources.Get $pageCSSPath }}
+            {{ if $pageCSS }}
+                <!-- فایل توسط resources.Get پیدا شد. پردازش و لود -->
+                {{ $pageCSS = $pageCSS | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
+                <link rel="stylesheet" href="{{ $pageCSS.Permalink }}" integrity="{{ $pageCSS.Data.Integrity }}" crossorigin="anonymous">
+                <!-- Debug: Successfully loaded and processed {{ $pageCSSPath }} -->
+            {{ else }}
+                <!-- هشدار: fileExists گزارش کرد فایل وجود دارد، اما resources.Get آن را پیدا نکرد -->
+                <!-- Warning: fileExists found 'assets/{{ $pageCSSPath }}' but resources.Get failed. Check file format/encoding. -->
+            {{ end }}
+        {{ else }}
+            <!-- هشدار: فایل CSS مورد انتظار در مسیر assets/{{ $pageCSSPath }} یافت نشد -->
+            <!-- Warning: Expected CSS file not found at assets/{{ $pageCSSPath }} -->
+            <!-- لیست فایل‌های موجود در assets/css/pages برای دیباگ -->
+            {{ $pageCSSDir := "assets/css/pages" }}
+            {{ if fileExists $pageCSSDir }}
+                <!-- Debug: Files in {{ $pageCSSDir }}:
+                {{ range readDir $pageCSSDir }}
+                    {{ .Name }},
+                {{ end }}
+                 -->
+            {{ else }}
+                 <!-- Debug: Directory {{ $pageCSSDir }} does not exist. -->
+            {{ end }}
         {{ end }}
+    {{ else }}
+        <!-- Debug: $pageCSSPath is empty. No section CSS will be loaded. -->
     {{ end }}
+    <!-- === پایان بخش به‌روزشده === -->
 
     <!-- فونت‌ها -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,3 +100,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ .Permalink }}">
 </head>
+<body>
+    <!-- محتوای body توسط baseof.html و سایر layoutها پر می‌شود -->
+    {{ block "main" . }}{{ end }}
+</body>
+</html>
