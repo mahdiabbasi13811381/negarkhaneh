@@ -172,8 +172,6 @@
 
 /* عنوان اصلی مقاله */
 .feresteh-content h1.post-title {
-    /* استفاده از فونت تزئینی‌تر برای عنوان اصلی */
-    font-family: var(--font-family-title, 'Playfair Display', 'Vazir', serif);
     font-size: 2.2rem;
     font-weight: 700;
     color: var(--title-color, #222222);
