@@ -11,7 +11,7 @@
       <!-- متادیتا: تاریخ، زمان مطالعه، نویسنده -->
       <div class="post-meta">
         <!-- نمایش تاریخ انتشار -->
-        <span class="post-date">{{ .Date | time.Format ":date_long" }}</span>
+        <span class="post-date">{{ if .Params.persian_date }}{{ .Params.persian_date }}{{ else }}{{ .Date | time.Format ":date_long" }}{{ end }}</span>
         <!-- اضافه کردن زمان مطالعه -->
         <span class="reading-time">⏱️ {{ .ReadingTime }} دقیقه مطالعه</span>
         <!-- اگر فیلد نویسنده در Front Matter تعریف شده باشد -->
