@@ -80,7 +80,7 @@
 .feresteh-image {
     width: 150px;
     height: 150px;
-    flex-shrink: 0;
+    flex: 1;
     overflow: hidden;
     border-radius: 10px;
     border: 1px solid var(--border-color);
@@ -99,7 +99,7 @@
 }
 
 .feresteh-content {
-    flex: 1;
+    flex: 5;
     text-align: right;
     padding-right: 8px;
 }
