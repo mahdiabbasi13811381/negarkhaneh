@@ -1,5 +1,6 @@
 ---
 title: "چرا نگار؟ در جست‌وجوی زیبایی‌های پنهان"
+persian_date: "۱۴۰۲/۱۰/۲۸" # تاریخ شمسی را به صورت دستی اینجا وارد کنید
 date: 2024-01-15
 image: "https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926007-2WUFL8UAJHOOXFVT2PV4/EmptyName-67.jpg?format=2500w"
 categories: ["اندیشه", "هنر"]
