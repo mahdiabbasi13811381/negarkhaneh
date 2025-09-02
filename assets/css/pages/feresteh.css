@@ -136,12 +136,11 @@
 
 
 
-
 /* -------------------------------
    صفحهٔ تکی فرسته - /feresteh/slug/
    ------------------------------- */
 
-/* 
+/*
    فونت‌های استفاده‌شده در این فایل از head.html لود می‌شوند:
    - 'Poppins' (لاتین)
    - 'Vazir' (فارسی)
@@ -157,10 +156,10 @@
     justify-content: center;
     padding: 40px 20px; /* پدینگ عمومی */
     direction: rtl;
-    background-color: var(--body-bg, #ffffff);
-    color: var(--text-color, #333333);
+    background-color: var(--bg-color); /* استفاده از متغیر اصلی پس‌زمینه */
+    color: var(--text-color); /* استفاده از متغیر اصلی متن */
     /* استفاده از فونت اصلی سایت برای متن */
-    font-family: var(--font-family-primary, 'Vazir', 'Poppins', sans-serif);
+    font-family: 'Vazir', 'Poppins', sans-serif; /* بدون متغیر، مطابق main.css */
     font-size: 1.05rem;
     line-height: 1.8;
 }
@@ -172,9 +171,11 @@
 
 /* عنوان اصلی مقاله */
 .feresteh-content h1.post-title {
+    /* استفاده از فونت اصلی برای عنوان (همان Vazir مثل negar) */
+    font-family: 'Vazir', 'Poppins', sans-serif; /* بدون متغیر، مطابق main.css */
     font-size: 2.2rem;
     font-weight: 700;
-    color: var(--title-color, #222222);
+    color: var(--title-color); /* استفاده از متغیر اصلی عنوان */
     margin: 0 0 20px 0; /* فاصله پایین */
     line-height: 1.3;
     text-align: right; /* عنوان راست‌چین */
@@ -186,7 +187,7 @@
     text-align: center; /* تصویر در وسط */
     border-radius: 12px; /* گوشه‌های گرد */
     overflow: hidden; /* برای اعمال border-radius به img */
-    box-shadow: 0 6px 15px var(--shadow-heavy, rgba(0, 0, 0, 0.15)); /* سایه مشابه نگار */
+    box-shadow: 0 6px 15px var(--shadow-heavy); /* استفاده از متغیر سایه تیره */
 }
 
 .featured-image img {
@@ -208,18 +209,18 @@
 .post-body h4,
 .post-body h5,
 .post-body h6 {
-    color: var(--heading-color, #111111);
+    color: var(--title-color); /* استفاده از متغیر اصلی عنوان */
     font-weight: 600;
     margin: 24px 0 16px 0; /* فاصله بالا و پایین */
     line-height: 1.3;
     text-align: right; /* عناوین راست‌چین */
     /* استفاده از فونت اصلی برای عناوین فرعی */
-    font-family: var(--font-family-primary, 'Vazir', 'Poppins', sans-serif);
+    font-family: 'Vazir', 'Poppins', sans-serif; /* بدون متغیر، مطابق main.css */
 }
 
 .post-body h2 {
     font-size: 1.8rem;
-    border-bottom: 1px solid var(--border-color-light, #eaeaea);
+    border-bottom: 1px solid var(--border-color); /* استفاده از متغیر مرز */
     padding-bottom: 8px;
 }
 
@@ -235,6 +236,7 @@
 .post-body p {
     margin: 0 0 1.2em 0; /* فاصله پایین هر پاراگراف */
     text-align: justify; /* متن چین چپ و راست */
+    color: var(--text-color); /* اطمینان از رنگ متن */
 }
 
 /* استایل لیست‌ها */
@@ -243,39 +245,43 @@
     margin: 1em 2em 1.5em 0; /* فاصله از بالا/پایین و راست/چپ */
     padding: 0;
     text-align: right; /* لیست‌ها راست‌چین */
+    color: var(--text-color); /* اطمینان از رنگ متن */
 }
 
 .post-body li {
     margin-bottom: 0.5em;
+    color: var(--text-color); /* اطمینان از رنگ متن */
 }
 
 /* استایل لینک‌ها */
 .post-body a {
-    color: var(--link-color, #0066cc);
+    color: var(--link-color); /* استفاده از متغیر اصلی لینک */
     text-decoration: none;
     border-bottom: 1px dotted currentColor; /* خط نقطه‌چین زیر لینک */
 }
 
 .post-body a:hover {
-    color: var(--link-hover-color, #004499);
+    /* color: var(--link-hover-color); */ /* این متغیر در main.css وجود ندارد */
+    color: #666; /* استفاده از مقدار مشابه hover در main.css */
     border-bottom-style: solid; /* خط ممتد در هاور */
 }
 
 /* استایل بلوک‌های کد */
 .post-body code {
-    font-family: var(--font-family-mono, 'Courier New', monospace);
-    background-color: var(--code-bg, #f5f5f5);
+    font-family: 'Courier New', monospace; /* بدون متغیر، مطابق main.css */
+    background-color: var(--card-bg); /* استفاده از متغیر پس‌زمینه کارت */
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.9em;
     direction: ltr; /* کد معمولاً چپ‌چین */
     unicode-bidi: embed;
+    color: var(--text-color); /* اطمینان از رنگ متن کد */
 }
 
 /* استایل بلوک‌های کد بزرگتر (pre) */
 .post-body pre {
-    background-color: var(--pre-bg, #f8f8f8);
-    border: 1px solid var(--border-color, #dddddd);
+    background-color: var(--card-bg); /* استفاده از متغیر پس‌زمینه کارت */
+    border: 1px solid var(--border-color); /* استفاده از متغیر مرز */
     border-radius: 8px;
     padding: 15px;
     overflow-x: auto; /* اسکرول افقی در صورت نیاز */
@@ -284,22 +290,24 @@
     direction: ltr;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     /* استفاده از فونت مونواسپیس */
-    font-family: var(--font-family-mono, 'Courier New', monospace);
+    font-family: 'Courier New', monospace; /* بدون متغیر، مطابق main.css */
+    color: var(--text-color); /* اطمینان از رنگ متن */
 }
 
 .post-body pre code {
     background-color: transparent; /* حذف رنگ پس‌زمینه کد داخل pre */
     padding: 0;
     border-radius: 0;
+    color: inherit; /* ارث‌بری رنگ از والد (pre) */
 }
 
 /* استایل نقل‌قول (blockquote) */
 .post-body blockquote {
     margin: 1.5em 20px;
     padding: 15px 20px;
-    border-right: 4px solid var(--blockquote-border, #cccccc); /* خط ضخیم راست */
-    background-color: var(--blockquote-bg, #f9f9f9);
-    color: var(--blockquote-color, #555555);
+    border-right: 4px solid var(--border-color); /* استفاده از متغیر مرز */
+    background-color: var(--card-bg); /* استفاده از متغیر پس‌زمینه کارت */
+    color: var(--text-color); /* اطمینان از رنگ متن */
     font-style: italic;
     border-radius: 0 8px 8px 0;
 }
@@ -308,7 +316,7 @@
 .post-body hr {
     border: none;
     height: 1px;
-    background-color: var(--border-color-light, #eaeaea);
+    background-color: var(--border-color); /* استفاده از متغیر مرز */
     margin: 2em 0;
 }
 
@@ -324,10 +332,10 @@
 /* بخش متادیتا (تاریخ، نویسنده، زمان مطالعه) */
 .post-meta {
     font-size: 0.95rem;
-    color: var(--text-color-secondary, #666666);
+    color: var(--text-color); /* اطمینان از رنگ متن متادیتا */
     margin-bottom: 25px;
     padding-bottom: 15px;
-    border-bottom: 1px solid var(--border-color-light, #eaeaea);
+    border-bottom: 1px solid var(--border-color); /* استفاده از متغیر مرز */
 }
 
 .post-meta .post-date,
@@ -341,35 +349,38 @@
 .post-categories {
     margin-top: 25px;
     padding-top: 15px;
-    border-top: 1px solid var(--border-color-light, #eaeaea);
+    border-top: 1px solid var(--border-color); /* استفاده از متغیر مرز */
     font-size: 0.95rem;
-    color: var(--text-color-secondary, #666666);
+    color: var(--text-color); /* اطمینان از رنگ متن */
 }
 
 .post-tags strong,
 .post-categories strong {
     margin-left: 10px; /* فاصله از عنوان */
-    color: var(--title-color, #222222);
+    color: var(--title-color); /* استفاده از متغیر اصلی عنوان */
 }
 
 /* استایل هر برچسب یا دسته */
 .tag,
 .category {
     display: inline-block;
-    background-color: var(--tag-bg, #eeeeee);
-    color: var(--tag-color, #555555);
+    background-color: var(--card-bg); /* استفاده از متغیر پس‌زمینه کارت */
+    color: var(--text-color); /* اطمینان از رنگ متن */
     padding: 5px 12px;
     border-radius: 20px; /* برچسب‌های گرد */
     margin: 0 0 8px 8px; /* فاصله بین آیتم‌ها */
     text-decoration: none;
     transition: all 0.2s ease;
     font-size: 0.9rem;
+    border: 1px solid var(--border-color); /* اضافه کردن مرز برای بهتر دیده شدن در تم تیره */
 }
 
 .tag:hover,
 .category:hover {
-    background-color: var(--tag-hover-bg, #dddddd);
-    color: var(--tag-hover-color, #333333);
+    /* background-color: var(--tag-hover-bg); */ /* این متغیر در main.css وجود ندارد */
+    background-color: rgba(0, 0, 0, 0.1); /* استفاده از مقدار مشابه hover در main.css */
+    /* color: var(--tag-hover-color); */ /* این متغیر در main.css وجود ندارد */
+    color: var(--text-color); /* حفظ رنگ متن */
     transform: translateY(-2px); /* جلوه کوچک hover */
 }
 
