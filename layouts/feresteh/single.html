@@ -5,6 +5,26 @@
     <!-- بخش توضیحات -->
     <div class="feresteh-content">
 
+      <!-- عنوان مقاله -->
+      <h1 class="post-title">{{ .Title }}</h1>
+
+      <!-- متادیتا: تاریخ، زمان مطالعه، نویسنده -->
+      <div class="post-meta">
+        <!-- نمایش تاریخ انتشار -->
+        <span class="post-date">{{ .Date | time.Format ":date_long" }}</span>
+        <!-- اضافه کردن زمان مطالعه -->
+        <span class="reading-time">⏱️ {{ .ReadingTime }} دقیقه مطالعه</span>
+        <!-- اگر فیلد نویسنده در Front Matter تعریف شده باشد -->
+        {{ with .Params.author }}<span class="post-author"> • نویسنده: {{ . }}</span>{{ end }}
+      </div>
+
+      <!-- نمایش تصویر شاخص (در صورت وجود) -->
+      {{ if .Params.image }}
+        <div class="featured-image">
+          <img src="{{ .Params.image }}" alt="{{ .Title }}">
+        </div>
+      {{ end }}
+
       <!-- محتوای اصلی مقاله -->
       <div class="post-body">
         {{ .Content }}
