@@ -1,3 +1,22 @@
+<!-- layouts/feresteh/single.html -->
+{{ define "head" }}
+    <!-- روش 1: لینک مستقیم (اگر فایل در پوشه static/css/pages قرار دارد) -->
+    <!--
+    <link rel="stylesheet" href="/css/pages/feresteh-single.css">
+    -->
+
+    <!-- روش 2: استفاده از پایپ‌های asset Hugo (توصیه شده) -->
+    {{ $ferestehSingleCSS := resources.Get "css/pages/feresteh-single.css" }}
+    {{ if $ferestehSingleCSS }}
+        <!-- می‌توانید فایل را نیز پردازش کنید (مثلاً minify) -->
+        <!-- {{ $ferestehSingleCSS = $ferestehSingleCSS | resources.Minify }} -->
+        <link rel="stylesheet" href="{{ $ferestehSingleCSS.RelPermalink }}">
+    {{ else }}
+        <!-- برای دیباگ: پیامی در کنسول یا لاگ بگذارید -->
+        <!-- < !-- Warning: feresteh-single.css not found -- > -->
+    {{ end }}
+{{ end }}
+
 {{ define "main" }}
 <article class="feresteh-post" dir="rtl">
     <div class="container">
