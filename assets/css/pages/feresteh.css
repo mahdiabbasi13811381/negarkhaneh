@@ -136,9 +136,20 @@
 
 
 
+
 /* -------------------------------
    صفحهٔ تکی فرسته - /feresteh/slug/
    ------------------------------- */
+
+/* 
+   فونت‌های استفاده‌شده در این فایل از head.html لود می‌شوند:
+   - 'Poppins' (لاتین)
+   - 'Vazir' (فارسی)
+   - 'Playfair Display' (لاتین - برای عنوان‌های بزرگ)
+   font-family پیشنهادی:
+   font-family: 'Playfair Display', 'Vazir', 'Poppins', serif; (برای عنوان‌ها)
+   font-family: 'Vazir', 'Poppins', sans-serif; (برای متن عمومی)
+*/
 
 /* تنظیمات پایه برای مقاله */
 .feresteh-post {
@@ -148,7 +159,8 @@
     direction: rtl;
     background-color: var(--body-bg, #ffffff);
     color: var(--text-color, #333333);
-    font-family: var(--font-family-primary, Vazir, Tahoma, sans-serif);
+    /* استفاده از فونت اصلی سایت برای متن */
+    font-family: var(--font-family-primary, 'Vazir', 'Poppins', sans-serif);
     font-size: 1.05rem;
     line-height: 1.8;
 }
@@ -160,6 +172,8 @@
 
 /* عنوان اصلی مقاله */
 .feresteh-content h1.post-title {
+    /* استفاده از فونت تزئینی‌تر برای عنوان اصلی */
+    font-family: var(--font-family-title, 'Playfair Display', 'Vazir', serif);
     font-size: 2.2rem;
     font-weight: 700;
     color: var(--title-color, #222222);
@@ -201,6 +215,8 @@
     margin: 24px 0 16px 0; /* فاصله بالا و پایین */
     line-height: 1.3;
     text-align: right; /* عناوین راست‌چین */
+    /* استفاده از فونت اصلی برای عناوین فرعی */
+    font-family: var(--font-family-primary, 'Vazir', 'Poppins', sans-serif);
 }
 
 .post-body h2 {
@@ -269,6 +285,8 @@
     text-align: left; /* محتوای pre معمولاً چپ‌چین */
     direction: ltr;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    /* استفاده از فونت مونواسپیس */
+    font-family: var(--font-family-mono, 'Courier New', monospace);
 }
 
 .post-body pre code {
@@ -305,6 +323,21 @@
     font-style: italic;
 }
 
+/* بخش متادیتا (تاریخ، نویسنده، زمان مطالعه) */
+.post-meta {
+    font-size: 0.95rem;
+    color: var(--text-color-secondary, #666666);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color-light, #eaeaea);
+}
+
+.post-meta .post-date,
+.post-meta .reading-time,
+.post-meta .post-author {
+    margin-left: 15px; /* فاصله بین آیتم‌های متادیتا */
+}
+
 /* بخش برچسب‌ها و دسته‌بندی‌ها */
 .post-tags,
 .post-categories {
@@ -332,6 +365,7 @@
     margin: 0 0 8px 8px; /* فاصله بین آیتم‌ها */
     text-decoration: none;
     transition: all 0.2s ease;
+    font-size: 0.9rem;
 }
 
 .tag:hover,
@@ -373,5 +407,12 @@
     .post-tags,
     .post-categories {
         font-size: 0.9rem;
+    }
+
+    .post-meta .post-date,
+    .post-meta .reading-time,
+    .post-meta .post-author {
+        display: block;
+        margin: 5px 0; /* در موبایل، هر آیتم در یک خط */
     }
 }
