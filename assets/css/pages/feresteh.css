@@ -37,11 +37,11 @@
 }
 
 .ferestehs-section h2::before {
-    right: 0%;
+    right: 100%;
 }
 
 .ferestehs-section h2::after {
-    left: 100%;
+    left: 0%;
 }
 
 .feresteh-list {
