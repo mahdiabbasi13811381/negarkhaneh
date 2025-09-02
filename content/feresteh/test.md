@@ -1,6 +1,6 @@
 ---
 title: "چرا فرسته؟ در جست‌وجوی نوشته‌های عیان"
-date: 2024-01-15
+date: 2024-01-18
 image: "https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926062-X4FDKLBUG94SH9ZVPHST/MHeiderich-NIP01.jpg?format=2500w"
 categories: ["اندیشه", "هنر"]
 tags: ["زیبایی‌شناسی", "فلسفه هنر", "نگاه هنرمند"]
