@@ -1,43 +1,68 @@
-<!-- layouts/feresteh/single.html -->
 {{ define "main" }}
-<article class="feresteh-post" dir="rtl"> <!-- تغییر کلاس برای تمایز -->
-  <div class="feresteh-container"> <!-- تغییر کلاس برای تمایز -->
-    
-    <!-- بخش توضیحات (مشابه negar-content) -->
-    <div class="feresteh-content"> <!-- تغییر کلاس برای تمایز -->
+<article class="negar-page" dir="rtl">
+  <div class="negar-container">
+    <!-- اسلایدر تصاویر -->
+    <div class="negar-slider">
+      <div class="slider-wrapper">
+        <!-- اولین تصویر (ضروری) -->
+        {{ if .Params.image }}
+          <img src="{{ .Params.image }}" alt="{{ .Title }}" class="slide" style="display: block;">
+        {{ end }}
+
+        <!-- سایر تصاویر (اختیاری) -->
+        {{ with .Params.images }}
+          {{ range . }}
+            <img src="{{ . }}" alt="{{ $.Title }}" class="slide" style="display: none;">
+          {{ end }}
+        {{ end }}
+
+        <!-- پیام در صورت عدم وجود تصویر -->
+        {{ if not (or .Params.image .Params.images) }}
+          <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0; color: #999;">
+            بدون تصویر
+          </div>
+        {{ end }}
+      </div>
+
+      <!-- فلش چپ (قبلی) -->
+      <button class="slider-prev" aria-label="تصویر قبلی">❮</button>
+
+      <!-- فلش راست (بعدی) -->
+      <button class="slider-next" aria-label="تصویر بعدی">❯</button>
+      
+      <!-- نقطه‌های کنترل اسلایدر -->
+      <div class="slider-dots">
+        {{ $total := add 1 (len (.Params.images | default slice)) }}
+        {{ range seq $total }}
+          <div class="slider-dot{{ if eq . 1 }} active{{ end }}"></div>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- بخش توضیحات -->
+    <div class="negar-content">
       <h1 class="post-title">{{ .Title }}</h1>
 
       <div class="post-meta">
-        <!-- نمایش تاریخ انتشار -->
         <span class="post-date">{{ .Date | time.Format ":date_long" }}</span>
-        <!-- اضافه کردن زمان مطالعه -->
-        <span class="reading-time"> ⏱️ {{ .ReadingTime }} دقیقه مطالعه</span>
-        <!-- اگر فیلد نویسنده در Front Matter تعریف شده باشد -->
-        {{ with .Params.author }}<span class="post-author"> • نویسنده: {{ . }}</span>{{ end }}
+        {{ with .Params.artist }}<span class="post-artist"> • هنرمند: {{ . }}</span>{{ end }}
       </div>
 
-      <!-- محتوای اصلی مقاله (مشابه negar post-description) -->
-      <div class="post-body"> <!-- تغییر کلاس برای تمایز -->
+      <!-- توضیحات متنی -->
+      <div class="post-description">
         {{ .Content }}
       </div>
 
-      <!-- بخش برچسب‌ها (اختیاری) -->
-      {{ if .Params.tags }}
-      <div class="post-tags">
-        <strong>برچسب‌ها:</strong>
-        {{ range .Params.tags }}
-          <span class="tag">#{{ . }}</span>
-        {{ end }}
+      <!-- مشخصات فنی -->
+      <div class="post-technical">
+        {{ with .Params.medium }}<p><strong>تکنیک:</strong> {{ . }}</p>{{ end }}
+        {{ with .Params.dimensions }}<p><strong>ابعاد:</strong> {{ . }}</p>{{ end }}
+        {{ with .Params.year }}<p><strong>سال:</strong> {{ . }}</p>{{ end }}
       </div>
-      {{ end }}
+    </div>
+  </div>
+</article>
 
-    </div> <!-- پایان feresteh-content -->
-  </div> <!-- پایان feresteh-container -->
-</article> <!-- پایان feresteh-post -->
-
-<!-- 
-  اسلایدر و اسکریپت مرتبط حذف شدند چون برای مطالب متنی لازم نیست.
-  اگر در آینده بخواهید قابلیت‌های پیشرفته‌تری اضافه کنید (مثل syntax highlighting برای کد)،
-  می‌توانید اسکریپت‌های مربوطه را اینجا قرار دهید.
--->
+<!-- لود اسلایدر JS -->
+<script src="{{ .Site.BaseURL }}js/slider.js" defer></script>
 {{ end }}
