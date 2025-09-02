@@ -1,28 +1,7 @@
-<!-- layouts/feresteh/single.html -->
+
 {{ define "main" }}
 <article class="feresteh-post" dir="rtl">
   <div class="feresteh-container">
-
-    <!-- بخش سربرگ مطلب -->
-    <header class="post-header">
-      <h1 class="post-title">{{ .Title }}</h1>
-
-      <!-- نمایش تصویر شاخص (در صورت وجود) -->
-      {{ if .Params.image }}
-        <div class="featured-image">
-          <img src="{{ .Params.image }}" alt="{{ .Title }}">
-        </div>
-      {{ end }}
-
-      <div class="post-meta">
-        <!-- نمایش تاریخ انتشار -->
-        <span class="post-date">{{ .Date | time.Format ":date_long" }}</span>
-        <!-- اضافه کردن زمان مطالعه -->
-        <span class="reading-time"> ⏱️ {{ .ReadingTime }} دقیقه مطالعه</span>
-        <!-- اگر فیلد نویسنده در Front Matter تعریف شده باشد -->
-        {{ with .Params.author }}<span class="post-author"> • نویسنده: {{ . }}</span>{{ end }}
-      </div>
-    </header> <!-- پایان post-header -->
 
     <!-- بخش توضیحات -->
     <div class="feresteh-content">
