@@ -136,72 +136,49 @@
 
 
 
-
 /* -------------------------------
    صفحهٔ تکی فرسته - /feresteh/slug/
    ------------------------------- */
 
 /* تنظیمات پایه برای مقاله */
 .feresteh-post {
-    padding: 40px 0;
-    background-color: var(--body-bg, #ffffff); /* استفاده از متغیر، اگر نبود مقدار پیش‌فرض */
-    color: var(--text-color, #333333);
-    font-family: var(--font-family-primary, Vazir, Tahoma, sans-serif); /* فونت فارسی */
-    font-size: 1.05rem; /* اندازه فونت پایه کمی بزرگتر */
-    line-height: 1.8; /* ارتفاع خط مناسب برای خوانایی */
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px; /* پدینگ عمومی */
     direction: rtl;
-    text-align: justify; /* متن چین چپ و راست */
+    background-color: var(--body-bg, #ffffff);
+    color: var(--text-color, #333333);
+    font-family: var(--font-family-primary, Vazir, Tahoma, sans-serif);
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
-/* محدودیت عرض محتوا برای خوانایی بهتر */
-.feresteh-post .container {
-    max-width: 800px; /* یا هر اندازه دلخواه */
-    margin: 0 auto;
-    padding: 0 20px; /* فاصله از لبه‌ها در صفحات کوچک */
+.feresteh-container {
+    width: 100%;
+    max-width: 800px; /* عرض حداکثری برای خوانایی بهتر */
 }
 
-/* استایل هدر مطلب */
-.post-header {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-color-light, #eaeaea);
-    text-align: center; /* عنوان و تاریخ در وسط */
-}
-
-.post-title {
+/* عنوان اصلی مقاله */
+.feresteh-content h1.post-title {
     font-size: 2.2rem;
     font-weight: 700;
     color: var(--title-color, #222222);
-    margin: 0 0 15px 0;
+    margin: 0 0 20px 0; /* فاصله پایین */
     line-height: 1.3;
-}
-
-.post-meta {
-    font-size: 0.9rem;
-    color: var(--meta-color, #777777);
-}
-
-.post-meta .post-date,
-.post-meta .reading-time {
-    margin: 0 5px; /* فاصله بین تاریخ و زمان مطالعه */
-}
-
-/* بخش اصلی محتوا */
-.feresteh-content {
-    /* ممکن است نیازی به استایل خاص نباشد، ولی اینجا قرار می‌گیرد */
+    text-align: right; /* عنوان راست‌چین */
 }
 
 /* استایل تصویر شاخص */
 .featured-image {
-    margin: 20px 0 30px 0; /* فاصله از بالا و پایین */
+    margin: 0 0 30px 0; /* فاصله از بالا و پایین */
     text-align: center; /* تصویر در وسط */
-    border-radius: 8px; /* گوشه‌های گرد */
+    border-radius: 12px; /* گوشه‌های گرد */
     overflow: hidden; /* برای اعمال border-radius به img */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* سایه نرم */
+    box-shadow: 0 6px 15px var(--shadow-heavy, rgba(0, 0, 0, 0.15)); /* سایه مشابه نگار */
 }
 
 .featured-image img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -209,17 +186,16 @@
 }
 
 /* استایل محتوای اصلی مقاله (متن نوشته‌شده در مارک‌داون) */
-.article-content {
+.post-body {
     margin-bottom: 30px;
 }
 
 /* استایل عناوین داخل مقاله */
-.article-content h1,
-.article-content h2,
-.article-content h3,
-.article-content h4,
-.article-content h5,
-.article-content h6 {
+.post-body h2,
+.post-body h3,
+.post-body h4,
+.post-body h5,
+.post-body h6 {
     color: var(--heading-color, #111111);
     font-weight: 600;
     margin: 24px 0 16px 0; /* فاصله بالا و پایین */
@@ -227,52 +203,52 @@
     text-align: right; /* عناوین راست‌چین */
 }
 
-.article-content h2 {
+.post-body h2 {
     font-size: 1.8rem;
     border-bottom: 1px solid var(--border-color-light, #eaeaea);
     padding-bottom: 8px;
 }
 
-.article-content h3 {
+.post-body h3 {
     font-size: 1.5rem;
 }
 
-.article-content h4 {
+.post-body h4 {
     font-size: 1.3rem;
 }
 
 /* استایل پاراگراف‌ها */
-.article-content p {
+.post-body p {
     margin: 0 0 1.2em 0; /* فاصله پایین هر پاراگراف */
     text-align: justify; /* متن چین چپ و راست */
 }
 
 /* استایل لیست‌ها */
-.article-content ul,
-.article-content ol {
+.post-body ul,
+.post-body ol {
     margin: 1em 2em 1.5em 0; /* فاصله از بالا/پایین و راست/چپ */
     padding: 0;
     text-align: right; /* لیست‌ها راست‌چین */
 }
 
-.article-content li {
+.post-body li {
     margin-bottom: 0.5em;
 }
 
 /* استایل لینک‌ها */
-.article-content a {
+.post-body a {
     color: var(--link-color, #0066cc);
     text-decoration: none;
     border-bottom: 1px dotted currentColor; /* خط نقطه‌چین زیر لینک */
 }
 
-.article-content a:hover {
+.post-body a:hover {
     color: var(--link-hover-color, #004499);
     border-bottom-style: solid; /* خط ممتد در هاور */
 }
 
 /* استایل بلوک‌های کد */
-.article-content code {
+.post-body code {
     font-family: var(--font-family-mono, 'Courier New', monospace);
     background-color: var(--code-bg, #f5f5f5);
     padding: 2px 6px;
@@ -283,107 +259,119 @@
 }
 
 /* استایل بلوک‌های کد بزرگتر (pre) */
-.article-content pre {
+.post-body pre {
     background-color: var(--pre-bg, #f8f8f8);
     border: 1px solid var(--border-color, #dddddd);
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 15px;
     overflow-x: auto; /* اسکرول افقی در صورت نیاز */
     margin: 1.5em 0;
     text-align: left; /* محتوای pre معمولاً چپ‌چین */
     direction: ltr;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.article-content pre code {
+.post-body pre code {
     background-color: transparent; /* حذف رنگ پس‌زمینه کد داخل pre */
     padding: 0;
     border-radius: 0;
 }
 
 /* استایل نقل‌قول (blockquote) */
-.article-content blockquote {
+.post-body blockquote {
     margin: 1.5em 20px;
     padding: 15px 20px;
     border-right: 4px solid var(--blockquote-border, #cccccc); /* خط ضخیم راست */
     background-color: var(--blockquote-bg, #f9f9f9);
     color: var(--blockquote-color, #555555);
     font-style: italic;
+    border-radius: 0 8px 8px 0;
 }
 
 /* استایل خط افقی (hr) */
-.article-content hr {
+.post-body hr {
     border: none;
     height: 1px;
     background-color: var(--border-color-light, #eaeaea);
     margin: 2em 0;
 }
 
-/* پاورقی و هوشمندی‌های دیگر */
-.article-content strong {
+/* استایل بولد و ایتالیک */
+.post-body strong {
     font-weight: 600;
 }
 
-.article-content em {
+.post-body em {
     font-style: italic;
 }
 
-
-/* فوتر مقاله (برچسب‌ها) */
-.article-footer {
-    padding-top: 20px;
+/* بخش برچسب‌ها و دسته‌بندی‌ها */
+.post-tags,
+.post-categories {
+    margin-top: 25px;
+    padding-top: 15px;
     border-top: 1px solid var(--border-color-light, #eaeaea);
-    margin-top: 30px;
+    font-size: 0.95rem;
+    color: var(--text-color-secondary, #666666);
 }
 
-.tags {
-    /* text-align: right; */ /* اگر بخواهید برچسب‌ها راست‌چین باشند */
+.post-tags strong,
+.post-categories strong {
+    margin-left: 10px; /* فاصله از عنوان */
+    color: var(--title-color, #222222);
 }
 
-.tag {
+/* استایل هر برچسب یا دسته */
+.tag,
+.category {
     display: inline-block;
     background-color: var(--tag-bg, #eeeeee);
     color: var(--tag-color, #555555);
     padding: 5px 12px;
     border-radius: 20px; /* برچسب‌های گرد */
-    font-size: 0.85rem;
-    margin: 0 0 8px 8px; /* فاصله بین برچسب‌ها */
+    margin: 0 0 8px 8px; /* فاصله بین آیتم‌ها */
     text-decoration: none;
+    transition: all 0.2s ease;
 }
 
-.tag:hover {
+.tag:hover,
+.category:hover {
     background-color: var(--tag-hover-bg, #dddddd);
     color: var(--tag-hover-color, #333333);
+    transform: translateY(-2px); /* جلوه کوچک hover */
 }
 
 /* واکنش‌گرایی - برای صفحات موبایل */
 @media (max-width: 768px) {
     .feresteh-post {
-        padding: 20px 0;
-        font-size: 1rem; /* فونت کمی کوچکتر در موبایل */
+        padding: 20px 15px;
+        font-size: 1rem;
     }
 
-    .feresteh-post .container {
-        padding: 0 15px;
-    }
-
-    .post-title {
+    .feresteh-content h1.post-title {
         font-size: 1.8rem;
     }
 
-    .article-content h2 {
+    .post-body h2 {
         font-size: 1.5rem;
     }
 
-    .article-content h3 {
+    .post-body h3 {
         font-size: 1.3rem;
     }
 
-    .article-content ul,
-    .article-content ol {
-        margin-right: 1em; /* لیست‌ها در موبایل کمی به چپ بیشتر فاصله بگیرند */
+    .post-body ul,
+    .post-body ol {
+        margin-right: 1em;
     }
 
     .featured-image {
-        margin: 15px 0 20px 0;
+        margin: 0 0 20px 0;
+        border-radius: 10px;
+    }
+
+    .post-tags,
+    .post-categories {
+        font-size: 0.9rem;
     }
 }
