@@ -68,7 +68,6 @@
 
 .feresteh-link {
     display: flex;
-    flex-direction: row-reverse;
     text-decoration: none;
     color: inherit;
     height: 100%;
