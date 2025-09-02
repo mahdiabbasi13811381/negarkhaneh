@@ -44,7 +44,7 @@
       <h1 class="post-title">{{ .Title }}</h1>
 
       <div class="post-meta">
-        <span class="post-date">{{ .Date | time.Format ":date_long" }}</span>
+        <span class="post-date">{{ if .Params.persian_date }}{{ .Params.persian_date }}{{ else }}{{ .Date | time.Format ":date_long" }}{{ end }}</span>
         {{ with .Params.artist }}<span class="post-artist"> • هنرمند: {{ . }}</span>{{ end }}
       </div>
 
