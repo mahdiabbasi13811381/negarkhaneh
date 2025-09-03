@@ -90,9 +90,7 @@
     display: block;
     margin: 1.5em auto; /* به وسط صفحه */
     border-radius: 8px;
-    box-shadow:
-       0 4px 10px var(--shadow), /* سایه مشابه نگار */
-       inset 0 0 0 4px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px var(--shadow), /* سایه مشابه نگار */
 }
 
 /* 
@@ -106,7 +104,6 @@
     border-radius: 12px;
     box-shadow: 0 8px 20px var(--shadow-heavy); /* سایه تیره‌تر */
     max-width: 75%; /* کمی از عرض کانتینر کوچکتر */
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* استایل لینک‌ها */
