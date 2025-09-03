@@ -20,9 +20,9 @@
 
       <!-- نمایش تصویر شاخص (در صورت وجود) -->
       {{ if .Params.image }}
-        <div class="featured-image">
+        <figure class="image-wrapper">
           <img src="{{ .Params.image }}" alt="{{ .Title }}">
-        </div>
+        </figure>
       {{ end }}
 
       <!-- محتوای اصلی مقاله -->
