@@ -90,8 +90,9 @@
     display: block;
     margin: 1.5em auto; /* به وسط صفحه */
     border-radius: 8px;
-    box-shadow: 0 4px 10px var(--shadow); /* سایه مشابه نگار */
-    box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.2);
+    box-shadow:
+       0 4px 10px var(--shadow), /* سایه مشابه نگار */
+       inset 0 0 0 4px rgba(255, 255, 255, 0.2);
 }
 
 /* 
