@@ -181,22 +181,67 @@
     text-align: right; /* عنوان راست‌چین */
 }
 
-/* استایل تصویر شاخص */
-.featured-image {
-    margin: 0 0 30px 0; /* فاصله از بالا و پایین */
-    text-align: center; /* تصویر در وسط */
-    border-radius: 12px; /* گوشه‌های گرد */
-    overflow: hidden; /* برای اعمال border-radius به img */
-    box-shadow: 0 6px 15px var(--shadow-heavy); /* استفاده از متغیر سایه تیره */
+/* === استایل کانتینر تصویر با حاشیه (برای صفحات feresteh) === */
+.image-wrapper {
+    position: relative;
+    display: block;
+    margin: 1.5em auto;
+    max-width: 100%; /* یا هر مقدار دلخواه دیگر */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px var(--shadow);
+    box-sizing: border-box;
 }
 
-.featured-image img {
+.image-wrapper img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
-    margin: 0 auto;
-    /* border-radius در .featured-image اعمال می‌شود */
+    margin: 0;
 }
+
+.image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.image-wrapper.about-image-prominent {
+    margin: 2em auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--shadow-heavy);
+    max-width: 95%;
+}
+
+
+/* === واکنش‌گرایی برای تصاویر در صفحات feresteh === */
+@media (max-width: 768px) {
+    .image-wrapper {
+        border-radius: 6px;
+        max-width: 100%;
+    }
+
+    .image-wrapper::before {
+        border-radius: 10px;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 30px;
+    }
+
+    .image-wrapper.about-image-prominent {
+        border-radius: 10px;
+        max-width: 100%;
+    }
+}
+/* ====================================================== */
 
 /* استایل محتوای اصلی مقاله (متن نوشته‌شده در مارک‌داون) */
 .post-body {
