@@ -1,0 +1,10 @@
+<!-- layouts/_default/_markup/render-image.html -->
+<!-- این کد فقط برای صفحات about اعمال می‌شود -->
+{{ if eq .Page.Type "about" }}
+    <figure class="about-image-wrapper">
+        <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
+    </figure>
+{{ else }}
+    <!-- برای سایر صفحات، رندر عادی -->
+    <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
+{{ end }}
