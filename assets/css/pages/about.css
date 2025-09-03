@@ -81,30 +81,56 @@
     margin-bottom: 0.5em;
 }
 
-/* === استایل تصاویر === */
+/* === استایل تصاویر با استفاده از Render Hook === */
+/* استایل پایه برای همه تصاویر در صفحه درباره */
 
-/* استایل پیش‌فرض برای تصاویر درون متن */
-.page-body img {
-    max-width: 80%;
+.about-image-wrapper {
+    position: relative; /* ضروری برای absolute positioning فرزند (::before) */
+    display: block;
+    margin: 1.5em auto; /* حاشیه عمودی و تراز وسط */
+    max-width: 80%; /* عرض پیش‌فرض تصویر */
+    border-radius: 8px; /* گوشه‌های گرد کانتینر */
+    overflow: hidden; /* اطمینان از اینکه حاشیه از گوشه‌ها بیرون نرود */
+    box-shadow: 0 4px 10px var(--shadow); /* سایه پیش‌فرض مشابه صفحات دیگر */
+    box-sizing: border-box; /* شامل padding و border در عرض کلی */
+}
+
+.about-image-wrapper img {
+    display: block;
+    width: 100%;
     height: auto;
-    display: block;
-    margin: 1.5em auto; /* به وسط صفحه */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px var(--shadow), /* سایه مشابه نگار */
+    /* استایل‌هایی که قبلاً روی img بودند، اکنون روی .about-image-wrapper هستند */
+    margin: 0; /* حذف حاشیه پیش‌فرض img */
+    /* border-radius و box-shadow از img حذف شده و به کانتینر منتقل شده‌اند */
 }
 
-/* 
-  کلاس اختصاصی برای تصاویر برجسته‌شده (در صورت نیاز)
-  می‌توانید در محتوای مارک‌داون از آن استفاده کنید: ![alt](src.jpg?class=about-image-prominent)
-  یا در HTML: <img src="..." class="about-image-prominent" />
-*/
-.page-body .about-image-prominent {
-    display: block;
-    margin: 2em auto;
+/* === ایجاد حاشیه با ::before (مشابه صفحه نگار) === */
+.about-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    box-shadow: 0 8px 20px var(--shadow-heavy); /* سایه تیره‌تر */
-    max-width: 75%; /* کمی از عرض کانتینر کوچکتر */
+    pointer-events: none; /* کلیک‌ها و تعاملات به img برسند */
+    z-index: 2; /* حاشیه روی تصویر قرار گیرد */
 }
+/* ================================================= */
+
+
+/* === استایل تصاویر برجسته‌شده === */
+/* این استایل زمانی اعمال می‌شود که Render Hook کلاس 'about-image-prominent' را به .about-image-wrapper اضافه کند */
+/* مثلاً: <figure class="about-image-wrapper about-image-prominent"> */
+.about-image-wrapper.about-image-prominent {
+    margin: 2em auto; /* حاشیه عمودی بیشتر */
+    border-radius: 12px; /* گوشه‌های گرد‌تر */
+    box-shadow: 0 8px 20px var(--shadow-heavy); /* سایه تیره‌تر */
+    max-width: 75%; /* عرض کمی کوچکتر برای برجسته‌سازی */
+}
+/* ================================ */
+
 
 /* استایل لینک‌ها */
 .page-body a {
@@ -203,11 +229,21 @@
         margin-right: 1em;
     }
 
-    .page-body img {
-        border-radius: 6px;
+    /* به‌روزرسانی استایل تصاویر برای موبایل */
+    .about-image-wrapper {
+        border-radius: 6px; /* گوشه‌های گرد‌تر در موبایل */
+        max-width: 100%; /* استفاده از عرض کامل در موبایل */
     }
 
-    .page-body .about-image-prominent {
+    .about-image-wrapper::before {
+        border-radius: 10px; /* گوشه‌های حاشیه نیز کمی کوچک‌تر */
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 30px; /* تنظیم مجدد فاصله‌ها برای موبایل */
+    }
+
+    .about-image-wrapper.about-image-prominent {
         border-radius: 10px;
         max-width: 100%;
     }
