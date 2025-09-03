@@ -91,9 +91,7 @@
     margin: 1.5em auto; /* به وسط صفحه */
     border-radius: 8px;
     box-shadow: 0 4px 10px var(--shadow); /* سایه مشابه نگار */
-    outline: 1px solid rgba(255, 255, 255, 0.2);
-    outline-offset: -12px; /* مقدار منفی برای داخل رفتن خط */
-    outline-radius: 12px;
+    inset 0 0 0 4px rgba(255, 255, 255, 0.2);
 }
 
 /* 
