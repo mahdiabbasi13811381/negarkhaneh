@@ -10,18 +10,36 @@
     {{ $main := resources.Get "css/main.css" | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $main.Permalink }}" integrity="{{ $main.Data.Integrity }}" crossorigin="anonymous">
 
-    <!-- لود استایل اختصاصی صفحه (در صورت وجود) -->
+    <!-- === بخش اصلاح‌شده برای لود CSS صفحات === -->
+    <!-- هدف: لود css/pages/{SECTION}.css برای صفحات بخش و css/pages/{TYPE}.css برای صفحات تکی -->
     {{ $pageCSSPath := "" }}
+    
     {{ if .IsHome }}
+        <!-- صفحه اصلی -->
         {{ $pageCSSPath = "css/pages/home.css" }}
     {{ else if .Section }}
+        <!-- صفحات لیست بخش‌ها (مثلاً /negar/ یا /feresteh/) -->
         {{ $pageCSSPath = printf "css/pages/%s.css" .Section }}
+    {{ else if eq .Kind "page" }}
+        <!-- صفحات تکی که بخش ندارند (مثلاً /about/ یا /contact/) -->
+        <!-- از نوع صفحه (Type) برای تعیین نام فایل CSS استفاده می‌کنیم -->
+        {{ $pageCSSPath = printf "css/pages/%s.css" .Type }}
     {{ end }}
 
     {{ if $pageCSSPath }}
+        <!-- بررسی وجود فایل در پوشه assets -->
         {{ if fileExists (printf "assets/%s" $pageCSSPath) }}
-            {{ $pageCSS := resources.Get $pageCSSPath | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
-            <link rel="stylesheet" href="{{ $pageCSS.Permalink }}" integrity="{{ $pageCSS.Data.Integrity }}" crossorigin="anonymous">
+            <!-- اطمینان از بارگذاری فایل -->
+            {{ $pageCSS := resources.Get $pageCSSPath }}
+            {{ if $pageCSS }}
+                {{ $pageCSS = $pageCSS | toCSS (dict "outputStyle" "compressed") | minify | fingerprint }}
+                <link rel="stylesheet" href="{{ $pageCSS.Permalink }}" integrity="{{ $pageCSS.Data.Integrity }}" crossorigin="anonymous">
+                <!-- Debug: Successfully loaded {{ $pageCSSPath }} -->
+            {{ else }}
+                <!-- Warning: resources.Get failed for {{ $pageCSSPath }} -->
+            {{ end }}
+        {{ else }}
+            <!-- Debug: CSS file not found at assets/{{ $pageCSSPath }} -->
         {{ end }}
     {{ end }}
 
