@@ -85,7 +85,7 @@
 
 /* استایل پیش‌فرض برای تصاویر درون متن */
 .page-body img {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     display: block;
     margin: 1.5em auto; /* به وسط صفحه */
@@ -103,7 +103,7 @@
     margin: 2em auto;
     border-radius: 12px;
     box-shadow: 0 8px 20px var(--shadow-heavy); /* سایه تیره‌تر */
-    max-width: 95%; /* کمی از عرض کانتینر کوچکتر */
+    max-width: 75%; /* کمی از عرض کانتینر کوچکتر */
 }
 
 /* استایل لینک‌ها */
