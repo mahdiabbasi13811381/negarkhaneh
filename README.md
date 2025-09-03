@@ -1,5 +1,4 @@
 #نقشه سایت#
-
 your-hugo-site/
 ├── content/
 │   ├── negar/          # پوشه آثار هنری (همان gallery)
