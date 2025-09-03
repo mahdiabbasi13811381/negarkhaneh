@@ -84,7 +84,7 @@
 /* === استایل تصاویر با استفاده از Render Hook === */
 /* استایل پایه برای همه تصاویر در صفحه درباره */
 
-.about-image-wrapper {
+.image-wrapper {
     position: relative; /* ضروری برای absolute positioning فرزند (::before) */
     display: block;
     margin: 1.5em auto; /* حاشیه عمودی و تراز وسط */
@@ -95,17 +95,17 @@
     box-sizing: border-box; /* شامل padding و border در عرض کلی */
 }
 
-.about-image-wrapper img {
+.image-wrapper img {
     display: block;
     width: 100%;
     height: auto;
-    /* استایل‌هایی که قبلاً روی img بودند، اکنون روی .about-image-wrapper هستند */
+    /* استایل‌هایی که قبلاً روی img بودند، اکنون روی .image-wrapper هستند */
     margin: 0; /* حذف حاشیه پیش‌فرض img */
     /* border-radius و box-shadow از img حذف شده و به کانتینر منتقل شده‌اند */
 }
 
 /* === ایجاد حاشیه با ::before (مشابه صفحه نگار) === */
-.about-image-wrapper::before {
+.image-wrapper::before {
     content: '';
     position: absolute;
     top: 12px;
@@ -121,9 +121,9 @@
 
 
 /* === استایل تصاویر برجسته‌شده === */
-/* این استایل زمانی اعمال می‌شود که Render Hook کلاس 'about-image-prominent' را به .about-image-wrapper اضافه کند */
-/* مثلاً: <figure class="about-image-wrapper about-image-prominent"> */
-.about-image-wrapper.about-image-prominent {
+/* این استایل زمانی اعمال می‌شود که Render Hook کلاس 'image-prominent' را به .image-wrapper اضافه کند */
+/* مثلاً: <figure class="image-wrapper image-prominent"> */
+.image-wrapper.image-prominent {
     margin: 2em auto; /* حاشیه عمودی بیشتر */
     border-radius: 12px; /* گوشه‌های گرد‌تر */
     box-shadow: 0 8px 20px var(--shadow-heavy); /* سایه تیره‌تر */
@@ -230,12 +230,12 @@
     }
 
     /* به‌روزرسانی استایل تصاویر برای موبایل */
-    .about-image-wrapper {
+    .image-wrapper {
         border-radius: 6px; /* گوشه‌های گرد‌تر در موبایل */
         max-width: 100%; /* استفاده از عرض کامل در موبایل */
     }
 
-    .about-image-wrapper::before {
+    .image-wrapper::before {
         border-radius: 10px; /* گوشه‌های حاشیه نیز کمی کوچک‌تر */
         top: 10px;
         left: 10px;
@@ -243,7 +243,7 @@
         bottom: 30px; /* تنظیم مجدد فاصله‌ها برای موبایل */
     }
 
-    .about-image-wrapper.about-image-prominent {
+    .image-wrapper.image-prominent {
         border-radius: 10px;
         max-width: 100%;
     }
