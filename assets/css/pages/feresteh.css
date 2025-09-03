@@ -453,11 +453,6 @@
         margin-right: 1em;
     }
 
-    .featured-image {
-        margin: 0 0 20px 0;
-        border-radius: 10px;
-    }
-
     .post-tags,
     .post-categories {
         font-size: 0.9rem;
