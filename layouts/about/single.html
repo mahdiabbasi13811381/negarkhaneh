@@ -1,1 +1,20 @@
-layouts/
+<!-- layouts/about/single.html -->
+{{ define "main" }}
+<article class="about-post" dir="rtl">
+  <div class="about-container">
+
+    <!-- بخش توضیحات -->
+    <div class="about-content">
+
+      <!-- عنوان صفحه -->
+      <h1 class="page-title">{{ .Title }}</h1>
+
+      <!-- محتوای اصلی صفحه -->
+      <div class="page-body">
+        {{ .Content }}
+      </div>
+
+    </div> <!-- پایان about-content -->
+  </div> <!-- پایان about-container -->
+</article> <!-- پایان about-post -->
+{{ end }}
