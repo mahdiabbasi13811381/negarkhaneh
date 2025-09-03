@@ -186,8 +186,8 @@
     position: relative;
     display: block;
     margin: 1.5em auto;
-    max-width: 100%; /* یا هر مقدار دلخواه دیگر */
-    border-radius: 8px;
+    max-width: 80%; /* یا هر مقدار دلخواه دیگر */
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 10px var(--shadow);
     box-sizing: border-box;
@@ -206,7 +206,7 @@
     top: 12px;
     left: 12px;
     right: 12px;
-    bottom: 40px;
+    bottom: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     pointer-events: none;
@@ -217,7 +217,7 @@
     margin: 2em auto;
     border-radius: 12px;
     box-shadow: 0 8px 20px var(--shadow-heavy);
-    max-width: 95%;
+    max-width: 75%;
 }
 
 
