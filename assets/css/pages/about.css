@@ -89,7 +89,7 @@
     display: block;
     margin: 1.5em auto; /* حاشیه عمودی و تراز وسط */
     max-width: 80%; /* عرض پیش‌فرض تصویر */
-    border-radius: 8px; /* گوشه‌های گرد کانتینر */
+    border-radius: 12px; /* گوشه‌های گرد کانتینر */
     overflow: hidden; /* اطمینان از اینکه حاشیه از گوشه‌ها بیرون نرود */
     box-shadow: 0 4px 10px var(--shadow); /* سایه پیش‌فرض مشابه صفحات دیگر */
     box-sizing: border-box; /* شامل padding و border در عرض کلی */
@@ -111,7 +111,7 @@
     top: 12px;
     left: 12px;
     right: 12px;
-    bottom: 40px;
+    bottom: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     pointer-events: none; /* کلیک‌ها و تعاملات به img برسند */
