@@ -1,0 +1,45 @@
+.about-post {
+    /* می‌توانید استایل خاص خود را اینجا بنویسید */
+    /* یا از متغیرهای اصلی استفاده کنید تا با تم‌ها سازگار باشد */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Vazir', 'Poppins', sans-serif;
+    padding: 40px 20px;
+    direction: rtl;
+}
+
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-title {
+    font-family: 'Vazir', 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--title-color);
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.page-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.page-body h2 {
+    font-size: 1.8rem;
+    color: var(--title-color);
+    margin: 24px 0 16px 0;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.page-body p {
+    margin-bottom: 1.2em;
+    text-align: justify;
+}
+
+/* ... سایر استایل‌های لازم برای عناصر داخل .page-body ... */
+/* می‌توانید بخش‌هایی از feresteh.css را کپی و در اینجا قرار دهید */
