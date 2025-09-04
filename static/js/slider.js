@@ -32,6 +32,21 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentIndex = 0;
     let uiVisible = true; // نمایش/مخفی‌کردن عناصر رابط
 
+    // === بخش جدید: مدیریت دکمه‌های اسلایدر برای تک‌ تصویری ===
+    // اگر فقط یک اسلاید وجود دارد، دکمه‌ها را مخفی می‌کنیم
+    if (slides.length < 2) {
+        if (prevBtn) {
+            prevBtn.style.display = 'none'; // یا prevBtn.classList.add('hidden'); اگر کلاس CSS دارید
+        }
+        if (nextBtn) {
+            nextBtn.style.display = 'none'; // یا nextBtn.classList.add('hidden');
+        }
+         ;// همچنین می‌توانید نقطه‌ها را هم مخفی کنید اگر لازم است;
+        const dotsContainer = document.querySelector('.slider-dots');
+        if (dotsContainer) dotsContainer.style.display = 'none';
+    }
+
+
     // ساخت تام‌نیل‌ها
     slides.forEach((slide, index) => {
         const thumb = document.createElement('img');
