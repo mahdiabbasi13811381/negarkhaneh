@@ -1,1 +1,18 @@
-layouts/
+<!-- layouts/contact/single.html -->
+{{ define "main" }}
+<article class="contact-page" dir="rtl">
+  <div class="contact-container">
+
+    <!-- بخش سربرگ -->
+    <header class="contact-header">
+      <h1 class="page-title">{{ .Title }}</h1>
+    </header>
+
+    <!-- بخش محتوای اصلی (شامل لینک‌های اجتماعی نیز) -->
+    <div class="contact-content">
+      {{ .Content }}
+    </div>
+
+  </div>
+</article>
+{{ end }}
