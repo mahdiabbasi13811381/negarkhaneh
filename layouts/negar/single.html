@@ -22,22 +22,27 @@
             بدون تصویر
           </div>
         {{ end }}
-      </div>
 
-      <!-- فلش چپ (قبلی) -->
-      <button class="slider-prev" aria-label="تصویر قبلی">❮</button>
+        <!-- === تغییر: دکمه‌ها به داخل slider-wrapper منتقل شدند === -->
+        <!-- === تغییر: کلاس‌های slider-nav-btn اضافه شدند === -->
+        <!-- فلش چپ (قبلی) -->
+        <button class="slider-prev slider-nav-btn" aria-label="تصویر قبلی">❮</button>
 
-      <!-- فلش راست (بعدی) -->
-      <button class="slider-next" aria-label="تصویر بعدی">❯</button>
+        <!-- فلش راست (بعدی) -->
+        <button class="slider-next slider-nav-btn" aria-label="تصویر بعدی">❯</button>
+        <!-- ===================================================== -->
       
-      <!-- نقطه‌های کنترل اسلایدر -->
+      </div> <!-- پایان slider-wrapper -->
+
+      <!-- === تغییر: نقطه‌ها همچنان خارج از slider-wrapper هستند === -->
       <div class="slider-dots">
         {{ $total := add 1 (len (.Params.images | default slice)) }}
         {{ range seq $total }}
           <div class="slider-dot{{ if eq . 1 }} active{{ end }}"></div>
         {{ end }}
       </div>
-    </div>
+      <!-- ========================================================== -->
+    </div> <!-- پایان negar-slider -->
 
     <!-- بخش توضیحات -->
     <div class="negar-content">
