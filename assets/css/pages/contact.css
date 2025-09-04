@@ -1,0 +1,194 @@
+/* -------------------------------
+   صفحهٔ تماس - /contact/
+   ------------------------------- */
+
+/* تنظیمات پایه برای صفحه */
+.contact-page {
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px 40px; /* بالا، افقی، پایین */
+    direction: rtl;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Vazir', 'Poppins', sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 600px; /* عرض کمتر برای حس فشردگی و تمرکز بیشتر */
+    text-align: center; /* تراز وسط محتوا */
+}
+
+/* سربرگ صفحه */
+.contact-header {
+    margin-bottom: 40px;
+}
+
+.page-title {
+    font-family: 'Vazir', 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--title-color);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* محتوای اصلی صفحه */
+.contact-content {
+    margin-bottom: 40px;
+    text-align: right; /* متن‌های عمومی راست‌چین */
+}
+
+.contact-content h2 {
+    font-size: 1.4rem;
+    color: var(--title-color);
+    margin: 30px 0 15px 0;
+    text-align: right;
+    font-weight: 600;
+}
+
+.contact-content p {
+    margin: 0 0 1em 0;
+    text-align: justify;
+}
+
+.contact-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5em 0;
+    text-align: right;
+}
+
+.contact-content li {
+    margin-bottom: 12px;
+    padding-right: 0; /* حذف فاصله برای آیکون */
+    position: relative;
+}
+
+/* استایل پایه برای لینک‌های عادی در محتوا */
+.contact-content a {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+}
+
+.contact-content a:hover {
+    color: #666;
+    border-bottom-style: solid;
+}
+
+/* === بخش شبکه‌های اجتماعی با استایل ویژه === */
+/* این استایل‌ها برای لینک‌هایی با کلاس 'social-link' اعمال می‌شوند */
+/* که توسط render-link.html اضافه شده‌اند */
+
+/* استایل پایه برای لینک‌های شبکه‌های اجتماعی */
+.social-link {
+    display: inline-flex; /* برای تراز وسط عمودی و کنترل اندازه */
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 8px; /* گوشه‌های گرد */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    min-width: 120px; /* عرض حداقلی برای یکنواختی */
+    box-sizing: border-box;
+    border: 1px solid transparent; /* مرز شفاف پیش‌فرض */
+    color: white; /* رنگ متن سفید برای کنتراست روی رنگ‌های پس‌زمینه */
+    background-color: var(--card-bg); /* پس‌زمینه پیش‌فرض خاکستری روشن */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* سایه نرم پیش‌فرض */
+}
+
+.social-link:hover {
+    transform: translateY(-3px); /* جلوه بالا آمدن */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-color: var(--border-color); /* نمایش مرز در هاور */
+    /* رنگ‌های پیش‌فرض در hover تغییر نمی‌کنند مگر اینکه در کلاس‌های خاص تعریف شوند */
+}
+
+/* === استایل‌های منحصر به فرد برای هر شبکه اجتماعی === */
+/* رنگ‌ها بر اساس رنگ‌های رایج هر پلتفرم انتخاب شده‌اند */
+
+.social-virasty {
+    background-color: #FF6B00; /* رنگ فرضی برای Virasty */
+}
+
+.social-virasty:hover {
+    background-color: #cc5600; /* رنگ تیره‌تر در هاور */
+}
+
+.social-bale {
+    background-color: #3366FF; /* رنگ فرضی برای Bale */
+}
+
+.social-bale:hover {
+    background-color: #2952cc; /* رنگ تیره‌تر در هاور */
+}
+
+.social-rubika {
+    background-color: #FF006E; /* رنگ فرضی برای Rubika */
+}
+
+.social-rubika:hover {
+    background-color: #cc0058; /* رنگ تیره‌تر در هاور */
+}
+
+.social-eitaa {
+    background-color: #00B894; /* رنگ فرضی برای Eitaa */
+}
+
+.social-eitaa:hover {
+    background-color: #008f73; /* رنگ تیره‌تر در هاور */
+}
+
+.social-splus {
+    background-color: #F39C12; /* رنگ فرضی برای Splus */
+}
+
+.social-splus:hover {
+    background-color: #c87f0a; /* رنگ تیره‌تر در هاور */
+}
+
+.social-gap {
+    background-color: #8E44AD; /* رنگ فرضی برای Gap */
+}
+
+.social-gap:hover {
+    background-color: #6c3483; /* رنگ تیره‌تر در هاور */
+}
+
+/* واکنش‌گرایی - برای صفحات موبایل */
+@media (max-width: 768px) {
+    .contact-page {
+        padding: 40px 15px 30px;
+    }
+
+    .contact-container {
+        max-width: 100%;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .contact-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .social-link {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        min-width: 90px;
+    }
+}
