@@ -11,7 +11,7 @@ year: 2023
 price: "۱,۲۰۰,۰۰۰ تومان"
 draft: false
 image: "https://images.squarespace-cdn.com/content/v1/624b503b16dabe4934de72a7/1649102926021-PZ5Q1W0ZO6L00ZXZ2SWO/EmptyName-56.jpg?format=2500w"
-image: "https://s34.picofile.com/file/8486764876/1756925415.png"
+images: "https://s34.picofile.com/file/8486764876/1756925415.png"
 ---
 
 ## توضیح اثر
