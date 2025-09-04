@@ -22,7 +22,7 @@ layout: "single"
 در فضای مجازی نیز فعال هستم. می‌توانید از طریق یکی از پیوندهای زیر با من همراه شوید:
 
 *   [پیامرسان بله](https://ble.ir/mahdiabbasi13811381)
-*   [پیامرسان روبیکا](https://rubika.ir/mahdiabbasi13811381https:/)
+*   [پیامرسان روبیکا](https://rubika.ir/mahdiabbasi13811381)
 *   [ویراستی](https://virasty.com/mahdiabbasi13811381)
 
 
