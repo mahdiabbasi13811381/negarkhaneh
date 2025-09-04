@@ -1,0 +1,25 @@
+<!-- layouts/_default/_markup/render-link.html -->
+{{ $url := .Destination | safeURL }}
+{{ $text := .Text | safeHTML }}
+{{ $title := .Title }}
+
+<!-- تعیین کلاس پایه -->
+{{ $linkClass := "contact-link" }}
+
+<!-- تعیین کلاس اضافی بر اساس دامنه URL -->
+{{ if strings.Contains $url "virasty.com" }}
+    {{ $linkClass = printf "%s social-link social-virasty" $linkClass }}
+{{ else if strings.Contains $url "ble.ir" }}
+    {{ $linkClass = printf "%s social-link social-bale" $linkClass }}
+{{ else if strings.Contains $url "rubika.ir" }}
+    {{ $linkClass = printf "%s social-link social-rubika" $linkClass }}
+{{ else if strings.Contains $url "eitaa.com" }}
+    {{ $linkClass = printf "%s social-link social-eitaa" $linkClass }}
+{{ else if strings.Contains $url "splus.ir" }}
+    {{ $linkClass = printf "%s social-link social-splus" $linkClass }}
+{{ else if strings.Contains $url "gap.im" }}
+    {{ $linkClass = printf "%s social-link social-gap" $linkClass }}
+{{ end }}
+
+<!-- رندر نهایی لینک -->
+<a href="{{ $url }}" class="{{ $linkClass }}"{{ with $title}} title="{{ . }}"{{ end }}>{{ $text }}</a>
