@@ -35,12 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // === بخش جدید: مدیریت دکمه‌های اسلایدر برای تک‌ تصویری ===
     // اگر فقط یک اسلاید وجود دارد، دکمه‌ها را مخفی می‌کنیم
     if (slides.length < 2) {
-        if (prevBtn) {
-            prevBtn.style.display = 'none'; // یا prevBtn.classList.add('hidden'); اگر کلاس CSS دارید
-        }
-        if (nextBtn) {
-            nextBtn.style.display = 'none'; // یا nextBtn.classList.add('hidden');
-        }
+       // استفاده از کلاس مشترک slider-nav-btn برای پیدا کردن و مخفی کردن
+        const navButtons = document.querySelectorAll('.slider-nav-btn');
+        navButtons.forEach(btn => {
+             btn.style.display = 'none';
          ;// همچنین می‌توانید نقطه‌ها را هم مخفی کنید اگر لازم است;
         const dotsContainer = document.querySelector('.slider-dots');
         if (dotsContainer) dotsContainer.style.display = 'none';
