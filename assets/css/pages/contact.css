@@ -85,9 +85,12 @@
 
 /* استایل پایه برای لینک‌های شبکه‌های اجتماعی */
 .social-link {
-    display: inline-flex; /* برای تراز وسط عمودی و کنترل اندازه */
-    align-items: center;
-    justify-content: center;
+    /* نمایش به‌صورت flexbox برای کنترل آیکون و متن */
+    display: inline-flex;
+    align-items: center; /* تراز عمودی */
+    justify-content: center; /* تراز افقی (در صورت نیاز) */
+    
+    /* ظاهر دکمه‌ای */
     padding: 12px 20px;
     border-radius: 8px; /* گوشه‌های گرد */
     text-decoration: none;
@@ -97,9 +100,15 @@
     min-width: 120px; /* عرض حداقلی برای یکنواختی */
     box-sizing: border-box;
     border: 1px solid transparent; /* مرز شفاف پیش‌فرض */
+    
+    /* رنگ‌ها */
     color: white; /* رنگ متن سفید برای کنتراست روی رنگ‌های پس‌زمینه */
-    background-color: var(--card-bg); /* پس‌زمینه پیش‌فرض خاکستری روشن */
+    background-color: var(--card-bg); /* پس‌زمینه پیش‌فرض (احتمالاً خاکستری روشن) */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* سایه نرم پیش‌فرض */
+    
+    /* جلوگیری از رفتارهای ناخواسته */
+    white-space: nowrap; /* جلوگیری از折 شدن متن */
+    overflow: visible; /* اطمینان از نمایش کامل آیکون */
 }
 
 .social-link:hover {
@@ -109,13 +118,36 @@
     /* رنگ‌های پیش‌فرض در hover تغییر نمی‌کنند مگر اینکه در کلاس‌های خاص تعریف شوند */
 }
 
+/* === استایل خاص برای آیکون‌های SVG داخل لینک‌های اجتماعی === */
+.social-link svg {
+    /* اندازه آیکون */
+    width: 1.2em; /* اندازه نسبت به فونت والد */
+    height: 1.2em; /* اندازه نسبت به فونت والد */
+    
+    /* موقعیت و فاصله */
+    margin-left: 0.5em; /* فاصله از متن */
+    flex-shrink: 0; /* جلوگیری از کوچک شدن آیکون */
+    
+    /* رنگ آیکون */
+    /* fill: currentColor; */ /* اگر فعال شود، رنگ آیکون از متن گرفته می‌شود */
+    /* stroke: currentColor; */ /* اگر آیکون خطی است */
+    
+    /* سایر */
+    vertical-align: middle; /* برای تراز بهتر با متن */
+    
+    /* جلوگیری از مشکلات overflow */
+    overflow: visible;
+    
+    /* اطمینان از اینکه استایل‌های توکار SVG نادیده گرفته شوند */
+    /* (اگر در فایل SVG style یا fill تعریف شده باشد) */
+}
+
 /* === استایل‌های منحصر به فرد برای هر شبکه اجتماعی === */
 /* رنگ‌ها بر اساس رنگ‌های رایج هر پلتفرم انتخاب شده‌اند */
 
 .social-virasty {
     background-color: #FF6B00; /* رنگ فرضی برای Virasty */
 }
-
 .social-virasty:hover {
     background-color: #cc5600; /* رنگ تیره‌تر در هاور */
 }
@@ -123,7 +155,6 @@
 .social-bale {
     background-color: #3366FF; /* رنگ فرضی برای Bale */
 }
-
 .social-bale:hover {
     background-color: #2952cc; /* رنگ تیره‌تر در هاور */
 }
@@ -131,7 +162,6 @@
 .social-rubika {
     background-color: #FF006E; /* رنگ فرضی برای Rubika */
 }
-
 .social-rubika:hover {
     background-color: #cc0058; /* رنگ تیره‌تر در هاور */
 }
@@ -139,7 +169,6 @@
 .social-eitaa {
     background-color: #00B894; /* رنگ فرضی برای Eitaa */
 }
-
 .social-eitaa:hover {
     background-color: #008f73; /* رنگ تیره‌تر در هاور */
 }
@@ -147,7 +176,6 @@
 .social-splus {
     background-color: #F39C12; /* رنگ فرضی برای Splus */
 }
-
 .social-splus:hover {
     background-color: #c87f0a; /* رنگ تیره‌تر در هاور */
 }
@@ -155,7 +183,6 @@
 .social-gap {
     background-color: #8E44AD; /* رنگ فرضی برای Gap */
 }
-
 .social-gap:hover {
     background-color: #6c3483; /* رنگ تیره‌تر در هاور */
 }
@@ -183,6 +210,12 @@
         font-size: 0.95rem;
         min-width: 100px;
     }
+    
+    /* اندازه آیکون در موبایل */
+    .social-link svg {
+        width: 1.1em;
+        height: 1.1em;
+    }
 }
 
 @media (max-width: 480px) {
@@ -190,5 +223,11 @@
         padding: 8px 12px;
         font-size: 0.9rem;
         min-width: 90px;
+    }
+    
+    /* اندازه آیکون در صفحات بسیار کوچک */
+    .social-link svg {
+        width: 1em;
+        height: 1em;
     }
 }
