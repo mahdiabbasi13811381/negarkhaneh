@@ -3,7 +3,7 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 3584.6 3673.6" style="enable-background:new 0 0 3584.6 3673.6;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#EE7F22;}
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#EE7F22 !important;}
 </style>
 <g id="Isolation_Mode">
 	<path class="st0" d="M1024.2,0h1536.2c563.3,0,1024.2,460.2,1024.2,1023.4v493.9c-505,227-1014.4,1348.1-1756.9,1104.5
@@ -15,3 +15,4 @@
 		C0,460.9,460.9,0,1024.2,0L1024.2,0z"/>
 </g>
 </svg>
+
