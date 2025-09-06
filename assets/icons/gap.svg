@@ -5,7 +5,7 @@
 <style type="text/css">
 	.st0{fill:url(#SVGID_1_);}
 	.st1{fill:url(#SVGID_00000076598721977619246980000015276735992754299010_);}
-	.st2{fill:#FFFFFF;}
+	.st2{fill:#FFFFFF !important;}
 </style>
 <g>
 	<g>
@@ -58,3 +58,4 @@
 		C351.8,164,351,173.6,345.4,180.6z"/>
 </g>
 </svg>
+
