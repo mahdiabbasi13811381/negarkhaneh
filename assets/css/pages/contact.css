@@ -17,7 +17,7 @@
 
 .contact-container {
     width: 100%;
-    max-width: 800px; /* عرض کمتر برای حس فشردگی و تمرکز بیشتر */
+    max-width: 600px; /* عرض کمتر برای حس فشردگی و تمرکز بیشتر */
     text-align: center; /* تراز وسط محتوا */
 }
 
