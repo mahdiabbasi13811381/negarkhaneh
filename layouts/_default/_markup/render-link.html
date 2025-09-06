@@ -3,23 +3,43 @@
 {{ $text := .Text | safeHTML }}
 {{ $title := .Title }}
 
-<!-- تعیین کلاس پایه -->
+<!-- متغیرهای پیش‌فرض -->
 {{ $linkClass := "contact-link" }}
+{{ $iconName := "" }} <!-- فقط نام آیکون بدون پسوند -->
 
-<!-- تعیین کلاس اضافی بر اساس دامنه URL -->
+<!-- تعیین کلاس و نام آیکون بر اساس دامنه URL -->
 {{ if strings.Contains $url "virasty.com" }}
     {{ $linkClass = printf "%s social-link social-virasty" $linkClass }}
+    {{ $iconName = "virasty" }}
 {{ else if strings.Contains $url "ble.ir" }}
     {{ $linkClass = printf "%s social-link social-bale" $linkClass }}
+    {{ $iconName = "bale" }}
 {{ else if strings.Contains $url "rubika.ir" }}
     {{ $linkClass = printf "%s social-link social-rubika" $linkClass }}
+    {{ $iconName = "rubika" }}
 {{ else if strings.Contains $url "eitaa.com" }}
     {{ $linkClass = printf "%s social-link social-eitaa" $linkClass }}
+    {{ $iconName = "eitaa" }}
 {{ else if strings.Contains $url "splus.ir" }}
     {{ $linkClass = printf "%s social-link social-splus" $linkClass }}
+    {{ $iconName = "splus" }}
 {{ else if strings.Contains $url "gap.im" }}
     {{ $linkClass = printf "%s social-link social-gap" $linkClass }}
+    {{ $iconName = "gap" }}
 {{ end }}
 
-<!-- رندر نهایی لینک -->
-<a href="{{ $url }}" class="{{ $linkClass }}"{{ with $title}} title="{{ . }}"{{ end }}>{{ $text }}</a>
+<!-- رندر نهایی لینک با آیکون SVG -->
+<a href="{{ $url }}" class="{{ $linkClass }}"{{ with $title}} title="{{ . }}"{{ end }}>
+    {{ with $iconName }}
+        <!-- بارگذاری فایل SVG از assets -->
+        {{ $iconResource := resources.Get (printf "icons/%s.svg" .) }}
+        {{ with $iconResource }}
+            <!-- تزریق محتوای SVG به‌صورت inline -->
+            {{ .Content | safeHTML }}
+        {{ else }}
+            <!-- Fallback: اگر فایل SVG پیدا نشد، یک placeholder نمایش داده می‌شود -->
+            <span class="icon-placeholder" aria-hidden="true">[{{ . }}]</span>
+        {{ end }}
+    {{ end }}
+    <span>{{ $text }}</span>
+</a>
