@@ -124,6 +124,33 @@ nav {
 }
 
 /* ------------------------------
+عناوین صفحات 
+------------------------------ */
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--title-color, #2c3e50);
+    text-align: center;
+    margin: 60px 0 40px;
+    position: relative;
+    padding-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary-color, #667eea), var(--secondary-color, #764ba2));
+    border-radius: 2px;
+}
+
+/* ------------------------------
    هدر - مدرن، جمع‌وجور و زیبا
    ------------------------------ */
 header {
@@ -269,6 +296,11 @@ footer {
     .site-subtitle {
         font-size: 1rem;
     }
+   
+    .section-title {
+        font-size: 2rem;
+        margin: 40px 0 30px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -276,6 +308,17 @@ footer {
         padding: 0 20px;
     }
 
+       .section-title {
+        font-size: 1.6rem;
+        margin: 30px 0 20px;
+        padding-bottom: 15px;
+    }
+    
+    .section-title::after {
+        width: 60px;
+        height: 3px;
+    }
+   
     .nav-links {
         gap: 5px;
         flex-wrap: nowrap;
