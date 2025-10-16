@@ -39,7 +39,8 @@
    تنظیمات کلی
    ------------------------------ */
 * {
-    margin: 0;
+    margin-right: 0px;
+    margin-left: 0px
     padding: 0;
     box-sizing: border-box;
 }
