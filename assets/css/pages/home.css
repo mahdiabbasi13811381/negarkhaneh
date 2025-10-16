@@ -327,7 +327,7 @@
     }
     
     .gallery {
-        gap: 15px;
+        gap: 10px;
         margin: 50px 0;
     }
     
@@ -384,8 +384,8 @@
     }
     
     .gallery {
-        gap: 15px;
-        margin: 40px 0;
+        gap: 5px;
+        margin: 40px -10px;
     }
     
     .section-title {
