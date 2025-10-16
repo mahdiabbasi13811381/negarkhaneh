@@ -2,7 +2,7 @@
    صفحهٔ /feresteh/ - لیست نوشته‌ها
    ------------------------------ */
 .ferestehs-section {
-    padding: 60px 0;
+    padding: 20px 5px;
     text-align: right;
     direction: rtl;
     background: var(--section-bg);
