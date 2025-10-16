@@ -400,3 +400,15 @@
         display: none;
     }
 }
+
+@media (max-width: 500px) {
+    .gallery {
+        gap: 4px;
+        margin: 40px -12px;
+    }
+
+   .gallery-item {
+    border-radius: 4px;
+   }
+    
+}
