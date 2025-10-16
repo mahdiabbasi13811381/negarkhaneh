@@ -387,6 +387,10 @@
         gap: 5px;
         margin: 40px -10px;
     }
+
+   .gallery-item {
+    border-radius: 4px;
+   }
     
     .section-title {
         font-size: 1.6rem;
