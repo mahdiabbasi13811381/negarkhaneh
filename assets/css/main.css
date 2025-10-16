@@ -314,7 +314,7 @@ footer {
     }
 
     .nav-links {
-        gap: 18px;
+        gap: 12px;
         flex-wrap: wrap;
     }
     
@@ -323,6 +323,6 @@ footer {
     }
     
     header {
-        padding: 50px 0 25px;
+        padding: 30px 0 25px;
     }
 }
