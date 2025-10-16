@@ -384,8 +384,8 @@
     }
     
     .gallery {
-        gap: 5px;
-        margin: 40px -10px;
+        gap: 4px;
+        margin: 40px -12px;
     }
 
    .gallery-item {
