@@ -350,10 +350,21 @@
 
 @media (max-width: 500px) {
     .profile-section {
-        padding: 25px 20px;
-        margin: 25px 0;
+        padding: 20px 15px;
+        margin: 20px 0;
     }
-    
+
+   .profile-name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+   }
+
+   .profile-bio {
+    line-height: 1.6;
+    font-size: 0.8rem;
+   }
+   
     .project-section {
         padding: 30px 20px;
         margin: 35px 0;
