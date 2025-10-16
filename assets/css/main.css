@@ -317,7 +317,12 @@ footer {
         gap: 10px;
         flex-wrap: nowrap;
     }
-
+   
+   .nav-link {
+      letter-spacing: 0.8px;
+      padding: 8px 8px;
+    }
+   
    nav {
       padding: 10px 2px;
       top: 15px;
@@ -326,7 +331,15 @@ footer {
     .nav-container {
         padding: 10px 15px;
     }
-    
+
+   .site-title {
+      font-size: 1.5rem;
+   }
+
+   .site-subtitle {
+      font-size: 1rem;
+   }
+   
     header {
         padding: 80px 0 25px;
     }
