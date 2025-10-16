@@ -315,7 +315,7 @@ footer {
 
     .nav-links {
         gap: 10px;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
 
    nav {
