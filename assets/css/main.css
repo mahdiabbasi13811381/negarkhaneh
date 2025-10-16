@@ -314,7 +314,7 @@ footer {
     }
 
     .nav-links {
-        gap: 10px;
+        gap: 5px;
         flex-wrap: nowrap;
     }
    
@@ -324,12 +324,12 @@ footer {
     }
    
    nav {
-      padding: 10px 2px;
+      padding: 10px 0px;
       top: 15px;
     }
    
     .nav-container {
-        padding: 10px 15px;
+        padding: 10px 10px;
     }
 
    .site-title {
