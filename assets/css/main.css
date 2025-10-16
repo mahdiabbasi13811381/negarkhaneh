@@ -318,8 +318,9 @@ footer {
         flex-wrap: wrap;
     }
 
-   .nav {
-        padding: 10px 2px;
+   nav {
+      padding: 10px 2px;
+      top: 15px;
     }
    
     .nav-container {
