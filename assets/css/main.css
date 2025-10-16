@@ -326,23 +326,3 @@ footer {
         padding: 50px 0 25px;
     }
 }
-
-@media (max-width: 300px) {
-    .container {
-        padding: 0 15px;
-    }
-
-    .nav-links {
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-    
-    .nav-container {
-        padding: 10px 15px;
-    }
-    
-    header {
-        padding: 150px 0 25px;
-    }
-}
-
