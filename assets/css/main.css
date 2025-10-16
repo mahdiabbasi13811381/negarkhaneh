@@ -314,10 +314,14 @@ footer {
     }
 
     .nav-links {
-        gap: 12px;
+        gap: 10px;
         flex-wrap: wrap;
     }
-    
+
+   .nav {
+        padding: 10px 2px;
+    }
+   
     .nav-container {
         padding: 10px 15px;
     }
