@@ -18,7 +18,7 @@
 
 .profile-name {
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 700;
     margin-bottom: 10px;
     color: var(--title-color);
@@ -27,7 +27,7 @@
 .profile-bio {
     color: var(--text-color);
     line-height: 1.8;
-    font-size: 1.05rem;
+    font-size: 1rem;
 }
 
 /* ------------------------------
@@ -313,6 +313,17 @@
 
 /* واکنش‌گرایی صفحه اصلی */
 @media (max-width: 900px) {
+    .profile-name {
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+   }
+
+   .profile-bio {
+    line-height: 1.6;
+    font-size: 0.9rem;
+   }
+    
     .feresteh-list {
         grid-template-columns: 1fr;
         gap: 18px;
@@ -320,6 +331,22 @@
 }
 
 @media (max-width: 768px) {
+    .profile-section {
+      padding: 20px 15px;
+      margin: 20px 0;
+    }
+
+   .profile-name {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+   }
+
+   .profile-bio {
+    line-height: 1.6;
+    font-size: 0.85rem;
+   }
+    
     .section-title,
     .ferestehs-section h2,
     .project-title {
