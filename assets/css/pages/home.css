@@ -117,7 +117,7 @@
     padding: 0 15px;
     background: var(--section-bg);
     z-index: 1;
-}*/
+}
 
 .ferestehs-section h2::before,
 .ferestehs-section h2::after {
@@ -136,7 +136,7 @@
 
 .ferestehs-section h2::after {
     left: 100%;
-}
+}*/
 
 .feresteh-list {
     display: grid;
@@ -209,7 +209,7 @@
     font-weight: 600;
 }
 
-.feresteh-content .feresteh-excerpt {
+.feresteh-content .feresteh-excerpt * {
     font-size: 0.98rem;
     color: var(--text-color);
     line-height: 1.6;
