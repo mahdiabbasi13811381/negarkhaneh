@@ -410,5 +410,10 @@
    .gallery-item {
     border-radius: 4px;
    }
-    
+
+   .negar-slider {
+    width: 100%;
+    position: relative;
+}
+   
 }
