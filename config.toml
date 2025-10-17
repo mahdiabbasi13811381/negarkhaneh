@@ -24,7 +24,7 @@ url = '/feresteh/'
 weight = 3
 
 [[menu.main]]
-name = 'دربارهٔ من'
+name = 'درباره من'
 url = '/about/'
 weight = 4
 
