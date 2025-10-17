@@ -45,7 +45,7 @@
 }
 
 body {
-    font-family: 'Poppins', 'Vazirmatn', 'Vazir', sans-serif;
+    font-family: 'Vazirmatn', 'Vazir', 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
