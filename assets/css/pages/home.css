@@ -209,7 +209,8 @@
     font-weight: 600;
 }
 
-.feresteh-content .feresteh-excerpt .* {
+.feresteh-content .feresteh-excerpt,
+.feresteh-content .feresteh-excerpt h2 {
     font-size: 0.98rem;
     color: var(--text-color);
     line-height: 1.6;
